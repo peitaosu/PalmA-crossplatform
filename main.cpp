@@ -1,9 +1,10 @@
 #include <QApplication>
-#include "display.h"
+#include "test.h"
 
 int main(int argc, char *argv[])
 {
     QApplication palm_crossplatform(argc, argv);
-    Display D;
+    Test test;
+    test.TestAllClasses();
     return palm_crossplatform.exec();
 }
