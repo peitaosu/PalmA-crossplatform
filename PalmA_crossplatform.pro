@@ -12,4 +12,9 @@ TARGET = PalmA_crossplatform
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp\
+    status_widget.cpp
+
+HEADERS += status_widget.h
+
+FORMS   += status_widget.ui
