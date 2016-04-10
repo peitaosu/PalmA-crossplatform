@@ -13,9 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    status_widget.cpp
+    status_widget.cpp\
+    display.cpp
 
-HEADERS += status_widget.h
+HEADERS += status_widget.h\
+    display.h
 
 FORMS   += status_widget.ui
 
