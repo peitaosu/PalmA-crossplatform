@@ -16,4 +16,7 @@ void Test::testAllClasses(){
     operation.mouseMove(0.8, 0.8);
     operation.mousePress();
     operation.mouseRelease();
+    operation.keyboardPress("LWIN");
+    operation.keyboardRelease("LWIN");
+
 }
