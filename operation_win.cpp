@@ -1,10 +1,20 @@
 #include "operation_win.h"
 #include <Windows.h>
+#include <QFile>
+#include <QJsonDocument>
 #pragma comment (lib,"Advapi32.lib")
 #pragma comment (lib,"User32.lib")
 
 Operation::Operation(){
-
+    //load virtual key code json file as QVariantMap
+    QString vk_code_string;
+    QFile vk_code_file;
+    vk_code_file.setFileName(":/operation_win.json");
+    vk_code_file.open(QIODevice::ReadOnly | QIODevice::Text);
+    vk_code_string = vk_code_file.readAll();
+    vk_code_file.close();
+    QJsonDocument vk_code_doc = QJsonDocument::fromJson(vk_code_string.toUtf8());
+    virtual_key_code = vk_code_doc.toVariant().toMap();
 }
 
 /*
@@ -100,5 +110,49 @@ int Operation::mouseDClick(int left_or_right){
  */
 void Operation::mouseRoll(int distance){
     mouse_event(MOUSEEVENTF_WHEEL, 0, 0, distance, 0);
+}
+
+/*
+ * Event: Key Press
+ * Input: QString key
+ */
+int Operation::keyboardPress(QString key)
+{
+    //TODO: key check
+    keybd_event(virtual_key_code[key].toInt(), 0, 0, 0);
+    return 0;
+}
+
+/*
+ * Event: Key Release
+ * Input: QString key
+ */
+int Operation::keyboardRelease(QString key)
+{
+    //TODO: key check
+    keybd_event(virtual_key_code[key].toInt(), 0, KEYEVENTF_KEYUP, 0);
+    return 0;
+}
+
+/*
+ * Event: Key Type
+ * Input: QString key
+ */
+int Operation::keyboardType(QString key)
+{
+    //TODO: key check
+    keybd_event(virtual_key_code[key].toInt(), 0, 0, 0);
+    keybd_event(virtual_key_code[key].toInt(), 0, KEYEVENTF_KEYUP, 0);
+    return 0;
+}
+
+/*
+ * Event: Key Multi Type
+ * Input: QString multi_key with "+"
+ */
+int Operation::keyboardMType(QString multi_key)
+{
+    //TODO: function implementation
+    return 0;
 }
 
