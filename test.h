@@ -5,7 +5,7 @@ class Test
 {
     public:
         Test();
-        void TestAllClasses();
+        void testAllClasses();
 };
 
 #endif // TEST_H

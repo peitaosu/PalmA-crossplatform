@@ -5,6 +5,6 @@ int main(int argc, char *argv[])
 {
     QApplication palm_crossplatform(argc, argv);
     Test test;
-    test.TestAllClasses();
+    test.testAllClasses();
     return palm_crossplatform.exec();
 }
