@@ -11,11 +11,11 @@ class Operation
         Operation();
 
         //mouse operation
-        void mouseMove(int x, int y);
-        void mousePress(int left_or_right);
-        void mouseRelease(int left_or_right);
-        void mouseClick(int left_or_right);
-        void mouseDClick(int left_or_right);
+        void mouseMove(double x, double y);
+        int mousePress(int left_or_right = 1);
+        int mouseRelease(int left_or_right = 1);
+        int mouseClick(int left_or_right = 1);
+        int mouseDClick(int left_or_right = 1);
         void mouseRoll();
 
         //keyboard operation
