@@ -48,3 +48,6 @@ DEPENDPATH += $$PWD/lib/x64 \
 DISTFILES += \
     include/Leap.i
 
+RESOURCES += \
+    json.qrc
+
