@@ -12,7 +12,7 @@ Event::Event(){
     //load virtual key code json file as QVariantMap
     QString vk_code_string;
     QFile vk_code_file;
-    vk_code_file.setFileName(":/operation_win.json");
+    vk_code_file.setFileName(":/event_keyboard_win.json");
     vk_code_file.open(QIODevice::ReadOnly | QIODevice::Text);
     vk_code_string = vk_code_file.readAll();
     vk_code_file.close();
