@@ -2,6 +2,7 @@
 #include "display.h"
 #include "operation_win.h"
 #include "include/Leap.h"
+#include "operation_unix.h"
 
 Test::Test(){
 
@@ -16,7 +17,6 @@ void Test::testAllClasses(){
     operation.mouseMove(0.8, 0.8);
     operation.mousePress();
     operation.mouseRelease();
-    operation.keyboardPress("LWIN");
-    operation.keyboardRelease("LWIN");
+    operation.keyboardMType("LWIN+R");
 
 }

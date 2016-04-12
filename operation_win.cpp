@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <QFile>
 #include <QJsonDocument>
+
 #pragma comment (lib,"Advapi32.lib")
 #pragma comment (lib,"User32.lib")
 
@@ -118,9 +119,13 @@ void Operation::mouseRoll(int distance){
  */
 int Operation::keyboardPress(QString key)
 {
-    //TODO: key check
-    keybd_event(virtual_key_code[key].toInt(), 0, 0, 0);
-    return 0;
+    if(virtual_key_code[key].isValid()){
+        keybd_event(virtual_key_code[key].toInt(), 0, 0, 0);
+        return 0;
+    }else{
+        //TODO: LOG ERROR
+        return -1;
+    }
 }
 
 /*
@@ -129,9 +134,13 @@ int Operation::keyboardPress(QString key)
  */
 int Operation::keyboardRelease(QString key)
 {
-    //TODO: key check
-    keybd_event(virtual_key_code[key].toInt(), 0, KEYEVENTF_KEYUP, 0);
-    return 0;
+    if(virtual_key_code[key].isValid()){
+        keybd_event(virtual_key_code[key].toInt(), 0, KEYEVENTF_KEYUP, 0);
+        return 0;
+    }else{
+        //TODO: LOG ERROR
+        return -1;
+    }
 }
 
 /*
@@ -140,10 +149,14 @@ int Operation::keyboardRelease(QString key)
  */
 int Operation::keyboardType(QString key)
 {
-    //TODO: key check
-    keybd_event(virtual_key_code[key].toInt(), 0, 0, 0);
-    keybd_event(virtual_key_code[key].toInt(), 0, KEYEVENTF_KEYUP, 0);
-    return 0;
+    if(virtual_key_code[key].isValid()){
+        keybd_event(virtual_key_code[key].toInt(), 0, 0, 0);
+        keybd_event(virtual_key_code[key].toInt(), 0, KEYEVENTF_KEYUP, 0);
+        return 0;
+    }else{
+        //TODO: LOG ERROR
+        return -1;
+    }
 }
 
 /*
@@ -152,7 +165,20 @@ int Operation::keyboardType(QString key)
  */
 int Operation::keyboardMType(QString multi_key)
 {
-    //TODO: function implementation
+    QStringList multi_key_list;
+    multi_key_list = multi_key.split('+');
+    for(int i = 0; i < multi_key_list.size(); i++){
+        if(!virtual_key_code[multi_key_list[i]].isValid()){
+            //TODO: LOG ERROR
+            return -1;
+        }
+    }
+    for(int i = 0; i < multi_key_list.size(); i++){
+            keyboardPress(multi_key_list[i]);
+    }
+    for(int i = 0; i < multi_key_list.size(); i++){
+            keyboardRelease(multi_key_list[i]);
+    }
     return 0;
 }
 
