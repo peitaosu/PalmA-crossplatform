@@ -26,8 +26,10 @@ HEADERS += status_widget.h \
 FORMS   += status_widget.ui
 
 win32{
-    SOURCES += operation_win.cpp
-    HEADERS += operation_win.h
+    SOURCES += operation_win.cpp \
+    event_win.cpp
+    HEADERS += operation_win.h \
+    event_win.h
 }
 
 unix{

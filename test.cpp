@@ -1,8 +1,7 @@
 #include "test.h"
 #include "display.h"
-#include "operation_win.h"
 #include "include/Leap.h"
-#include "operation_unix.h"
+#include "event_win.h"
 
 Test::Test(){
 
@@ -10,13 +9,9 @@ Test::Test(){
 
 void Test::testAllClasses(){
     Display display;
-    Operation operation;
     Leap::Controller controller;
     Leap::Listener listener;
     controller.addListener(listener);
-    operation.mouseMove(0.8, 0.8);
-    operation.mousePress();
-    operation.mouseRelease();
-    operation.keyboardMType("LWIN+R");
-
+    Event event;
+    event.keyboardMType("LWIN+R");
 }
