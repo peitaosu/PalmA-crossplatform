@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>event_keyboard_win.json</file>
+        <file>event_keyboard_unix.json</file>
     </qresource>
 </RCC>

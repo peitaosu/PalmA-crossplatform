@@ -33,8 +33,11 @@ win32{
 }
 
 unix{
-    SOURCES += operation_unix.cpp
-    HEADERS += operation_unix.h
+    SOURCES += operation_unix.cpp \
+    event_unix.cpp
+    HEADERS += operation_unix.h \
+    event_unix.h
+    LIBS += -lX11 -lXtst -lXext
 }
 
 

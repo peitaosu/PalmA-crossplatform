@@ -2,6 +2,7 @@
 #include "display.h"
 #include "include/Leap.h"
 #include "event_win.h"
+#include "event_unix.h"
 
 Test::Test(){
 
