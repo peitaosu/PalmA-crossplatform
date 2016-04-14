@@ -6,9 +6,20 @@ StatusWidget::StatusWidget(QWidget *parent) :
     ui(new Ui::StatusWidget)
 {
     ui->setupUi(this);
+    available = true;
 }
 
 StatusWidget::~StatusWidget()
 {
     delete ui;
+}
+
+bool StatusWidget::isAvailable()
+{
+    return available;
+}
+
+void StatusWidget::setAvailable(bool _available)
+{
+    available = _available;
 }

@@ -14,9 +14,13 @@ class StatusWidget : public QWidget
     public:
         explicit StatusWidget(QWidget *parent = 0);
         ~StatusWidget();
+        bool isAvailable();
+        void setAvailable(bool _available = true);
 
     private:
         Ui::StatusWidget *ui;
+
+        bool available;
 };
 
 #endif // STATUS_WIDGET_H
