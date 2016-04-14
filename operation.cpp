@@ -35,16 +35,16 @@ int Operation::swipeWindow(int count){
 int Operation::moveWindow(int side){
     switch(side){
         case SIDE_UP:
-            event.keyboardMType("WIN+UP");
+            event.keyboardMType("LWIN+UP");
             break;
         case SIDE_DOWN:
-            event.keyboardMType("WIN+DOWN");
+            event.keyboardMType("LWIN+DOWN");
             break;
         case SIDE_LEFT:
-            event.keyboardMType("WIN+LEFT");
+            event.keyboardMType("LWIN+LEFT");
             break;
         case SIDE_RIGHT:
-            event.keyboardMType("WIN+RIGHT");
+            event.keyboardMType("LWIN+RIGHT");
             break;
         default:
             return INPUT_ERROR;
@@ -57,7 +57,7 @@ int Operation::moveWindow(int side){
  * Operation: Show Desktop
  */
 int Operation::showDesktop(){
-    event.keyboardMType("WIN+D");
+    event.keyboardMType("LWIN+D");
     return 0;
 }
 
@@ -66,7 +66,7 @@ int Operation::showDesktop(){
  * Operation: Open FileManager
  */
 int Operation::openFileManager(){
-    event.keyboardMType("WIN+E");
+    event.keyboardMType("LWIN+E");
     return 0;
 }
 

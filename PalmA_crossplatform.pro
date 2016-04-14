@@ -27,17 +27,13 @@ HEADERS += status_widget.h \
 FORMS   += status_widget.ui
 
 win32{
-    SOURCES += operation_win.cpp \
-    event_win.cpp
-    HEADERS += operation_win.h \
-    event_win.h
+    SOURCES += event_win.cpp
+    HEADERS += event_win.h
 }
 
 unix{
-    SOURCES += operation_unix.cpp \
-    event_unix.cpp
-    HEADERS += operation_unix.h \
-    event_unix.h
+    SOURCES += event_unix.cpp
+    HEADERS += event_unix.h
     LIBS += -lX11 -lXtst -lXext
 }
 
