@@ -21,7 +21,8 @@ HEADERS += status_widget.h \
     display.h \
     test.h \
     include/Leap.h \
-    include/LeapMath.h
+    include/LeapMath.h \
+    error_code.h
 
 FORMS   += status_widget.ui
 

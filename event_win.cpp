@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <QFile>
 #include <QJsonDocument>
+#include "error_code.h"
 
 #pragma comment (lib,"Advapi32.lib")
 #pragma comment (lib,"User32.lib")
@@ -24,11 +25,11 @@ Event::Event(){
 /*
  * Event: Mouse Move
  * Input: double x [0.0, 1.0], double y [0.0, 1.0]
- * Input Error: return -1;
+ * Input Error: return INPUT_ERROR;
  */
 int Event::mouseMove(double x, double y){
     if(x < 0 || x > 1 || y < 0 || y > 1){
-        return -1;
+        return INPUT_ERROR;
     }
     //in windows display
     //the cursor mouse position is 0~65535 in x-axis and 0~65535 in y-axis
@@ -41,7 +42,7 @@ int Event::mouseMove(double x, double y){
 /*
  * Event: Mouse Press
  * Input: int left = 1, right = 2
- * Input Error: return -1
+ * Input Error: return INPUT_ERROR
  */
 int Event::mousePress(int left_or_right)
 {
@@ -52,14 +53,14 @@ int Event::mousePress(int left_or_right)
         mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
         return 0;
     }else {
-        return -1;
+        return INPUT_ERROR;
     }
 }
 
 /*
  * Event: Mouse Release
  * Input: int left = 1, right = 2
- * Input Error: return -1
+ * Input Error: return INPUT_ERROR
  */
 int Event::mouseRelease(int left_or_right)
 {
@@ -70,14 +71,14 @@ int Event::mouseRelease(int left_or_right)
         mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
         return 0;
     }else {
-        return -1;
+        return INPUT_ERROR;
     }
 }
 
 /*
  * Event: Mouse Click
  * Input: int left = 1, right = 2
- * Input Error: return -1
+ * Input Error: return INPUT_ERROR
  */
 int Event::mouseClick(int left_or_right)
 {
@@ -88,14 +89,14 @@ int Event::mouseClick(int left_or_right)
         mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
         return 0;
     }else {
-        return -1;
+        return INPUT_ERROR;
     }
 }
 
 /*
  * Event: Mouse Double Click
  * Input: int left = 1, right = 2
- * Input Error: return -1
+ * Input Error: return INPUT_ERROR
  */
 int Event::mouseDClick(int left_or_right)
 {
@@ -108,7 +109,7 @@ int Event::mouseDClick(int left_or_right)
         mouseClick(2);
         return 0;
     }else {
-        return -1;
+        return INPUT_ERROR;
     }
 }
 
@@ -133,7 +134,7 @@ int Event::keyboardPress(QString key)
         return 0;
     }else{
         //TODO: LOG ERROR
-        return -1;
+        return INPUT_ERROR;
     }
 }
 
@@ -148,7 +149,7 @@ int Event::keyboardRelease(QString key)
         return 0;
     }else{
         //TODO: LOG ERROR
-        return -1;
+        return INPUT_ERROR;
     }
 }
 
@@ -164,7 +165,7 @@ int Event::keyboardType(QString key)
         return 0;
     }else{
         //TODO: LOG ERROR
-        return -1;
+        return INPUT_ERROR;
     }
 }
 
@@ -179,7 +180,7 @@ int Event::keyboardMType(QString multi_key)
     for(int i = 0; i < multi_key_list.size(); i++){
         if(!virtual_key_code[multi_key_list[i]].isValid()){
             //TODO: LOG ERROR
-            return -1;
+            return INPUT_ERROR;
         }
     }
     for(int i = 0; i < multi_key_list.size(); i++){
