@@ -115,20 +115,38 @@ int Operation::swipeBrowserTab(int count){
 }
 
 //System
+/*
+ * Operation: Lock Screen
+ */
 int Operation::lockscreen(){
-    
+    event.keyboardMType("CTRL+L");
+    return 0;
 }
+
+/*
+ * Operation: Shutdown
+ */
 bool Operation::shutdown(){
-    
+    return event.exitSystem("shutdown");
 }
+
+/*
+ * Operation: Shutdown Force
+ */
 bool Operation::shutdownforce(){
-    
+    return event.exitSystem("shutdown_force");
 }
+
+/*
+ * Operation: Reboot
+ */
 bool Operation::reboot(){
-    
-}
-bool Operation::logout(){
-    
+    return event.exitSystem("reboot");
 }
 
-
+/*
+ * Operation: Log Off
+ */
+bool Operation::logoff(){
+    return event.exitSystem("logoff");
+}

@@ -34,7 +34,7 @@ class Operation
         bool shutdown();
         bool shutdownforce();
         bool reboot();
-        bool logout();
+        bool logoff();
 
     private:
         Event event;
