@@ -23,7 +23,7 @@ class Operation
         int openFileManager();
         
         //Browser
-        int openBrowser();
+        int openBrowser(QString url = "about:home");
         int goTo();
         int goBack();
         int goRefresh();

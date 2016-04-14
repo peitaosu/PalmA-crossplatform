@@ -1,5 +1,6 @@
 #include "operation.h"
 #include "error_code.h"
+#include <QUrl>
 
 #define SIDE_UP 1
 #define SIDE_DOWN 2
@@ -57,6 +58,7 @@ int Operation::moveWindow(int side){
  */
 int Operation::showDesktop(){
     event.keyboardMType("WIN+D");
+    return 0;
 }
 
 //FileManager
@@ -65,24 +67,52 @@ int Operation::showDesktop(){
  */
 int Operation::openFileManager(){
     event.keyboardMType("WIN+E");
+    return 0;
 }
 
 //Browser
-int Operation::openBrowser(){
-    
+/*
+ * Operation: Open Browser, Goto Homepage Default
+ * Input: QString url
+ */
+int Operation::openBrowser(QString url){
+    QUrl url_go(url);
+    QDesktopServices::openUrl(url_go);
+    return 0;
 }
+
+/*
+ * Operation: Goto
+ */
 int Operation::goTo(){
-    
+    event.keyboardType("ENTER");
+    return 0;
 }
+
 int Operation::goBack(){
-    
+    event.keyboardType("BACKSPACE");
+    return 0;
 }
+
+/*
+ * Operation: Refresh the Page
+ */
 int Operation::goRefresh(){
-    
+    event.keyboardType("F5");
+    return 0;
 }
-int Operation::swipeBrowserTab(int count = 1){
-    
-}        
+
+/*
+ * Operation: Swipe Browser Tab
+ * Input: int count, count > 0
+ */
+int Operation::swipeBrowserTab(int count){
+    if(count < 1){
+        return INPUT_ERROR;
+    }
+    event.keyboardMType("CTRL+TAB");
+    return 0;
+}
 
 //System
 int Operation::lockscreen(){
