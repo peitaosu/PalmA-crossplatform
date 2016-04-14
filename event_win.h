@@ -25,6 +25,9 @@ class Event
         int keyboardRelease(QString key);
         int keyboardType(QString key);
         int keyboardMType(QString multi_key);
+        
+        //system
+        bool exitSystem(QString exit_event);
 
     private:
         QVariantMap virtual_key_code;
