@@ -140,7 +140,9 @@ void Event::mouseRoll(int distance)
 int Event::keyboardPress(QString key)
 {
     if(virtual_key_code[key].isValid()){
-        XTestFakeKeyEvent (display, virtual_key_code[key].toInt(), True, 0);
+        Keycode keycode = XKeysymToKeycode(display, virtual_key_code[key].toInt());
+        XTestFakeKeyEvent (display, keycode, True, 0);
+        XSync(display, False);
         return 0;
     }else{
         //TODO: LOG ERROR
@@ -155,7 +157,9 @@ int Event::keyboardPress(QString key)
 int Event::keyboardRelease(QString key)
 {
     if(virtual_key_code[key].isValid()){
-        XTestFakeKeyEvent (display, virtual_key_code[key].toInt(), False, 0);
+        Keycode keycode = XKeysymToKeycode(display, virtual_key_code[key].toInt());
+        XTestFakeKeyEvent (display, keycode, False, 0);
+        XSync(display, False);
         return 0;
     }else{
         //TODO: LOG ERROR
@@ -170,8 +174,10 @@ int Event::keyboardRelease(QString key)
 int Event::keyboardType(QString key)
 {
     if(virtual_key_code[key].isValid()){
-        XTestFakeKeyEvent (display, virtual_key_code[key].toInt(), True, 0);
-        XTestFakeKeyEvent (display, virtual_key_code[key].toInt(), False, 0);
+        Keycode keycode = XKeysymToKeycode(display, virtual_key_code[key].toInt());
+        XTestFakeKeyEvent (display, keycode, True, 0);
+        XTestFakeKeyEvent (display, keycode, False, 0);
+        XSync(display, False);
         return 0;
     }else{
         //TODO: LOG ERROR
