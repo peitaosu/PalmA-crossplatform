@@ -192,6 +192,10 @@ int Event::keyboardMType(QString multi_key)
     return 0;
 }
 
+/*
+ * Event: Exit System
+ * Input: QString exit_event
+ */
 bool Event::exitSystem(QString exit_event){
     HANDLE hToken;
     TOKEN_PRIVILEGES tkp;

@@ -2,6 +2,7 @@
 #define EVENT_H
 
 #include <QVariantMap>
+#include <QProcess>
 #include <X11/Xlib.h>
 #include <X11/Intrinsic.h>
 #include <X11/extensions/XTest.h>
@@ -31,8 +32,12 @@ class Event
         int keyboardType(QString key);
         int keyboardMType(QString multi_key);
 
+        //system
+        bool exitSystem(QString exit_event);
+
     private:
         QVariantMap virtual_key_code;
+        QProcess process;
         Display *display;
         XEvent event;
 

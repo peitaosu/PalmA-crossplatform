@@ -207,3 +207,36 @@ int Event::keyboardMType(QString multi_key)
     }
     return 0;
 }
+
+/*
+ * Event: Exit System
+ * Input: QString exit_event
+ * Linux not support logout via terminal.
+ */
+bool Event::exitSystem(QString exit_event){
+
+    if(exit_event == "shutdown"){
+        if(!process.startDetached("shutdown")){
+            return FALSE;
+        }
+    }
+
+    if(exit_event == "shutdown_force"){
+        if(!process.startDetached("shutdown")){
+            return FALSE;
+        }
+    }
+
+    if(exit_event == "reboot"){
+        if(!process.startDetached("reboot")){
+            return FALSE;
+        }
+    }
+
+    if(exit_event == "logoff"){
+        if(!process.startDetached("exit")){
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
