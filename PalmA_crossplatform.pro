@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     status_widget.cpp \
     display.cpp \
     operation.cpp \
-    test.cpp
+    test.cpp \
+    cursor_widget.cpp
 
 HEADERS += status_widget.h \
     display.h \
@@ -24,9 +25,11 @@ HEADERS += status_widget.h \
     include/Leap.h \
     include/LeapMath.h \
     error_code.h \
-    operation.h
+    operation.h \
+    cursor_widget.h
 
-FORMS   += status_widget.ui
+FORMS   += status_widget.ui \
+    cursor_widget.ui
 
 win32{
     SOURCES += event_win.cpp
@@ -34,6 +37,7 @@ win32{
 }
 
 unix{
+    QT += x11extras
     SOURCES += event_unix.cpp
     HEADERS += event_unix.h
     LIBS += -lX11 -lXtst -lXext

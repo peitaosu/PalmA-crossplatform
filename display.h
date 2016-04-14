@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "status_widget.h"
+#include "cursor_widget.h"
 
 class Display : public QObject
 {
@@ -16,6 +17,7 @@ class Display : public QObject
 
     private:
         StatusWidget *status_widget;
+        CursorWidget *cursor_widget;
 };
 
 #endif // DISPLAY_H

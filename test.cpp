@@ -4,6 +4,7 @@
 #include "operation.h"
 #include "event_win.h"
 #include "event_unix.h"
+#include "cursor_widget.h"
 
 Test::Test(){
 
@@ -14,8 +15,8 @@ void Test::testAllClasses(){
     Leap::Controller controller;
     Leap::Listener listener;
     controller.addListener(listener);
-    Operation operation;
-    operation.logoff();
-    Event event;
-    event.keyboardMType("LWIN+L");
+    //Operation operation;
+    //operation.logoff();
+    //Event event;
+    //event.keyboardMType("LWIN+L");
 }
