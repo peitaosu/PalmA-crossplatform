@@ -15,6 +15,7 @@ TEMPLATE = app
 SOURCES += main.cpp \
     status_widget.cpp \
     display.cpp \
+    operation.cpp \
     test.cpp
 
 HEADERS += status_widget.h \
@@ -22,7 +23,8 @@ HEADERS += status_widget.h \
     test.h \
     include/Leap.h \
     include/LeapMath.h \
-    error_code.h
+    error_code.h \
+    operation.h
 
 FORMS   += status_widget.ui
 

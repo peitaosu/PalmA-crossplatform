@@ -1,6 +1,7 @@
 #include "operation.h"
 #include "error_code.h"
 #include <QUrl>
+#include <QDesktopServices>
 
 #define SIDE_UP 1
 #define SIDE_DOWN 2
@@ -24,7 +25,7 @@ int Operation::swipeWindow(int count){
     while(count > 0){
         event.keyboardType("TAB");
     }
-    event.keyboardRlelease("ALT");
+    event.keyboardRelease("ALT");
     return 0;
 }
 
@@ -119,7 +120,7 @@ int Operation::swipeBrowserTab(int count){
  * Operation: Lock Screen
  */
 int Operation::lockscreen(){
-    event.keyboardMType("CTRL+L");
+    event.keyboardMType("LWIN+L");
     return 0;
 }
 
