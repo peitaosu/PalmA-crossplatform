@@ -1,5 +1,6 @@
 #ifndef MOTION_H
 #define MOTION_H
+#include "motion_leap.h"
 
 class Motion
 {
@@ -15,6 +16,8 @@ class Motion
         double getNormalizedZ();
         
         int getGestureStatus(int gesture_type, int count = 1);
+
+        bool update();
         
     private:
         int controller_type_current;
@@ -24,7 +27,7 @@ class Motion
         double y_normalized;
         double z_normalized;
         
-        
+        MotionLeap motion_leap;
 };
 
 #endif // MOTION_H

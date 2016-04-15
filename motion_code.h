@@ -10,10 +10,11 @@
 //gestures
 #define SWIPE 1
 #define CIRCLE 2
-#define SCREENTAP 3
-#define KEYTAP 4
-#define GRAB 5
-#define PINCH 6
+#define CIRANTI 3
+#define SCREENTAP 4
+#define KEYTAP 5
+#define GRAB 6
+#define PINCH 7
 
 //controller
 #define LEAP_MOTION 1

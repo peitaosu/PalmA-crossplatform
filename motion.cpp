@@ -37,31 +37,26 @@ int* Motion::getControllerSupported(){
 
 int Motion::getGestureStatus(int gesture_type, int count){
     if(controller_type_current == LEAP_MOTION){
-        switch(gesture_type){
-            case SWIPE:
-                //TODO: add function
-                break;
-            case CIRCLE:
-                //TODO: add function
-                break;
-            case SCREENTAP:
-                //TODO: add function
-                break;
-            case KEYTAP:
-                //TODO: add function
-                break;
-            case GRAB:
-                //TODO: add function
-                break;
-            case PINCH:
-                //TODO: add function
-                break;
-            default:
-                break;
-        }
+        MotionLeap motion_leap;
+        return motion_leap.getGestureStatus(gesture_type, count);
     }else if(controller_type_current == KINECT){
         //TODO: add Kinect support
+        return 0;
     }else{
         return INPUT_ERROR;
     }
+}
+
+bool Motion::update()
+{
+    if(controller_type_current == LEAP_MOTION){
+        x_normalized = motion_leap.getNormalizedX();
+        y_normalized = motion_leap.getNormalizedY();
+        z_normalized = motion_leap.getNormalizedZ();
+        return true;
+    }else if(controller_type_current == KINECT){
+        //TODO: add Kinect support
+        return true;
+    }
+    return false;
 }

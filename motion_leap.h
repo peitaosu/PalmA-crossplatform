@@ -13,7 +13,14 @@ class MotionLeap
         double getNormalizedY();
         double getNormalizedZ();
         
+        int getGestureSwipe();
+        int getGestureCircle(bool clockwise = true);
+        int getGestureScreenTap();
+        int getGestureKeyTap();
+        int getGestureGrab(int hand_count = 1);
+        int getGesturePinch(int hand_count = 1);
         int getGestureStatus(int gesture_type, int count = 1);
+
         
     private:
         Leap::Controller controller;
