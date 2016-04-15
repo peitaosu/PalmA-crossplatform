@@ -3,7 +3,9 @@
 #include "error_code.h"
 
 MotionLeap::MotionLeap(){
+    left_handedness = false;
     i_box = controller.frame().interactionBox();
+    hand = controller.frame().hands().rightmost();
 }
 
 int getControllerType(){
@@ -11,15 +13,15 @@ int getControllerType(){
 }
 
 double MotionLeap::getNormalizedX(){
-    return i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).x;
+    return i_box.normalizePoint(hand.stabilizedPalmPosition()).x;
 }
 
 double MotionLeap::getNormalizedY(){
-    return i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
+    return i_box.normalizePoint(hand.stabilizedPalmPosition()).y;
 }
 
 double MotionLeap::getNormalizedZ(){
-    return i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).z;
+    return i_box.normalizePoint(hand.stabilizedPalmPosition()).z;
 }
 
 int MotionLeap::getGestureSwipe()
@@ -86,7 +88,6 @@ int MotionLeap::getGestureGrab(int hand_count)
 {
     double threshold = 0.95;
     if(hand_count == 1){
-        Leap::Hand hand = controller.frame().hands()[0];
         if(hand.grabStrength() >= threshold){
             return 1;
         }else{
@@ -109,7 +110,6 @@ int MotionLeap::getGesturePinch(int hand_count)
 {
     double threshold = 0.80;
     if(hand_count == 1){
-        Leap::Hand hand = controller.frame().hands()[0];
         if(hand.pinchStrength() >= threshold){
             return 1;
         }else{
@@ -168,4 +168,9 @@ int MotionLeap::getGestureStatus(int gesture_type, int count){
             return INPUT_ERROR;
     }
     return 0;
+}
+
+void MotionLeap::setHandedness(bool is_left)
+{
+    left_handedness = is_left;
 }

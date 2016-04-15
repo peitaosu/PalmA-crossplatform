@@ -3,7 +3,7 @@
 #include "error_code.h"
 
 Motion::Motion(){
-
+    left_handedness = false;
 }
 
 double Motion::getNormalizedX(){
@@ -45,6 +45,12 @@ int Motion::getGestureStatus(int gesture_type, int count){
     }else{
         return INPUT_ERROR;
     }
+}
+
+void Motion::setHandedness(bool is_left)
+{
+    left_handedness = is_left;
+    motion_leap.setHandedness(is_left);
 }
 
 bool Motion::update()

@@ -17,6 +17,8 @@ class Motion
         
         int getGestureStatus(int gesture_type, int count = 1);
 
+        void setHandedness(bool is_left = true);
+
         bool update();
         
     private:
@@ -27,6 +29,8 @@ class Motion
         double y_normalized;
         double z_normalized;
         
+        bool left_handedness;
+
         MotionLeap motion_leap;
 };
 

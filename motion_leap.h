@@ -21,14 +21,17 @@ class MotionLeap
         int getGesturePinch(int hand_count = 1);
         int getGestureStatus(int gesture_type, int count = 1);
 
-        
+        void setHandedness(bool is_left = true);
     private:
         Leap::Controller controller;
         Leap::InteractionBox i_box;
+        Leap::Hand hand;
         
         double x_normalized;
         double y_normalized;
         double z_normalized;
+
+        bool left_handedness;
         
         
 };
