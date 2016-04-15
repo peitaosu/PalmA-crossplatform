@@ -15,6 +15,8 @@
 #define GRAB 5
 #define PINCH 6
 
-//
+//controller
+#define LEAP_MOTION 1
+#define KINECT 2
 
 #endif // MOTION_CODE_H

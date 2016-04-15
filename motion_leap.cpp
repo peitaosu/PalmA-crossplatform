@@ -10,19 +10,19 @@ int getControllerType(){
     return LEAP_MOTION;
 }
 
-double Motion::getNormalizedX(){
+double MotionLeap::getNormalizedX(){
     return i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).x;
 }
 
-double Motion::getNormalizedY(){
+double MotionLeap::getNormalizedY(){
     return i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
 }
 
-double Motion::getNormalizedZ(){
+double MotionLeap::getNormalizedZ(){
     return i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).z;
 }
 
-int getGestureStatus(int gesture_type, int count){
+int MotionLeap::getGestureStatus(int gesture_type, int count){
     switch(gesture_type){
         case SWIPE:
             if(count > 1){
@@ -56,7 +56,7 @@ int getGestureStatus(int gesture_type, int count){
             if(count == 1){
                 //TODO: add function
                 break;
-            }else if{count == 2}{
+            }else if(count == 2){
                 //TODO: add function
                 break;
             }else{
@@ -68,7 +68,7 @@ int getGestureStatus(int gesture_type, int count){
             if(count == 1){
                 //TODO: add function
                 break;
-            }else if{count == 2}{
+            }else if(count == 2){
                 //TODO: add function
                 break;
             }else{
@@ -80,4 +80,5 @@ int getGestureStatus(int gesture_type, int count){
             //TODO: LOG ERROR
             break;
     }
+    return 0;
 }

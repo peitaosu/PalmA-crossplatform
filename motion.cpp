@@ -18,7 +18,7 @@ double Motion::getNormalizedZ(){
     return z_normalized;
 }
 
-bool setController(int controller_type){
+bool Motion::setController(int controller_type){
     controller_type_current = controller_type;
     if(controller_type_current == controller_type){
         return true;
@@ -27,15 +27,15 @@ bool setController(int controller_type){
     }
 }
 
-int getControllerCurrent(){
+int Motion::getControllerCurrent(){
     return controller_type_current;
 }
 
-int* getControllerSupported(){
+int* Motion::getControllerSupported(){
     return controller_type_supported;
 }
 
-int getGestureStatus(int gesture_type, int count){
+int Motion::getGestureStatus(int gesture_type, int count){
     if(controller_type_current == LEAP_MOTION){
         switch(gesture_type){
             case SWIPE:
