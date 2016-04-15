@@ -8,7 +8,7 @@ MotionLeap::MotionLeap(){
     hand = controller.frame().hands().rightmost();
 }
 
-int getControllerType(){
+int MotionLeap::getControllerType(){
     return LEAP_MOTION;
 }
 
