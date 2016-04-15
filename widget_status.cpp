@@ -1,5 +1,5 @@
-#include "status_widget.h"
-#include "ui_status_widget.h"
+#include "widget_status.h"
+#include "ui_widget_status.h"
 
 StatusWidget::StatusWidget(QWidget *parent) :
     QWidget(parent),

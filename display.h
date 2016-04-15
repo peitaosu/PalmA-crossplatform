@@ -2,8 +2,8 @@
 #define DISPLAY_H
 
 #include <QObject>
-#include "status_widget.h"
-#include "cursor_widget.h"
+#include "widget_status.h"
+#include "widget_cursor.h"
 
 class Display : public QObject
 {

@@ -4,7 +4,7 @@
 #include "operation.h"
 #include "event_win.h"
 #include "event_unix.h"
-#include "cursor_widget.h"
+#include "widget_cursor.h"
 
 Test::Test(){
 

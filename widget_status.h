@@ -1,5 +1,5 @@
-#ifndef STATUS_WIDGET_H
-#define STATUS_WIDGET_H
+#ifndef WIDGET_STATUS_H
+#define WIDGET_STATUS_H
 
 #include <QWidget>
 
@@ -23,4 +23,4 @@ class StatusWidget : public QWidget
         bool available;
 };
 
-#endif // STATUS_WIDGET_H
+#endif // WIDGET_STATUS_H

@@ -13,23 +13,23 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    status_widget.cpp \
+    widget_status.cpp \
     display.cpp \
     operation.cpp \
     test.cpp \
-    cursor_widget.cpp
+    widget_cursor.cpp
 
-HEADERS += status_widget.h \
+HEADERS += widget_status.h \
     display.h \
     test.h \
     include/Leap.h \
     include/LeapMath.h \
     error_code.h \
     operation.h \
-    cursor_widget.h
+    widget_cursor.h
 
-FORMS   += status_widget.ui \
-    cursor_widget.ui
+FORMS   += widget_status.ui \
+    widget_cursor.ui
 
 win32{
     SOURCES += event_win.cpp

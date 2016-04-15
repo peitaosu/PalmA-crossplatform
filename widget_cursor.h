@@ -1,5 +1,5 @@
-#ifndef CURSOR_WIDGET_H
-#define CURSOR_WIDGET_H
+#ifndef WIDGET_CURSOR_H
+#define WIDGET_CURSOR_H
 
 #include <QWidget>
 #include <QColor>
@@ -34,4 +34,4 @@ class CursorWidget : public QWidget
         bool available;
 };
 
-#endif // CURSOR_WIDGET_H
+#endif // WIDGET_CURSOR_H

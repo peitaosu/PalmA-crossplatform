@@ -1,5 +1,5 @@
-#include "cursor_widget.h"
-#include "ui_cursor_widget.h"
+#include "widget_cursor.h"
+#include "ui_widget_cursor.h"
 #include <QDesktopWidget>
 #include <QApplication>
 #include <QPalette>
