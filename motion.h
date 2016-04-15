@@ -1,6 +1,5 @@
 #ifndef MOTION_H
 #define MOTION_H
-#include "include/Leap.h"
 
 class Motion
 {
@@ -25,9 +24,6 @@ class Motion
         double y_normalized;
         double z_normalized;
         
-        //for Leap Motion
-        Leap::Controller controller_leap;
-        Leap::InteractionBox box_leap;
         
 };
 

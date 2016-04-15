@@ -1,5 +1,7 @@
 #include "motion.h"
 #include "gesture_code.h"
+#include "error_code.h"
+
 Motion::Motion(){
 
 }
@@ -57,5 +59,9 @@ int getGestureStatus(int gesture_type, int count){
             default:
                 break;
         }
+    }else if(controller_type_current == KINECT){
+        //TODO: add Kinect support
+    }else{
+        return INPUT_ERROR;
     }
 }
