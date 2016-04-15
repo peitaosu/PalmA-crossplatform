@@ -131,41 +131,41 @@ int MotionLeap::getGestureStatus(int gesture_type, int count){
     switch(gesture_type){
         case SWIPE:
             if(count != 1){
-                //TODO: LOG ERROR
-                break;
+                return INPUT_ERROR;
             }
             return getGestureSwipe();
         case CIRCLE:
             if(count > 1){
-                //TODO: LOG ERROR
-                break;
+                return INPUT_ERROR;
             }
             return getGestureCircle(true);
         case CIRANTI:
             if(count > 1){
-                //TODO: LOG ERROR
-                break;
+                return INPUT_ERROR;
             }
             return getGestureCircle(false);
         case SCREENTAP:
             if(count > 1){
-                //TODO: LOG ERROR
-                break;
+                return INPUT_ERROR;
             }
             return getGestureScreenTap();
         case KEYTAP:
             if(count > 1){
-                //TODO: LOG ERROR
-                break;
+                return INPUT_ERROR;
             }
             return getGestureKeyTap();
         case GRAB:
+            if(count > 2 || count < 1){
+                return INPUT_ERROR;
+            }
             return getGestureGrab(count);
         case PINCH:
+            if(count > 2 || count < 1){
+                return INPUT_ERROR;
+            }
             return getGesturePinch(count);
         default:
-            //TODO: LOG ERROR
-            break;
+            return INPUT_ERROR;
     }
     return 0;
 }
