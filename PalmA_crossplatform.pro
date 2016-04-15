@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     display.cpp \
     operation.cpp \
     test.cpp \
-    widget_cursor.cpp
+    widget_cursor.cpp \
+    motion.cpp
 
 HEADERS += widget_status.h \
     display.h \
@@ -26,7 +27,8 @@ HEADERS += widget_status.h \
     include/LeapMath.h \
     error_code.h \
     operation.h \
-    widget_cursor.h
+    widget_cursor.h \
+    motion.h
 
 FORMS   += widget_status.ui \
     widget_cursor.ui
