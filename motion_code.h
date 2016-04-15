@@ -1,5 +1,5 @@
-#ifndef STATUS_CODE_H
-#define STATUS_CODE_H
+#ifndef MOTION_CODE_H
+#define MOTION_CODE_H
 
 //status
 #define NONE 0
@@ -15,4 +15,6 @@
 #define GRAB 5
 #define PINCH 6
 
-#endif // STATUS_CODE_H
+//
+
+#endif // MOTION_CODE_H

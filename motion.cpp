@@ -1,5 +1,5 @@
 #include "motion.h"
-#include "gesture_code.h"
+#include "motion_code.h"
 #include "error_code.h"
 
 Motion::Motion(){
