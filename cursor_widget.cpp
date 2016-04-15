@@ -57,6 +57,9 @@ CursorWidget::CursorWidget(QWidget *parent) :
 
     //set cursor available
     available = true;
+
+    //init interaction box
+    i_box = controller.frame().interactionBox();
 }
 
 CursorWidget::~CursorWidget()
@@ -90,11 +93,8 @@ void CursorWidget::setAvailable(bool _available)
 void CursorWidget::paintEvent(QPaintEvent *event){
     if(available){
         //convert the hand position to the screen
-        i_box = controller.frame().interactionBox();
         cursor_x = i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).x;
         cursor_y = i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
-
-        //cursor point in screen
         int screen_x = cursor_x * QApplication::desktop()->width();
         int screen_y = (1 - cursor_y) * QApplication::desktop()->height();
 
