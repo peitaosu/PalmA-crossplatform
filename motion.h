@@ -15,7 +15,7 @@ class Motion
         double getNormalizedY();
         double getNormalizedZ();
         
-        int getGestureStatus(int gesture_type);
+        int getGestureStatus(int gesture_type, int count = 1);
         
     private:
         int controller_type_current;
