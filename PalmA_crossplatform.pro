@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     widget_cursor.cpp \
     motion.cpp \
     motion_leap.cpp \
-    widget_gesture.cpp
+    widget_gesture.cpp \
+    widget_dial.cpp
 
 HEADERS += widget_status.h \
     display.h \
@@ -33,15 +34,19 @@ HEADERS += widget_status.h \
     motion.h \
     motion_leap.h \
     motion_code.h \
-    widget_gesture.h
+    widget_gesture.h \
+    widget_dial.h
 
 FORMS   += widget_status.ui \
     widget_cursor.ui \
-    widget_gesture.ui
+    widget_gesture.ui \
+    widget_dial.ui
 
 win32{
-    SOURCES += event_win.cpp
-    HEADERS += event_win.h
+    SOURCES += event_win.cpp \
+    foreground_win.cpp
+    HEADERS += event_win.h \
+    foreground_win.h
 }
 
 unix{
