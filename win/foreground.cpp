@@ -1,4 +1,4 @@
-#include "foreground_win.h"
+#include "foreground.h"
 #include <locale>
 #include <Windows.h>
 #include "tlhelp32.h"

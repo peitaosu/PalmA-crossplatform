@@ -35,7 +35,7 @@ HEADERS += widget_status.h \
     motion_leap.h \
     motion_code.h \
     widget_gesture.h \
-    widget_dial.h
+    widget_dial.h \
 
 FORMS   += widget_status.ui \
     widget_cursor.ui \
@@ -43,16 +43,18 @@ FORMS   += widget_status.ui \
     widget_dial.ui
 
 win32{
-    SOURCES += event_win.cpp \
-    foreground_win.cpp
-    HEADERS += event_win.h \
-    foreground_win.h
+    INCLUDEPATH += $$PWD/win/
+    SOURCES += win/event.cpp \
+    win/foreground.cpp
+    HEADERS += win/event.h \
+    win/foreground.h
 }
 
 unix{
     QT += x11extras
-    SOURCES += event_unix.cpp
-    HEADERS += event_unix.h
+    INCLUDEPATH += $$PWD/unix/
+    SOURCES += unix\event.cpp
+    HEADERS += unix\event.h
     LIBS += -lX11 -lXtst -lXext
 }
 
