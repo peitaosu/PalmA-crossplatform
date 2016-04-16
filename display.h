@@ -4,6 +4,7 @@
 #include <QObject>
 #include "widget_status.h"
 #include "widget_cursor.h"
+#include "widget_gesture.h"
 
 class Display : public QObject
 {
@@ -18,6 +19,7 @@ class Display : public QObject
     private:
         StatusWidget *status_widget;
         CursorWidget *cursor_widget;
+        GestureWidget *gesture_widget;
 };
 
 #endif // DISPLAY_H
