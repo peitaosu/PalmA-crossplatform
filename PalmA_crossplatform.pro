@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     test.cpp \
     widget_cursor.cpp \
     motion.cpp \
-    motion_leap.cpp
+    motion_leap.cpp \
+    widget_gesture.cpp
 
 HEADERS += widget_status.h \
     display.h \
@@ -31,10 +32,12 @@ HEADERS += widget_status.h \
     widget_cursor.h \
     motion.h \
     motion_leap.h \
-    motion_code.h
+    motion_code.h \
+    widget_gesture.h
 
 FORMS   += widget_status.ui \
-    widget_cursor.ui
+    widget_cursor.ui \
+    widget_gesture.ui
 
 win32{
     SOURCES += event_win.cpp
