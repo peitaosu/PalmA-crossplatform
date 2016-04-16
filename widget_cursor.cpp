@@ -60,6 +60,8 @@ CursorWidget::CursorWidget(QWidget *parent) :
 
     //init interaction box
     i_box = controller.frame().interactionBox();
+
+    this->show();
 }
 
 CursorWidget::~CursorWidget()
@@ -101,14 +103,14 @@ void CursorWidget::paintEvent(QPaintEvent *event){
         //new painter
         QPainter painter(this);
 
-        //Clear
+        //clear
         painter.fillRect(this->rect(), QColor(0,0,0,0));
 
-        //Set Pen and Brush, Brush color is R160:G255:B200 (BLUE)
+        //set Pen and Brush, Brush color is R160:G255:B200 (BLUE)
         painter.setPen(Qt::NoPen);
         painter.setBrush(QBrush(cursor_color));
 
-        //Draw Ellipse, size is 30*30, position is (screen_x - 15, screen_y - 15)
+        //draw Ellipse, size is 30*30, position is (screen_x - 15, screen_y - 15)
         painter.drawEllipse(screen_x-15 ,screen_y-15,30,30);
     }
 }
