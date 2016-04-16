@@ -2,7 +2,6 @@
 #define WIDGET_STATUS_H
 
 #include <QWidget>
-
 namespace Ui {
     class StatusWidget;
 }
@@ -16,6 +15,9 @@ class StatusWidget : public QWidget
         ~StatusWidget();
         bool isAvailable();
         void setAvailable(bool _available = true);
+
+    public slots:
+        void setStatusDisplay(int status_code);
 
     private:
         Ui::StatusWidget *ui;
