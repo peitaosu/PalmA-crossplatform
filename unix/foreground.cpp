@@ -7,7 +7,7 @@ Foreground::Foreground()
 
 }
 
-std::string exec(char* cmd) {
+std::string Foreground::exec(char* cmd) {
     FILE* pipe = popen(cmd, "r");
     if (!pipe) return "ERROR";
     char buffer[128];

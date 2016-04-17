@@ -4,7 +4,7 @@
 #include "tlhelp32.h"
 #include <string>
 
-LPWSTR GetProcessNameById(DWORD ProcessID)
+LPWSTR Foreground::GetProcessNameById(DWORD ProcessID)
 {
     HANDLE hProcessSnap;
     PROCESSENTRY32 pe32;
