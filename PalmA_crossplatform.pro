@@ -35,7 +35,7 @@ HEADERS += widget_status.h \
     motion_leap.h \
     motion_code.h \
     widget_gesture.h \
-    widget_dial.h \
+    widget_dial.h
 
 FORMS   += widget_status.ui \
     widget_cursor.ui \
@@ -53,8 +53,10 @@ win32{
 unix{
     QT += x11extras
     INCLUDEPATH += $$PWD/unix/
-    SOURCES += unix\event.cpp
-    HEADERS += unix\event.h
+    SOURCES += unix\event.cpp \
+    unix\foreground.cpp
+    HEADERS += unix\event.h \ \
+    unix\foreground.h
     LIBS += -lX11 -lXtst -lXext
 }
 
