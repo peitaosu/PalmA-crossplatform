@@ -18,7 +18,7 @@ class GestureWidget : public QWidget
         void setAvailable(bool _available = true);
 
     public slots:
-        void setGestureDisplay(int gesture_code);
+        void setGestureDisplay(QString gesture_type);
 
     private:
         Ui::GestureWidget *ui;

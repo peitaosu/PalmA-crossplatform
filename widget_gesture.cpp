@@ -52,11 +52,11 @@ GestureWidget::~GestureWidget()
     delete ui;
 }
 
-void GestureWidget::setGestureDisplay(int gesture_code)
+void GestureWidget::setGestureDisplay(QString gesture_type)
 {
-    QString picture_path = ":/gesture/";
-    QString picture_no = QString::number(gesture_code);
-    QString gesture_label_css = "#gesture_show_label{border-image: url(" + picture_path + picture_no + ".png);}";
+    QString picture_path = ":/resource/gesture/";
+    QString picture_name = gesture_type;
+    QString gesture_label_css = "#gesture_show_label{border-image: url(" + picture_path + picture_name + ".png);}";
     this->setStyleSheet(gesture_label_css);
 }
 
