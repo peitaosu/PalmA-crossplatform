@@ -4,6 +4,8 @@
 #include "operation.h"
 #include "event.h"
 #include "foreground.h"
+#include "logger.h"
+
 #include <iostream>
 Test::Test(){
 
@@ -15,6 +17,7 @@ void Test::testAllClasses(){
     Leap::Listener listener;
     controller.addListener(listener);
     Foreground foreground;
+    Logger logger;
     //std::cout<<foreground.getForegroundProcessName()<<std::endl;
 
     //Operation operation;
