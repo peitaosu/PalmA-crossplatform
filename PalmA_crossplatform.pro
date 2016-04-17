@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     motion.cpp \
     motion_leap.cpp \
     widget_gesture.cpp \
-    widget_dial.cpp
+    widget_dial.cpp \
+    widget_palm.cpp
 
 HEADERS += widget_status.h \
     display.h \
@@ -35,12 +36,14 @@ HEADERS += widget_status.h \
     motion_leap.h \
     motion_code.h \
     widget_gesture.h \
-    widget_dial.h
+    widget_dial.h \
+    widget_palm.h
 
 FORMS   += widget_status.ui \
     widget_cursor.ui \
     widget_gesture.ui \
-    widget_dial.ui
+    widget_dial.ui \
+    widget_palm.ui
 
 win32{
     INCLUDEPATH += $$PWD/win/

@@ -6,6 +6,8 @@
 #include "widget_cursor.h"
 #include "widget_gesture.h"
 #include "widget_dial.h"
+#include "widget_palm.h"
+
 class Display : public QObject
 {
         Q_OBJECT
@@ -21,6 +23,7 @@ class Display : public QObject
         CursorWidget *cursor_widget;
         GestureWidget *gesture_widget;
         DialWidget *dial_widget;
+        PalmWidget  *palm_widget;
 };
 
 #endif // DISPLAY_H
