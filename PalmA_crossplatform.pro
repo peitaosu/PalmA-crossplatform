@@ -72,5 +72,6 @@ DISTFILES += \
     include/Leap.i
 
 RESOURCES += \
-    json.qrc
+    json.qrc \
+    picture.qrc
 

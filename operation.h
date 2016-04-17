@@ -1,7 +1,6 @@
 #ifndef OPERATION_H
 #define OPERATION_H
-#include "event_win.h"
-#include "event_unix.h"
+#include "event.h"
 
 namespace System {
     class Operation;

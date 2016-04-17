@@ -96,9 +96,9 @@ void CursorWidget::paintEvent(QPaintEvent *event){
     if(available){
         //convert the hand position to the screen
         cursor_x = i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).x;
-        cursor_y = i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
-        int screen_x = cursor_x * QApplication::desktop()->width();
-        int screen_y = (1 - cursor_y) * QApplication::desktop()->height();
+        cursor_y = 1 - i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
+        int screen_x = QApplication::desktop()->width() * cursor_x;
+        int screen_y = QApplication::desktop()->height() * cursor_y;
 
         //new painter
         QPainter painter(this);
