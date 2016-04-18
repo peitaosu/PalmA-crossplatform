@@ -22,6 +22,11 @@ class MotionLeap
         int getGestureStatus(int gesture_type, int count = 1);
 
         void setHandedness(bool is_left = true);
+
+        bool getControllerStatus();
+        bool getServiceStatus();
+        bool getProcessStatus();
+
     private:
         Leap::Controller controller;
         Leap::InteractionBox i_box;

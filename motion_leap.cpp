@@ -4,8 +4,6 @@
 
 MotionLeap::MotionLeap(){
     left_handedness = false;
-    i_box = controller.frame().interactionBox();
-    hand = controller.frame().hands().rightmost();
 }
 
 int MotionLeap::getControllerType(){
@@ -13,14 +11,20 @@ int MotionLeap::getControllerType(){
 }
 
 double MotionLeap::getNormalizedX(){
+    i_box = controller.frame().interactionBox();
+    hand = controller.frame().hands().rightmost();
     return i_box.normalizePoint(hand.stabilizedPalmPosition()).x;
 }
 
 double MotionLeap::getNormalizedY(){
-    return i_box.normalizePoint(hand.stabilizedPalmPosition()).y;
+    i_box = controller.frame().interactionBox();
+    hand = controller.frame().hands().rightmost();
+    return 1 - i_box.normalizePoint(hand.stabilizedPalmPosition()).y;
 }
 
 double MotionLeap::getNormalizedZ(){
+    i_box = controller.frame().interactionBox();
+    hand = controller.frame().hands().rightmost();
     return i_box.normalizePoint(hand.stabilizedPalmPosition()).z;
 }
 
@@ -173,4 +177,19 @@ int MotionLeap::getGestureStatus(int gesture_type, int count){
 void MotionLeap::setHandedness(bool is_left)
 {
     left_handedness = is_left;
+}
+
+bool MotionLeap::getControllerStatus()
+{
+    return controller.isConnected();
+}
+
+bool MotionLeap::getServiceStatus()
+{
+    return controller.isServiceConnected();
+}
+
+bool MotionLeap::getProcessStatus()
+{
+    return controller.frame().isValid();
 }
