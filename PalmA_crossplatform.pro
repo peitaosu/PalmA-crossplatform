@@ -16,18 +16,17 @@ SOURCES += main.cpp \
     widget_status.cpp \
     display.cpp \
     operation.cpp \
-    test.cpp \
     widget_cursor.cpp \
     motion.cpp \
     motion_leap.cpp \
     widget_gesture.cpp \
     widget_dial.cpp \
     widget_palm.cpp \
-    logger.cpp
+    logger.cpp \
+    test/test.cpp
 
 HEADERS += widget_status.h \
     display.h \
-    test.h \
     include/Leap.h \
     include/LeapMath.h \
     error_code.h \
@@ -39,7 +38,8 @@ HEADERS += widget_status.h \
     widget_gesture.h \
     widget_dial.h \
     widget_palm.h \
-    logger.h
+    logger.h \
+    test/test.h
 
 FORMS   += widget_status.ui \
     widget_cursor.ui \
