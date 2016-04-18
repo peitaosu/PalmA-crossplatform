@@ -23,7 +23,8 @@ SOURCES += main.cpp \
     widget_dial.cpp \
     widget_palm.cpp \
     logger.cpp \
-    test/test.cpp
+    test/test.cpp \
+    process.cpp
 
 HEADERS += widget_status.h \
     display.h \
@@ -39,7 +40,8 @@ HEADERS += widget_status.h \
     widget_dial.h \
     widget_palm.h \
     logger.h \
-    test/test.h
+    test/test.h \
+    process.h
 
 FORMS   += widget_status.ui \
     widget_cursor.ui \
