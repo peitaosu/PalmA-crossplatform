@@ -1,7 +1,7 @@
 #include "motion.h"
 #include "motion_code.h"
 #include "error_code.h"
-
+#include <iostream>
 Motion::Motion(){
     left_handedness = false;
 }
@@ -33,6 +33,21 @@ int Motion::getControllerCurrent(){
 
 int* Motion::getControllerSupported(){
     return controller_type_supported;
+}
+
+bool Motion::getControllerStatus()
+{
+    return motion_leap.getControllerStatus();
+}
+
+bool Motion::getServiceStatus()
+{
+    return motion_leap.getServiceStatus();
+}
+
+bool Motion::getProcessStatus()
+{
+    return motion_leap.getProcessStatus();
 }
 
 int Motion::getGestureStatus(int gesture_type, int count){

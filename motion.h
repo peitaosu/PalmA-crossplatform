@@ -10,6 +10,9 @@ class Motion
         bool setController(int controller_type);
         int getControllerCurrent();
         int* getControllerSupported();
+        bool getControllerStatus();
+        bool getServiceStatus();
+        bool getProcessStatus();
         
         double getNormalizedX();
         double getNormalizedY();
