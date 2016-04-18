@@ -70,28 +70,28 @@ void StatusWidget::setStatusDisplay(int status_code)
 {
     switch(status_code){
         case 0:
-            this->setStyleSheet("#frame_status1{background-color: rgb(0, 0, 0);}#frame_status2{background-color: rgb(0, 0, 0);}#frame_status3{background-color: rgb(0, 0, 0);}");
+            this->setStyleSheet("#controller_status{background-color: rgb(0, 0, 0);}#service_status{background-color: rgb(0, 0, 0);}#process_status{background-color: rgb(0, 0, 0);}");
             break;
         case 1:
-            this->setStyleSheet("#frame_status1{background-color: rgb(0, 0, 0);}#frame_status2{background-color: rgb(0, 0, 0);}#frame_status3{background-color: rgb(0, 0, 0);}");
+            this->setStyleSheet("#controller_status{background-color: rgb(0, 0, 0);}#service_status{background-color: rgb(0, 0, 0);}#process_status{background-color: rgb(0, 0, 0);}");
             break;
         case 2:
-            this->setStyleSheet("#frame_status1{background-color: rgb(0, 0, 0);}#frame_status2{background-color: rgb(0, 240, 0);}#frame_status3{background-color: rgb(0, 0, 0);}");
+            this->setStyleSheet("#controller_status{background-color: rgb(0, 0, 0);}#service_status{background-color: rgb(0, 240, 0);}#process_status{background-color: rgb(0, 0, 0);}");
             break;
         case 3:
-            this->setStyleSheet("#frame_status1{background-color: rgb(0, 0, 0);}#frame_status2{background-color: rgb(0, 240, 0);}#frame_status3{background-color: rgb(0, 0, 0);}");
+            this->setStyleSheet("#controller_status{background-color: rgb(0, 0, 0);}#service_status{background-color: rgb(0, 240, 0);}#process_status{background-color: rgb(0, 0, 0);}");
             break;
         case 4:
-            this->setStyleSheet("#frame_status1{background-color: rgb(0, 240, 0);}#frame_status2{background-color: rgb(0, 0, 0);}#frame_status3{background-color: rgb(0, 0, 0);}");
+            this->setStyleSheet("#controller_status{background-color: rgb(0, 240, 0);}#service_status{background-color: rgb(0, 0, 0);}#process_status{background-color: rgb(0, 0, 0);}");
             break;
         case 5:
-            this->setStyleSheet("#frame_status1{background-color: rgb(0, 240, 0);}#frame_status2{background-color: rgb(0, 0, 0);}#frame_status3{background-color: rgb(0, 240, 0);}");
+            this->setStyleSheet("#controller_status{background-color: rgb(0, 240, 0);}#service_status{background-color: rgb(0, 0, 0);}#process_status{background-color: rgb(0, 240, 0);}");
             break;
         case 6:
-            this->setStyleSheet("#frame_status1{background-color: rgb(0, 240, 0);}#frame_status2{background-color: rgb(0, 240, 0);}#frame_status3{background-color: rgb(0, 0, 0);}");
+            this->setStyleSheet("#controller_status{background-color: rgb(0, 240, 0);}#service_status{background-color: rgb(0, 240, 0);}#process_status{background-color: rgb(0, 0, 0);}");
             break;
         case 7:
-            this->setStyleSheet("#frame_status1{background-color: rgb(0, 240, 0);}#frame_status2{background-color: rgb(0, 240, 0);}#frame_status3{background-color: rgb(0, 240, 0);}");
+            this->setStyleSheet("#controller_status{background-color: rgb(0, 240, 0);}#service_status{background-color: rgb(0, 240, 0);}#process_status{background-color: rgb(0, 240, 0);}");
             break;
         default:
             break;

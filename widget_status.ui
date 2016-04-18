@@ -1,20 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>StatusWidget</class>
- <widget class="QWidget" name="StatusWidget" >
-  <property name="geometry" >
+ <widget class="QWidget" name="StatusWidget">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>180</width>
+    <height>30</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>StatusWidget</string>
   </property>
+  <widget class="QLabel" name="controller_status">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>60</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ctrl</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="service_status">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>0</y>
+     <width>60</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Serv</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="process_status">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>0</y>
+     <width>60</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>App</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
