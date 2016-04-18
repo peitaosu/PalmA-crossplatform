@@ -12,7 +12,7 @@
 #include <X11/extensions/shape.h>
 #include <QtX11Extras/QX11Info>
 #endif
-
+#include<iostream>
 GestureWidget::GestureWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GestureWidget)
@@ -44,7 +44,6 @@ GestureWidget::GestureWidget(QWidget *parent) :
     #endif
 
     this->show();
-
 }
 
 GestureWidget::~GestureWidget()
@@ -70,8 +69,8 @@ void GestureWidget::setAvailable(bool _available)
     available = _available;
     if(available == true){
        this->show();
-    }else{
-        this->hide();
+    }else if(available == false){
+       this->hide();
     }
 }
 
