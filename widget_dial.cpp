@@ -54,8 +54,8 @@ DialWidget::DialWidget(QWidget *parent) :
     connect(updateDial,SIGNAL(timeout()),this,SLOT(update()));
     updateDial->start(20);
 
-    //set to unvisible
-    this->setVisible(false);
+    //set to available
+    available = false;
 
 }
 
@@ -66,6 +66,7 @@ DialWidget::~DialWidget()
 
 void DialWidget::paintEvent(QPaintEvent *event)
 {
+    if(available == true){
         QPainter painter(this);
         QPen pen;
         pen.setStyle(Qt::SolidLine);
@@ -84,6 +85,7 @@ void DialWidget::paintEvent(QPaintEvent *event)
         painter.drawPixmap(begin_x - 160,begin_y - 160,320,320, pixmap);
         painter.drawLine( begin_x, begin_y, end_x, end_y);
         //this->setWindowFlags(Qt::WindowStaysOnTopHint);
+    }
 }
 
 void DialWidget::setPosition(double x, double y)
@@ -111,6 +113,16 @@ void DialWidget::setDial(QString dial_type)
 void DialWidget::setPixmap(QPixmap pixmap_type)
 {
     pixmap = pixmap_type;
+}
+
+void DialWidget::setAvailable(bool _available)
+{
+    available = _available;
+    if(available == true){
+       this->show();
+    }else if(available == false){
+       this->hide();
+    }
 }
 
 

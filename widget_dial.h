@@ -22,6 +22,8 @@ class DialWidget : public QWidget
         void setDial(QString dial_type);
         void setPixmap(QPixmap pixmap_type);
 
+        void setAvailable(bool _available = true);
+
     private:
         Ui::DialWidget *ui;
         QPixmap pixmap;
@@ -30,6 +32,8 @@ class DialWidget : public QWidget
         double position_y;
         double target_x;
         double target_y;
+
+        bool available;
 
 };
 
