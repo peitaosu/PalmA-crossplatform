@@ -12,7 +12,7 @@ class Logger : public QObject
         explicit Logger(QObject *parent = 0);
         void setLogDir(QString dir);
         void setLogFile(QString file);
-        void log(QString log_msg);
+        void log(QString log_type, QString log_msg);
 
     private:
         QFile log_file;
