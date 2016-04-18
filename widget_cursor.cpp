@@ -91,16 +91,23 @@ void CursorWidget::setAvailable(bool _available)
     available = _available;
 }
 
+void CursorWidget::updateCursor(double x, double y)
+{
+    cursor_x = x;
+    cursor_y = y;
+
+}
+
 void CursorWidget::paintEvent(QPaintEvent *event){
     if(available){
+
         //convert the hand position to the screen
-        i_box = controller.frame().interactionBox();
-        cursor_x = i_box.normalizePoint(controller.frame().hands().rightmost().stabilizedPalmPosition()).x;
-        std::cout<<cursor_x<<std::endl;
-        cursor_y = 1 - i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
+        //i_box = controller.frame().interactionBox();
+        //cursor_x = i_box.normalizePoint(controller.frame().hands().rightmost().stabilizedPalmPosition()).x;
+        //std::cout<<cursor_x<<std::endl;
+        //cursor_y = 1 - i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
         int screen_x = QApplication::desktop()->width() * cursor_x;
         int screen_y = QApplication::desktop()->height() * cursor_y;
-
         //new painter
         QPainter painter(this);
 
