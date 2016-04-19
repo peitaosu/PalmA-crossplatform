@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="gesture_label">
+  <widget class="QLabel" name="gesture_show_label">
    <property name="geometry">
     <rect>
      <x>0</x>

@@ -53,7 +53,7 @@ bool Motion::getProcessStatus()
 int Motion::getGestureStatus(int gesture_type, int count){
     if(controller_type_current == LEAP_MOTION){
         MotionLeap motion_leap;
-        gesture_status[gesture_type*count][1] = gesture_status[gesture_type][0];
+        gesture_status[gesture_type*count][1] = gesture_status[gesture_type*count][0];
         gesture_status[gesture_type*count][0] = motion_leap.getGestureStatus(gesture_type, count);
         return gesture_status[gesture_type*count][0];
     }else if(controller_type_current == KINECT){
@@ -65,26 +65,28 @@ int Motion::getGestureStatus(int gesture_type, int count){
 }
 
 int Motion::getGestureEvent(int gesture_type, int count){
+
     if(controller_type_current == LEAP_MOTION){
+        gesture_status[gesture_type*count][1] = gesture_status[gesture_type][0];
+        gesture_status[gesture_type*count][0] = motion_leap.getGestureStatus(gesture_type, count);
+
         if(gesture_status[gesture_type*count][1] == 0 &&
         gesture_status[gesture_type*count][0] == 0){
             return NONE;
         }
-        if(gesture_status[gesture_type*count][1] == 1 &&
-        gesture_status[gesture_type*count][0] == 0){
+        if(gesture_status[gesture_type*count][1] == 0 &&
+        gesture_status[gesture_type*count][0] == 1){
             return START;
         }
         if(gesture_status[gesture_type*count][1] == 1 &&
         gesture_status[gesture_type*count][0] == 1){
             return KEEP;
         }
-        if(gesture_status[gesture_type*count][1] == 0 &&
-        gesture_status[gesture_type*count][0] == 1){
+        if(gesture_status[gesture_type*count][1] == 1 &&
+        gesture_status[gesture_type*count][0] == 0){
             return STOP;
         }
-        gesture_status[gesture_type*count][1] = gesture_status[gesture_type][0];
-        gesture_status[gesture_type*count][0] = motion_leap.getGestureStatus(gesture_type, count);
-        return gesture_status[gesture_type*count][0];
+        //return gesture_status[gesture_type*count][0];
     }else if(controller_type_current == KINECT){
         //TODO: add Kinect support
         return 0;

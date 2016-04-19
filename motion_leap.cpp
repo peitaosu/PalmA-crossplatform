@@ -4,6 +4,10 @@
 
 MotionLeap::MotionLeap(){
     left_handedness = false;
+    controller.enableGesture(Leap::Gesture::TYPE_CIRCLE);
+    controller.enableGesture(Leap::Gesture::TYPE_KEY_TAP);
+    controller.enableGesture(Leap::Gesture::TYPE_SCREEN_TAP);
+    controller.enableGesture(Leap::Gesture::TYPE_SWIPE);
 }
 
 int MotionLeap::getControllerType(){
@@ -112,7 +116,7 @@ int MotionLeap::getGestureGrab(int hand_count)
 
 int MotionLeap::getGesturePinch(int hand_count)
 {
-    double threshold = 0.80;
+    double threshold = 0.95;
     if(hand_count == 1){
         if(hand.pinchStrength() >= threshold){
             return 1;

@@ -53,9 +53,10 @@ GestureWidget::~GestureWidget()
 
 void GestureWidget::setGestureDisplay(QString gesture_type)
 {
-    QString picture_path = ":/resource/gesture/";
+
+    QString picture_path = "\":/resource/gesture/";
     QString picture_name = gesture_type;
-    QString gesture_label_css = "#gesture_show_label{border-image: url(" + picture_path + picture_name + ".png);}";
+    QString gesture_label_css = "#gesture_show_label{border-image: url(" + picture_path + picture_name + ".png\");}";
     this->setStyleSheet(gesture_label_css);
 }
 

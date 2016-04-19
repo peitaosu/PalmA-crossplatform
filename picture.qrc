@@ -3,7 +3,6 @@
         <file>resource/dial/dial_desktop.png</file>
         <file>resource/dial/dial_explorer.png</file>
         <file>resource/gesture/circle.png</file>
-        <file>resource/gesture/circle-anti.png</file>
         <file>resource/gesture/grab.png</file>
         <file>resource/gesture/hand.png</file>
         <file>resource/gesture/keytap.png</file>
@@ -11,5 +10,7 @@
         <file>resource/gesture/pinche.png</file>
         <file>resource/gesture/screentap.png</file>
         <file>resource/gesture/swipe.png</file>
+        <file>resource/gesture/circle_anti.png</file>
+        <file>resource/gesture/off.png</file>
     </qresource>
 </RCC>

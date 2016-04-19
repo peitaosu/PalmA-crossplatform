@@ -76,3 +76,8 @@ void Display::updateStatus(int status_code)
 {
     status_widget->setStatusDisplay(status_code);
 }
+
+void Display::setGestureDisplay(QString gesture_type)
+{
+    gesture_widget->setGestureDisplay(gesture_type);
+}

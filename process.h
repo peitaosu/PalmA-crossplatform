@@ -36,12 +36,19 @@ class Process : public QObject
         void screen_tap(double x, double y, int status);
         void key_tap(double x, double y, int status);
         void key_tap(int status);
+        void setGesture(QString gesture_type);
+
     public slots:
         //void init();
         void start();
         void run();
         void stop();
         void restart();
+
+        void mouse(double x, double y);
+        void mouse(double x, double y, int event);
+
+        void showGesture(QString gesture_type);
 };
 
 #endif // PROCESS_H

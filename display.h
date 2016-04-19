@@ -24,6 +24,7 @@ class Display : public QObject
         void updateDial(double x, double y);
         void updateCursor(double x, double y);
         void updateStatus(int status_code);
+        void setGestureDisplay(QString gesture_type);
     signals:
 
     public slots:
