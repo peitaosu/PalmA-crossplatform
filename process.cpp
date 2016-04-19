@@ -1,15 +1,41 @@
 #include "process.h"
 #include "motion_code.h"
-
+#include <QJsonDocument>
 Process::Process(QObject *parent) : QObject(parent)
 {
     loop_timer = new QTimer(this);
 
+    QString config_sring;
+    QFile config_file;
+    config_file.setFileName(":/config.json");
+    config_file.open(QIODevice::ReadOnly | QIODevice::Text);
+    config_sring = config_file.readAll();
+    config_file.close();
+    QJsonDocument config_json = QJsonDocument::fromJson(config_sring.toUtf8());
+    config = config_json.toVariant().toMap();
+
     connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)));
+
 }
 
 void Process::init(int argc, char* argv[])
 {
+    /*
+    if(config["display"]["palm"] == "true"){
+        display.showPalm();
+    }else if(config["display"]["palm"] == "false"){
+        display.hidePalm();
+    }
+    if(config["display"]["gesture"] == "true"){
+        display.showGesture();
+    }else if(config["display"]["gesture"] == "false"){
+        display.hideGesture();
+    }
+    if(config["display"]["status"] == "true"){
+        display.showStatus();
+    }else if(config["display"]["status"] == "false"){
+        display.hideStatus();
+    }*/
     for(int arg = 1; arg < argc; arg ++){
         if(argv[arg] == "-d"){
             display.showStatus();
@@ -19,6 +45,7 @@ void Process::init(int argc, char* argv[])
             display.showPalm();
         }
     }
+
     //for test
     display.showStatus();
     display.showGesture();
