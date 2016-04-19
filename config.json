@@ -5,50 +5,57 @@
         "debug": "false",
         "log": "true"
     },
+    "display": {
+        "cursor": "true",
+        "palm": "false",
+        "gesture": "true",
+        "dial": "true",
+        "status": "false"
+    },
     "gesture": {
         "desktop": {
-            "swipe": 0,
-            "circle": 0,
-            "circle_anti": 0,
-            "screen_tap": 0,
-            "key_tap": 0,
-            "grab": 1,
-            "pinch": 1,
-            "grab_2hands": 1,
-            "pinch_2hands": 0
+            "swipe": "false",
+            "circle": "false",
+            "circle_anti": "false",
+            "screen_tap": "false",
+            "key_tap": "false",
+            "grab": "true",
+            "pinch": "true",
+            "grab_2hands": "true",
+            "pinch_2hands": "false"
         },
         "expolere": {
-            "swipe": 0,
-            "circle": 1,
-            "circle_anti": 1,
-            "screen_tap": 0,
-            "key_tap": 0,
-            "grab": 0,
-            "pinch": 1,
-            "grab_2hands": 0,
-            "pinch_2hands": 0
+            "swipe": "false",
+            "circle": "true",
+            "circle_anti": "true",
+            "screen_tap": "false",
+            "key_tap": "false",
+            "grab": "false",
+            "pinch": "true",
+            "grab_2hands": "false",
+            "pinch_2hands": "false"
         },
         "browser": {
-            "swipe": 0,
-            "circle": 1,
-            "circle_anti": 1,
-            "screen_tap": 0,
-            "key_tap": 0,
-            "grab": 1,
-            "pinch": 1,
-            "grab_2hands": 0,
-            "pinch_2hands": 0
+            "swipe": "false",
+            "circle": "true",
+            "circle_anti": "true",
+            "screen_tap": "false",
+            "key_tap": "false",
+            "grab": "true",
+            "pinch": "true",
+            "grab_2hands": "false",
+            "pinch_2hands": "false"
         },
         "other": {
-            "swipe": 0,
-            "circle": 0,
-            "circle_anti": 0,
-            "screen_tap": 0,
-            "key_tap": 0,
-            "grab": 0,
-            "pinch": 1,
-            "grab_2hands": 0,
-            "pinch_2hands": 0
+            "swipe": "false",
+            "circle": "false",
+            "circle_anti": "false",
+            "screen_tap": "false",
+            "key_tap": "false",
+            "grab": "false",
+            "pinch": "true",
+            "grab_2hands": "false",
+            "pinch_2hands": "false"
         }
     }
 }
