@@ -15,6 +15,8 @@
 #define KEYTAP 5
 #define GRAB 6
 #define PINCH 7
+#define G_RAB 12
+#define P_INCH 14
 
 //controller
 #define LEAP_MOTION 1

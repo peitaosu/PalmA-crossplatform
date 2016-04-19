@@ -19,7 +19,7 @@ class Motion
         double getNormalizedZ();
         
         int getGestureStatus(int gesture_type, int count = 1);
-
+        int getGestureEvent(int gesture_type, int count = 1);
         void setHandedness(bool is_left = true);
 
         bool update();
@@ -35,6 +35,8 @@ class Motion
         bool left_handedness;
 
         MotionLeap motion_leap;
+        
+        bool gesture_status[10][2];
 };
 
 #endif // MOTION_H

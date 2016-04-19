@@ -53,7 +53,38 @@ bool Motion::getProcessStatus()
 int Motion::getGestureStatus(int gesture_type, int count){
     if(controller_type_current == LEAP_MOTION){
         MotionLeap motion_leap;
-        return motion_leap.getGestureStatus(gesture_type, count);
+        gesture_status[gesture_type*count][1] = gesture_status[gesture_type][0];
+        gesture_status[gesture_type*count][0] = motion_leap.getGestureStatus(gesture_type, count);
+        return gesture_status[gesture_type*count][0];
+    }else if(controller_type_current == KINECT){
+        //TODO: add Kinect support
+        return 0;
+    }else{
+        return INPUT_ERROR;
+    }
+}
+
+int Motion::getGestureEvent(int gesture_type, int count){
+    if(controller_type_current == LEAP_MOTION){
+        if(gesture_status[gesture_type*count][1] == 0 &&
+        gesture_status[gesture_type*count][0] == 0){
+            return NONE;
+        }
+        if(gesture_status[gesture_type*count][1] == 1 &&
+        gesture_status[gesture_type*count][0] == 0){
+            return START;
+        }
+        if(gesture_status[gesture_type*count][1] == 1 &&
+        gesture_status[gesture_type*count][0] == 1){
+            return KEEP;
+        }
+        if(gesture_status[gesture_type*count][1] == 0 &&
+        gesture_status[gesture_type*count][0] == 1){
+            return STOP;
+        }
+        gesture_status[gesture_type*count][1] = gesture_status[gesture_type][0];
+        gesture_status[gesture_type*count][0] = motion_leap.getGestureStatus(gesture_type, count);
+        return gesture_status[gesture_type*count][0];
     }else if(controller_type_current == KINECT){
         //TODO: add Kinect support
         return 0;
