@@ -20,6 +20,7 @@ class Motion
         
         int getGestureStatus(int gesture_type, int count = 1);
         int getGestureEvent(int gesture_type, int count = 1);
+        int getHandCount();
         void setHandedness(bool is_left = true);
 
         bool update();

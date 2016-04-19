@@ -20,7 +20,7 @@ class MotionLeap
         int getGestureGrab(int hand_count = 1);
         int getGesturePinch(int hand_count = 1);
         int getGestureStatus(int gesture_type, int count = 1);
-
+        int getHandCount();
         void setHandedness(bool is_left = true);
 
         bool getControllerStatus();

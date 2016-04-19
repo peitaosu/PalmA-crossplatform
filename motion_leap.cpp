@@ -174,6 +174,11 @@ int MotionLeap::getGestureStatus(int gesture_type, int count){
     return 0;
 }
 
+int MotionLeap::getHandCount()
+{
+    return controller.frame().hands().count();
+}
+
 void MotionLeap::setHandedness(bool is_left)
 {
     left_handedness = is_left;

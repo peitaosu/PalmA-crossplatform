@@ -41,7 +41,7 @@ void Process::run()
     display.updateCursor(motion.getNormalizedX(), motion.getNormalizedY());
     display.updateStatus(motion.getControllerStatus()*4 + motion.getServiceStatus()*2 + motion.getProcessStatus());
     
-    if(motion.hand_count == 2){
+    if(motion.getHandCount() == 2){
         //isAllGrab?
         int grab_status_with_hands = motion.getGestureEvent(GRAB, 2);
         switch (grab_status_with_hands){
@@ -114,7 +114,7 @@ void Process::run()
             default:
                 break;
         }
-    }else if(hand_count == 1){
+    }else if(motion.getHandCount() == 1){
         //isGrab?
         int grab_status = motion.getGestureEvent(GRAB, 1);
         switch (grab_status){

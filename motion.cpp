@@ -93,6 +93,13 @@ int Motion::getGestureEvent(int gesture_type, int count){
     }
 }
 
+int Motion::getHandCount()
+{
+    if(controller_type_current == LEAP_MOTION){
+        return motion_leap.getHandCount();
+    }
+}
+
 void Motion::setHandedness(bool is_left)
 {
     left_handedness = is_left;
