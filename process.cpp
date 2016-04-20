@@ -1,5 +1,6 @@
 #include "process.h"
 #include "motion_code.h"
+#include "foreground.h"
 #include <QJsonDocument>
 #include <QDate>
 Process::Process(QObject *parent) : QObject(parent)
@@ -360,3 +361,27 @@ void Process::showGesture(QString gesture_type)
     display.setGestureDisplay(gesture_type);
 }
 
+QString Process::getForegroundWindow(){
+    
+    Foreground foreground_window;
+    QString foreground_window_name = QString(foreground_window.getForegroundWindowName());
+    QString foreground_window_process_name = QString(foreground_window.getForegroundProcessName());
+    if(foreground_window_process_name.contains("firefox.exe",Qt::CaseSensitive) ||
+    foreground_window_process_name.contains("chrome.exe",Qt::CaseSensitive) ||
+    foreground_window_process_name.contains("iexplore.exe",Qt::CaseSensitive) ||
+    foreground_window_process_name.contains("opera.exe",Qt::CaseSensitive) ||
+    ){
+        return "browser";
+    }
+    
+    if(foreground_window_process_name.contains("explorer.exe",Qt::CaseSensitive)){
+        if(foreground_window_name.contains("Program Manager",Qt::CaseSensitive)){
+            return "manager";
+        }else if(foreground_window_name.contains("\u8ba1\u7b97\u673a",Qt::CaseSensitive)){
+            return "desktop";
+        }
+    }
+    
+    return "other";
+    
+}
