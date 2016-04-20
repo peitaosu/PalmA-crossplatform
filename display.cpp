@@ -82,23 +82,23 @@ void Display::setGestureDisplay(QString gesture_type)
     gesture_widget->setGestureDisplay(gesture_type);
 }
 
-void Display::widgetStatus(){
-    return *status_widget;
+StatusWidget * Display::widgetStatus(){
+    return status_widget;
 }
 
-void Display::widgetCursor(){
-    return *cursor_widget;
+CursorWidget * Display::widgetCursor(){
+    return cursor_widget;
 }
 
-void Display::widgetGesture(){
-    return *gesture_widget;
+GestureWidget * Display::widgetGesture(){
+    return gesture_widget;
 }
 
-void Display::widgetDial(){
-    return *dial_widget;
+DialWidget * Display::widgetDial(){
+    return dial_widget;
 }
 
-void Display::widgetPalm(){
-    return *palm_widget;
+PalmWidget * Display::widgetPalm(){
+    return palm_widget;
 }
 

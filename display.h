@@ -26,11 +26,11 @@ class Display : public QObject
         void updateStatus(int status_code);
         void setGestureDisplay(QString gesture_type);
         
-        void widgetStatus();
-        void widgetCursor();
-        void widgetGesture();
-        void widgetDial();
-        void widgetPalm();
+        StatusWidget *widgetStatus();
+        CursorWidget *widgetCursor();
+        GestureWidget *widgetGesture();
+        DialWidget *widgetDial();
+        PalmWidget *widgetPalm();
         
     signals:
 
