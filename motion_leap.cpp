@@ -4,7 +4,6 @@
 
 MotionLeap::MotionLeap(){
     left_handedness = false;
-    hand = controller.frame().hands().rightmost();
     controller.enableGesture(Leap::Gesture::TYPE_CIRCLE);
     controller.enableGesture(Leap::Gesture::TYPE_KEY_TAP);
     controller.enableGesture(Leap::Gesture::TYPE_SCREEN_TAP);
@@ -17,16 +16,31 @@ int MotionLeap::getControllerType(){
 
 double MotionLeap::getNormalizedX(){
     i_box = controller.frame().interactionBox();
+    if(left_handedness){
+        hand = controller.frame().hands().leftmost();
+    }else{
+        hand = controller.frame().hands().rightmost();
+    }
     return i_box.normalizePoint(hand.stabilizedPalmPosition()).x;
 }
 
 double MotionLeap::getNormalizedY(){
     i_box = controller.frame().interactionBox();
+    if(left_handedness){
+        hand = controller.frame().hands().leftmost();
+    }else{
+        hand = controller.frame().hands().rightmost();
+    }
     return 1 - i_box.normalizePoint(hand.stabilizedPalmPosition()).y;
 }
 
 double MotionLeap::getNormalizedZ(){
     i_box = controller.frame().interactionBox();
+    if(left_handedness){
+        hand = controller.frame().hands().leftmost();
+    }else{
+        hand = controller.frame().hands().rightmost();
+    }
     return i_box.normalizePoint(hand.stabilizedPalmPosition()).z;
 }
 
@@ -92,8 +106,13 @@ int MotionLeap::getGestureKeyTap()
 
 int MotionLeap::getGestureGrab(int hand_count)
 {
-    double threshold = 0.95;
+    double threshold = 0.95;    
     if(hand_count == 1){
+        if(left_handedness){
+            hand = controller.frame().hands().leftmost();
+        }else{
+            hand = controller.frame().hands().rightmost();
+        }
         if(hand.grabStrength() >= threshold){
             return 1;
         }else{
@@ -116,6 +135,11 @@ int MotionLeap::getGesturePinch(int hand_count)
 {
     double threshold = 0.95;
     if(hand_count == 1){
+        if(left_handedness){
+            hand = controller.frame().hands().leftmost();
+        }else{
+            hand = controller.frame().hands().rightmost();
+        }
         if(hand.pinchStrength() >= threshold){
             return 1;
         }else{
