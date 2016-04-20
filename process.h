@@ -14,7 +14,7 @@ class Process : public QObject
     public:
         explicit Process(QObject *parent = 0);
         void init(int argc, char* argv[]);
-
+        QString getForegroundWindow();
 
     private:
         QTimer *loop_timer;

@@ -17,6 +17,7 @@ class DialWidget : public QWidget
 
         void paintEvent(QPaintEvent *event);
 
+    public slots:
         void setPosition(double x, double y);
         void setTargetPosition(double x, double y);
         void setDial(QString dial_type);

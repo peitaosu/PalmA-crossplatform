@@ -21,6 +21,10 @@ Process::Process(QObject *parent) : QObject(parent)
     
 
     connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)));
+    connect(this, SIGNAL(showDial(double, double)), display.widgetDial(), SLOT(setPosition(double, double)));
+    connect(this, SIGNAL(updateDial(double, double)), display.widgetDial(), SLOT(setTargetPosition(double, double)));
+    connect(this, SIGNAL(hideDial(bool)), display.widgetDial(), SLOT(setAvailable(bool)));
+    
 
 }
 
