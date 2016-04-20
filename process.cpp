@@ -100,233 +100,257 @@ void Process::run()
         display.updateCursor(motion.getNormalizedX(), motion.getNormalizedY());
         display.updateStatus(motion.getControllerStatus()*4 + motion.getServiceStatus()*2 + motion.getProcessStatus());
 
+        QVariantMap config_runtime = config_gesture[getForegroundWindow()].toMap();
+        
         if(motion.getHandCount() == 2){
             //isAllGrab?
-            int grab_status_with_hands = motion.getGestureEvent(GRAB, 2);
-            switch (grab_status_with_hands){
-                case NONE:
-                    emit grab(NONE);
-                    break;
-                case START:
-                    emit grab(START);
-                    emit setGesture("grab");
-                    break;
-                case KEEP:
-                    emit grab(KEEP);
-                    emit setGesture("grab");
-                    break;
-                case STOP:
-                    emit grab(STOP);
-                    emit setGesture("hand");
-                    break;
-                default:
-                    break;
+            if(config_runtime["grab_2hands"] == "true"){
+                int grab_status_with_hands = motion.getGestureEvent(GRAB, 2);
+                switch (grab_status_with_hands){
+                    case NONE:
+                        emit grab(NONE);
+                        break;
+                    case START:
+                        emit grab(START);
+                        emit setGesture("grab");
+                        break;
+                    case KEEP:
+                        emit grab(KEEP);
+                        emit setGesture("grab");
+                        break;
+                    case STOP:
+                        emit grab(STOP);
+                        emit setGesture("hand");
+                        break;
+                    default:
+                        break;
+                }
             }
             //isOneGrab?
-            int grab_status = motion.getGestureEvent(GRAB, 1);
-            switch (grab_status){
-                case NONE:
-                    emit grab(NONE);
-                    break;
-                case START:
-                    emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 1);
-                    emit setGesture("grab");
-                    break;
-                case KEEP:
-                    emit grab(motion.getNormalizedX(), motion.getNormalizedY());
-                    emit setGesture("grab");
-                    break;
-                case STOP:
-                    emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 0);
-                    emit setGesture("hand");
-                    break;
-                default:
-                    break;
+            if(config_runtime["grab"] == "true"){
+                int grab_status = motion.getGestureEvent(GRAB, 1);
+                switch (grab_status){
+                    case NONE:
+                        emit grab(NONE);
+                        break;
+                    case START:
+                        emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 1);
+                        emit setGesture("grab");
+                        break;
+                    case KEEP:
+                        emit grab(motion.getNormalizedX(), motion.getNormalizedY());
+                        emit setGesture("grab");
+                        break;
+                    case STOP:
+                        emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 0);
+                        emit setGesture("hand");
+                        break;
+                    default:
+                        break;
+                }
             }
             //isAllPinch?
-            int pinch_status_with_hands = motion.getGestureEvent(PINCH, 2);
-            switch (pinch_status_with_hands){
-                case NONE:
-                    emit pinch(NONE);
-                    break;
-                case START:
-                    emit pinch(START);
-                    emit setGesture("pinch");
-                    break;
-                case KEEP:
-                    emit pinch(KEEP);
-                    emit setGesture("pinch");
-                    break;
-                case STOP:
-                    emit pinch(STOP);
-                    emit setGesture("pinche");
-                    break;
-                default:
-                    break;
+            if(config_runtime["pinch_2hands"] == "true"){
+                int pinch_status_with_hands = motion.getGestureEvent(PINCH, 2);
+                switch (pinch_status_with_hands){
+                    case NONE:
+                        emit pinch(NONE);
+                        break;
+                    case START:
+                        emit pinch(START);
+                        emit setGesture("pinch");
+                        break;
+                    case KEEP:
+                        emit pinch(KEEP);
+                        emit setGesture("pinch");
+                        break;
+                    case STOP:
+                        emit pinch(STOP);
+                        emit setGesture("pinche");
+                        break;
+                    default:
+                        break;
+                }
             }
             //isOnePinch?
-            int pinch_status = motion.getGestureEvent(PINCH, 1);
-            switch (pinch_status){
-                case NONE:
-                    emit pinch(NONE);
-                    break;
-                case START:
-                    emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), START);
-                    emit setGesture("pinch");
-                    break;
-                case KEEP:
-                    emit pinch(motion.getNormalizedX(), motion.getNormalizedY());
-                    emit setGesture("pinch");
-                    break;
-                case STOP:
-                    emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
-                    emit setGesture("pinche");
-                    break;
-                default:
-                    break;
+            if(config_runtime["pinch"] == "true"){
+                int pinch_status = motion.getGestureEvent(PINCH, 1);
+                switch (pinch_status){
+                    case NONE:
+                        emit pinch(NONE);
+                        break;
+                    case START:
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        emit setGesture("pinch");
+                        break;
+                    case KEEP:
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY());
+                        emit setGesture("pinch");
+                        break;
+                    case STOP:
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
+                        emit setGesture("pinche");
+                        break;
+                    default:
+                        break;
+                }
             }
         }else if(motion.getHandCount() == 1){
             //isGrab?
-            int grab_status = motion.getGestureEvent(GRAB, 1);
-            switch (grab_status){
-                case NONE:
-                    emit grab(NONE);
-                    break;
-                case START:
-                    emit grab(motion.getNormalizedX(), motion.getNormalizedY(), START);
-                    emit setGesture("grab");
-                    break;
-                case KEEP:
-                    emit grab(motion.getNormalizedX(), motion.getNormalizedY());
-                    emit setGesture("grab");
-                    break;
-                case STOP:
-                    emit grab(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
-                    emit setGesture("hand");
-                    break;
-                default:
-                    break;
+            if(config_runtime["grab"] == "true"){
+                int grab_status = motion.getGestureEvent(GRAB, 1);
+                switch (grab_status){
+                    case NONE:
+                        emit grab(NONE);
+                        break;
+                    case START:
+                        emit grab(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        emit setGesture("grab");
+                        break;
+                    case KEEP:
+                        emit grab(motion.getNormalizedX(), motion.getNormalizedY());
+                        emit setGesture("grab");
+                        break;
+                    case STOP:
+                        emit grab(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
+                        emit setGesture("hand");
+                        break;
+                    default:
+                        break;
+                }
             }
             //isPinch?
-            int pinch_status = motion.getGestureEvent(PINCH, 1);
-            switch (pinch_status){
-                case NONE:
-                    emit pinch(NONE);
-                    break;
-                case START:
-                    emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), START);
-                    emit setGesture("pinch");
-                    break;
-                case KEEP:
-                    emit pinch(motion.getNormalizedX(), motion.getNormalizedY());
-                    emit setGesture("pinch");
-                    break;
-                case STOP:
-                    emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
-                    //emit setGesture("pinche");
-                    emit setGesture("hand");
-                    break;
-                default:
-                    break;
+            if(config_runtime["pinch"] == "true"){
+                int pinch_status = motion.getGestureEvent(PINCH, 1);
+                switch (pinch_status){
+                    case NONE:
+                        emit pinch(NONE);
+                        break;
+                    case START:
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        emit setGesture("pinch");
+                        break;
+                    case KEEP:
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY());
+                        emit setGesture("pinch");
+                        break;
+                    case STOP:
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
+                        //emit setGesture("pinche");
+                        emit setGesture("hand");
+                        break;
+                    default:
+                        break;
+                }
             }
             //isCircle?
-            int circle_status = motion.getGestureEvent(CIRCLE, 1);
-            switch (circle_status){
-                case NONE:
-                    emit circle(NONE);
-                    break;
-                case START:
-                    emit circle(START);
-                    emit setGesture("circle");
-                    break;
-                case KEEP:
-                    emit circle(KEEP);
-                    emit setGesture("circle");
-                    break;
-                case STOP:
-                    emit circle(STOP);
-                    emit setGesture("hand");
-                    break;
-                default:
-                    break;
+            if(config_runtime["circle"] == "true"){
+                int circle_status = motion.getGestureEvent(CIRCLE, 1);
+                switch (circle_status){
+                    case NONE:
+                        emit circle(NONE);
+                        break;
+                    case START:
+                        emit circle(START);
+                        emit setGesture("circle");
+                        break;
+                    case KEEP:
+                        emit circle(KEEP);
+                        emit setGesture("circle");
+                        break;
+                    case STOP:
+                        emit circle(STOP);
+                        emit setGesture("hand");
+                        break;
+                    default:
+                        break;
+                }
             }
             //isCircle-Anti?
-            int circle_anti_status = motion.getGestureEvent(CIRANTI, 1);
-            switch (circle_anti_status){
-                case NONE:
-                    emit circle_anti(NONE);
-                    break;
-                case START:
-                    emit circle_anti(START);
-                    emit setGesture("circle_anti");
-                    break;
-                case KEEP:
-                    emit circle_anti(KEEP);
-                    emit setGesture("circle_anti");
-                    break;
-                case STOP:
-                    emit circle_anti(STOP);
-                    emit setGesture("hand");
-                    break;
-                default:
-                    break;
+            if(config_runtime["circle_anti"] == "true"){
+                int circle_anti_status = motion.getGestureEvent(CIRANTI, 1);
+                switch (circle_anti_status){
+                    case NONE:
+                        emit circle_anti(NONE);
+                        break;
+                    case START:
+                        emit circle_anti(START);
+                        emit setGesture("circle_anti");
+                        break;
+                    case KEEP:
+                        emit circle_anti(KEEP);
+                        emit setGesture("circle_anti");
+                        break;
+                    case STOP:
+                        emit circle_anti(STOP);
+                        emit setGesture("hand");
+                        break;
+                    default:
+                        break;
+                }
             }
             //isSwipe?
-            int swipe_status = motion.getGestureEvent(SWIPE, 1);
-            switch (swipe_status){
-                case NONE:
-                    emit swipe(NONE);
-                    break;
-                case START:
-                    emit swipe(START);
-                    emit setGesture("swipe");
-                    break;
-                case KEEP:
-                    emit swipe(KEEP);
-                    emit setGesture("swipe");
-                    break;
-                case STOP:
-                    emit swipe(STOP);
-                    emit setGesture("hand");
-                    break;
-                default:
-                    break;
+            if(config_runtime["swipe"] == "true"){
+                int swipe_status = motion.getGestureEvent(SWIPE, 1);
+                switch (swipe_status){
+                    case NONE:
+                        emit swipe(NONE);
+                        break;
+                    case START:
+                        emit swipe(START);
+                        emit setGesture("swipe");
+                        break;
+                    case KEEP:
+                        emit swipe(KEEP);
+                        emit setGesture("swipe");
+                        break;
+                    case STOP:
+                        emit swipe(STOP);
+                        emit setGesture("hand");
+                        break;
+                    default:
+                        break;
+                }
             }
             //isScreenTap?
-            int screen_tap_status = motion.getGestureEvent(SCREENTAP, 1);
-            switch (screen_tap_status){
-                case NONE:
-                    emit screen_tap(NONE);
-                    break;
-                case START:
-                    emit screen_tap(motion.getNormalizedX(), motion.getNormalizedY(), START);
-                    break;
-                case KEEP:
-                    emit screen_tap(KEEP);
-                    break;
-                case STOP:
-                    emit screen_tap(STOP);
-                    break;
-                default:
-                    break;
+            if(config_runtime["screen_tap"] == "true"){
+                int screen_tap_status = motion.getGestureEvent(SCREENTAP, 1);
+                switch (screen_tap_status){
+                    case NONE:
+                        emit screen_tap(NONE);
+                        break;
+                    case START:
+                        emit screen_tap(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        break;
+                    case KEEP:
+                        emit screen_tap(KEEP);
+                        break;
+                    case STOP:
+                        emit screen_tap(STOP);
+                        break;
+                    default:
+                        break;
+                }
             }
             //isKeyTap?
-            int key_tap_status = motion.getGestureEvent(KEYTAP, 1);
-            switch (key_tap_status){
-                case NONE:
-                    emit key_tap(NONE);
-                    break;
-                case START:
-                    emit key_tap(motion.getNormalizedX(), motion.getNormalizedY(), START);
-                    break;
-                case KEEP:
-                    emit key_tap(KEEP);
-                    break;
-                case STOP:
-                    emit key_tap(STOP);
-                    break;
-                default:
-                    break;
+            if(config_runtime["key_tap"] == "true"){
+                int key_tap_status = motion.getGestureEvent(KEYTAP, 1);
+                switch (key_tap_status){
+                    case NONE:
+                        emit key_tap(NONE);
+                        break;
+                    case START:
+                        emit key_tap(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        break;
+                    case KEEP:
+                        emit key_tap(KEEP);
+                        break;
+                    case STOP:
+                        emit key_tap(STOP);
+                        break;
+                    default:
+                        break;
+                }
             }
             //isHold?
             //emit hold();
