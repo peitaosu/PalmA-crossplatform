@@ -50,7 +50,8 @@ FORMS   += widget/widget_status.ui \
     widget/widget_palm.ui
 
 win32{
-    INCLUDEPATH += $$PWD/win/
+    INCLUDEPATH += $$PWD/win/ \
+                    $$PWD/widget/
     SOURCES += win/event.cpp \
     win/foreground.cpp
     HEADERS += win/event.h \
