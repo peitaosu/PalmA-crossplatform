@@ -1,6 +1,6 @@
 {
     "config": {
-        "controller": "LEAP_MOTION",
+        "controller": "LEAPMOTION",
         "handedness": "right",
         "debug": "false",
         "log": "true"
