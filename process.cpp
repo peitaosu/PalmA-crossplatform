@@ -21,9 +21,9 @@ Process::Process(QObject *parent) : QObject(parent)
     
 
     connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)));
+    connect(this, SIGNAL(showDial(bool)), display.widgetDial(), SLOT(setAvailable(bool)));
     connect(this, SIGNAL(showDial(double, double)), display.widgetDial(), SLOT(setPosition(double, double)));
     connect(this, SIGNAL(updateDial(double, double)), display.widgetDial(), SLOT(setTargetPosition(double, double)));
-    connect(this, SIGNAL(hideDial(bool)), display.widgetDial(), SLOT(setAvailable(bool)));
     
 
 }
@@ -105,7 +105,7 @@ void Process::run()
         display.updateStatus(motion.getControllerStatus()*4 + motion.getServiceStatus()*2 + motion.getProcessStatus());
 
         QVariantMap config_runtime = config_gesture[getForegroundWindow()].toMap();
-        
+        display.widgetDial()->setDial(getForegroundWindow());
         if(motion.getHandCount() == 2){
             //isAllGrab?
             if(config_runtime["grab_2hands"].toString() == "true"){
@@ -233,15 +233,19 @@ void Process::run()
                     case START:
                         emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), START);
                         emit setGesture("pinch");
+                        emit showDial(true);
+                        emit showDial(motion.getNormalizedX(), motion.getNormalizedY());
                         break;
                     case KEEP:
                         emit pinch(motion.getNormalizedX(), motion.getNormalizedY());
                         emit setGesture("pinch");
+                        emit updateDial(motion.getNormalizedX(), motion.getNormalizedY());
                         break;
                     case STOP:
                         emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
                         //emit setGesture("pinche");
                         emit setGesture("hand");
+                        emit showDial(false);
                         break;
                     default:
                         break;
@@ -407,15 +411,13 @@ QString Process::getForegroundWindow(){
     ){
         return "browser";
     }
-    
     if(foreground_window_process_name.contains("explorer.exe",Qt::CaseSensitive)){
         if(foreground_window_name.contains("Program Manager",Qt::CaseSensitive)){
-            return "manager";
-        }else if(foreground_window_name.contains("\u8ba1\u7b97\u673a",Qt::CaseSensitive)){
             return "desktop";
+        }else{
+            return "explorer";
         }
     }
-    //std::cout<<foreground_window.getForegroundWindowName()<<std::endl;
     return "other";
     
 }

@@ -9,7 +9,7 @@
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QDebug>
-
+#include <iostream>
 #ifdef Q_OS_WIN32
 #include "windows.h"
 #endif
@@ -107,6 +107,7 @@ void DialWidget::setDial(QString dial_type)
     //qDebug()<<image.save(dial_resource, "PNG");
     QPixmap _pixmap;
     _pixmap.load(dial_resource);
+    //std::cout<<dial_resource.toStdString()<<std::endl;
     this->setPixmap(_pixmap);
 }
 

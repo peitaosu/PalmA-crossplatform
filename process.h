@@ -41,9 +41,9 @@ class Process : public QObject
         void key_tap(double x, double y, int status);
         void key_tap(int status);
         void setGesture(QString gesture_type);
+        void showDial(bool);
         void showDial(double x, double y);
         void updateDial(double x, double y);
-        void hideDial(bool);
     public slots:
         //void init();
         void start();

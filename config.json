@@ -22,9 +22,9 @@
             "grab": "true",
             "pinch": "true",
             "grab_2hands": "true",
-            "pinch_2hands": "false"
+            "pinch_2hands": "true"
         },
-        "expolere": {
+        "explorer": {
             "swipe": "false",
             "circle": "true",
             "circle_anti": "true",
