@@ -15,9 +15,9 @@ Process::Process(QObject *parent) : QObject(parent)
     config_file.close();
     QJsonDocument config_json = QJsonDocument::fromJson(config_sring.toUtf8());
     config = config_json.toVariant().toMap();
-    config_gesture = config["gesture"].toVariant().toMap();
-    config_display = config["display"].toVariant().toMap();
-    config = config["config"].toVariant().toMap();
+    config_gesture = config["gesture"].toMap();
+    config_display = config["display"].toMap();
+    config = config["config"].toMap();
     
 
     connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)));
@@ -31,19 +31,19 @@ Process::Process(QObject *parent) : QObject(parent)
 void Process::init(int argc, char* argv[])
 {
     
-    if(config_display["palm"] == "true"){
+    if(config_display["palm"].toString() == "true"){
         display.showPalm();
-    }else if(config_display["palm"] == "false"){
+    }else if(config_display["palm"].toString() == "false"){
         display.hidePalm();
     }
-    if(config_display["gesture"] == "true"){
+    if(config_display["gesture"].toString() == "true"){
         display.showGesture();
-    }else if(config_display["gesture"] == "false"){
+    }else if(config_display["gesture"].toString() == "false"){
         display.hideGesture();
     }
-    if(config_display["status"] == "true"){
+    if(config_display["status"].toString() == "true"){
         display.showStatus();
-    }else if(config_display["status"] == "false"){
+    }else if(config_display["status"].toString() == "false"){
         display.hideStatus();
     }
     for(int arg = 1; arg < argc; arg ++){
@@ -56,13 +56,13 @@ void Process::init(int argc, char* argv[])
         }
     }
     
-    if(config["controller"] == "LEAPMOTION"){
+    if(config["controller"].toString() == "LEAPMOTION"){
         motion.setController(LEAP_MOTION);
     }
     
-    if(config["handedness"] == "left"){
+    if(config["handedness"].toString() == "left"){
         motion.setHandedness(true);
-    }else if(config["handedness"] == "right"){
+    }else if(config["handedness"].toString() == "right"){
         motion.setHandedness(false);
     }
        
@@ -70,19 +70,19 @@ void Process::init(int argc, char* argv[])
     QString current_date = date.currentDate().toString();
     QString log_file_name = current_date + ".log";
  
-    if(config["log"].isUndefined() || config["log"].isNull()){
+    if(config["log"].isNull()){
         logger.setLogDir("\\log");
         logger.setLogFile(log_file_name);
     }else{
-        logger.setLogDir(config["log"]);
+        logger.setLogDir(config["log"].toString());
         logger.setLogFile(log_file_name);
     }
     
-    //for test
+    /*for test
     display.showStatus();
     display.showGesture();
     display.showPalm();
-    
+    */
     //load gesture:operation mapping
 
 }
@@ -108,7 +108,7 @@ void Process::run()
         
         if(motion.getHandCount() == 2){
             //isAllGrab?
-            if(config_runtime["grab_2hands"] == "true"){
+            if(config_runtime["grab_2hands"].toString() == "true"){
                 int grab_status_with_hands = motion.getGestureEvent(GRAB, 2);
                 switch (grab_status_with_hands){
                     case NONE:
@@ -131,7 +131,7 @@ void Process::run()
                 }
             }
             //isOneGrab?
-            if(config_runtime["grab"] == "true"){
+            if(config_runtime["grab"].toString() == "true"){
                 int grab_status = motion.getGestureEvent(GRAB, 1);
                 switch (grab_status){
                     case NONE:
@@ -154,7 +154,7 @@ void Process::run()
                 }
             }
             //isAllPinch?
-            if(config_runtime["pinch_2hands"] == "true"){
+            if(config_runtime["pinch_2hands"].toString() == "true"){
                 int pinch_status_with_hands = motion.getGestureEvent(PINCH, 2);
                 switch (pinch_status_with_hands){
                     case NONE:
@@ -201,7 +201,7 @@ void Process::run()
             }
         }else if(motion.getHandCount() == 1){
             //isGrab?
-            if(config_runtime["grab"] == "true"){
+            if(config_runtime["grab"].toString() == "true"){
                 int grab_status = motion.getGestureEvent(GRAB, 1);
                 switch (grab_status){
                     case NONE:
@@ -224,7 +224,7 @@ void Process::run()
                 }
             }
             //isPinch?
-            if(config_runtime["pinch"] == "true"){
+            if(config_runtime["pinch"].toString() == "true"){
                 int pinch_status = motion.getGestureEvent(PINCH, 1);
                 switch (pinch_status){
                     case NONE:
@@ -248,7 +248,7 @@ void Process::run()
                 }
             }
             //isCircle?
-            if(config_runtime["circle"] == "true"){
+            if(config_runtime["circle"].toString() == "true"){
                 int circle_status = motion.getGestureEvent(CIRCLE, 1);
                 switch (circle_status){
                     case NONE:
@@ -271,7 +271,7 @@ void Process::run()
                 }
             }
             //isCircle-Anti?
-            if(config_runtime["circle_anti"] == "true"){
+            if(config_runtime["circle_anti"].toString() == "true"){
                 int circle_anti_status = motion.getGestureEvent(CIRANTI, 1);
                 switch (circle_anti_status){
                     case NONE:
@@ -294,7 +294,7 @@ void Process::run()
                 }
             }
             //isSwipe?
-            if(config_runtime["swipe"] == "true"){
+            if(config_runtime["swipe"].toString() == "true"){
                 int swipe_status = motion.getGestureEvent(SWIPE, 1);
                 switch (swipe_status){
                     case NONE:
@@ -317,7 +317,7 @@ void Process::run()
                 }
             }
             //isScreenTap?
-            if(config_runtime["screen_tap"] == "true"){
+            if(config_runtime["screen_tap"].toString() == "true"){
                 int screen_tap_status = motion.getGestureEvent(SCREENTAP, 1);
                 switch (screen_tap_status){
                     case NONE:
@@ -337,7 +337,7 @@ void Process::run()
                 }
             }
             //isKeyTap?
-            if(config_runtime["key_tap"] == "true"){
+            if(config_runtime["key_tap"].toString() == "true"){
                 int key_tap_status = motion.getGestureEvent(KEYTAP, 1);
                 switch (key_tap_status){
                     case NONE:
@@ -374,12 +374,18 @@ void Process::restart()
 
 void Process::mouse(double x, double y)
 {
-
+    operation.events()->mouseMove(x, y);
 }
 
 void Process::mouse(double x, double y, int event)
 {
-
+    if(event == 1){
+        operation.events()->mouseMove(x, y);
+        operation.events()->mousePress();
+    }else if(event == 0){
+        operation.events()->mouseMove(x, y);
+        operation.events()->mouseRelease();
+    }
 }
 
 
@@ -392,12 +398,12 @@ void Process::showGesture(QString gesture_type)
 QString Process::getForegroundWindow(){
     
     Foreground foreground_window;
-    QString foreground_window_name = QString(foreground_window.getForegroundWindowName());
-    QString foreground_window_process_name = QString(foreground_window.getForegroundProcessName());
+    QString foreground_window_name = QString::fromStdString(foreground_window.getForegroundWindowName());
+    QString foreground_window_process_name = QString::fromStdString(foreground_window.getForegroundProcessName());
     if(foreground_window_process_name.contains("firefox.exe",Qt::CaseSensitive) ||
     foreground_window_process_name.contains("chrome.exe",Qt::CaseSensitive) ||
     foreground_window_process_name.contains("iexplore.exe",Qt::CaseSensitive) ||
-    foreground_window_process_name.contains("opera.exe",Qt::CaseSensitive) ||
+    foreground_window_process_name.contains("opera.exe",Qt::CaseSensitive)
     ){
         return "browser";
     }
@@ -409,7 +415,7 @@ QString Process::getForegroundWindow(){
             return "desktop";
         }
     }
-    
+    //std::cout<<foreground_window.getForegroundWindowName()<<std::endl;
     return "other";
     
 }
