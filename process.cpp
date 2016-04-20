@@ -13,6 +13,10 @@ Process::Process(QObject *parent) : QObject(parent)
     config_file.close();
     QJsonDocument config_json = QJsonDocument::fromJson(config_sring.toUtf8());
     config = config_json.toVariant().toMap();
+    config_gesture = config["gesture"].toVariant().toMap();
+    config_display = config["display"].toVariant().toMap();
+    config = config["config"].toVariant().toMap();
+    
 
     connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)));
 
@@ -20,22 +24,22 @@ Process::Process(QObject *parent) : QObject(parent)
 
 void Process::init(int argc, char* argv[])
 {
-    /*
-    if(config["display"]["palm"] == "true"){
+    
+    if(config_display["palm"] == "true"){
         display.showPalm();
-    }else if(config["display"]["palm"] == "false"){
+    }else if(config_display["palm"] == "false"){
         display.hidePalm();
     }
-    if(config["display"]["gesture"] == "true"){
+    if(config_display["gesture"] == "true"){
         display.showGesture();
-    }else if(config["display"]["gesture"] == "false"){
+    }else if(config_display["gesture"] == "false"){
         display.hideGesture();
     }
-    if(config["display"]["status"] == "true"){
+    if(config_display["status"] == "true"){
         display.showStatus();
-    }else if(config["display"]["status"] == "false"){
+    }else if(config_display["status"] == "false"){
         display.hideStatus();
-    }*/
+    }
     for(int arg = 1; arg < argc; arg ++){
         if(argv[arg] == "-d"){
             display.showStatus();
@@ -44,6 +48,10 @@ void Process::init(int argc, char* argv[])
         }else if(argv[arg] == "-h"){
             display.showPalm();
         }
+    }
+    
+    if(config["controller"] == "LEAPMOTION"){
+        motion.setController(LEAP_MOTION);
     }
 
     //for test
@@ -63,7 +71,7 @@ void Process::start()
 
 void Process::run()
 {
-    motion.setController(LEAP_MOTION);
+    
     motion.update();
     //motion.setHandedness();
     if(motion.getHandCount() == 0){

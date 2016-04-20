@@ -23,6 +23,8 @@ class Process : public QObject
         Operation operation;
         Logger logger;
         QVariantMap config;
+        QVariantMap config_display;
+        QVariantMap config_gesture;
     signals:
         void grab(int status);
         void grab(double x, double y);
