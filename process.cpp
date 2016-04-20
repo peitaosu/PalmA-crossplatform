@@ -399,6 +399,95 @@ void Process::showGesture(QString gesture_type)
     display.setGestureDisplay(gesture_type);
 }
 
+void Process::changedToDesktop()
+{
+    disconnectAll();
+    connect(this, SIGNAL(swipe(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(circle(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(circle_anti(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(screen_tap(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(screen_tap(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(key_tap(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(key_tap(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(double,double)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(double,double)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(double,double,int)), operation.events(), SLOT());
+}
+
+void Process::changedToExplorer()
+{
+    disconnectAll();
+    connect(this, SIGNAL(swipe(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(circle(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(circle_anti(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(screen_tap(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(screen_tap(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(key_tap(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(key_tap(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(double,double)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(double,double)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(double,double,int)), operation.events(), SLOT());
+}
+
+void Process::changedToBrowser()
+{
+    disconnectAll();
+    connect(this, SIGNAL(swipe(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(circle(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(circle_anti(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(screen_tap(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(screen_tap(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(key_tap(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(key_tap(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(double,double)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(double,double)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(double,double,int)), operation.events(), SLOT());
+}
+
+void Process::changedToOther()
+{
+    disconnectAll();
+    connect(this, SIGNAL(swipe(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(circle(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(circle_anti(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(screen_tap(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(screen_tap(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(key_tap(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(key_tap(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(double,double)), operation.events(), SLOT());
+    connect(this, SIGNAL(grab(double,double,int)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(int)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(double,double)), operation.events(), SLOT());
+    connect(this, SIGNAL(pinch(double,double,int)), operation.events(), SLOT());
+}
+
+void Process::disconnectAll()
+{
+    disconnect(this, SIGNAL(swipe(int)), operation.events(), 0);
+    disconnect(this, SIGNAL(circle(int)), operation.events(), 0);
+    disconnect(this, SIGNAL(circle_anti(int)), operation.events(), 0);
+    disconnect(this, SIGNAL(screen_tap(double,double,int)), operation.events(), 0);
+    disconnect(this, SIGNAL(screen_tap(int)), operation.events(), 0);
+    disconnect(this, SIGNAL(key_tap(double,double,int)), operation.events(), 0);
+    disconnect(this, SIGNAL(key_tap(int)), operation.events(), 0);
+    disconnect(this, SIGNAL(grab(int)), operation.events(), 0);
+    disconnect(this, SIGNAL(grab(double,double)), operation.events(), 0);
+    disconnect(this, SIGNAL(grab(double,double,int)), operation.events(), 0);
+    disconnect(this, SIGNAL(pinch(int)), operation.events(), 0);
+    disconnect(this, SIGNAL(pinch(double,double)), operation.events(), 0);
+    disconnect(this, SIGNAL(pinch(double,double,int)), operation.events(), 0);
+}
+
 QString Process::getForegroundWindow(){
     
     Foreground foreground_window;
@@ -421,3 +510,4 @@ QString Process::getForegroundWindow(){
     return "other";
     
 }
+
