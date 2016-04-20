@@ -4,6 +4,7 @@
 
 MotionLeap::MotionLeap(){
     left_handedness = false;
+    hand = controller.frame().hands().rightmost();
     controller.enableGesture(Leap::Gesture::TYPE_CIRCLE);
     controller.enableGesture(Leap::Gesture::TYPE_KEY_TAP);
     controller.enableGesture(Leap::Gesture::TYPE_SCREEN_TAP);
@@ -16,19 +17,16 @@ int MotionLeap::getControllerType(){
 
 double MotionLeap::getNormalizedX(){
     i_box = controller.frame().interactionBox();
-    hand = controller.frame().hands().rightmost();
     return i_box.normalizePoint(hand.stabilizedPalmPosition()).x;
 }
 
 double MotionLeap::getNormalizedY(){
     i_box = controller.frame().interactionBox();
-    hand = controller.frame().hands().rightmost();
     return 1 - i_box.normalizePoint(hand.stabilizedPalmPosition()).y;
 }
 
 double MotionLeap::getNormalizedZ(){
     i_box = controller.frame().interactionBox();
-    hand = controller.frame().hands().rightmost();
     return i_box.normalizePoint(hand.stabilizedPalmPosition()).z;
 }
 
@@ -186,6 +184,11 @@ int MotionLeap::getHandCount()
 void MotionLeap::setHandedness(bool is_left)
 {
     left_handedness = is_left;
+    if(left_handedness == true){
+        hand = controller.frame().hands().leftmost();
+    }else{
+        hand = controller.frame().hands().rightmost();
+    }
 }
 
 bool MotionLeap::getControllerStatus()

@@ -53,6 +53,13 @@ void Process::init(int argc, char* argv[])
     if(config["controller"] == "LEAPMOTION"){
         motion.setController(LEAP_MOTION);
     }
+    
+    if(config["handedness"] == "left"){
+        motion.setHandedness(true);
+    }else if(config["handedness"] == "right"){
+        motion.setHandedness(false);
+    }
+        
 
     //for test
     display.showStatus();
