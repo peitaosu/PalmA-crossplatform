@@ -13,41 +13,41 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    widget_status.cpp \
     display.cpp \
     operation.cpp \
-    widget_cursor.cpp \
     motion.cpp \
     motion_leap.cpp \
-    widget_gesture.cpp \
-    widget_dial.cpp \
-    widget_palm.cpp \
+    widget/widget_gesture.cpp \
+    widget/widget_dial.cpp \
+    widget/widget_palm.cpp \
+    widget/widget_cursor.cpp \
+    widget/widget_status.cpp \
     logger.cpp \
     test/test.cpp \
     process.cpp
 
-HEADERS += widget_status.h \
-    display.h \
+HEADERS += display.h \
     include/Leap.h \
     include/LeapMath.h \
     error_code.h \
     operation.h \
-    widget_cursor.h \
     motion.h \
     motion_leap.h \
     motion_code.h \
-    widget_gesture.h \
-    widget_dial.h \
-    widget_palm.h \
+    widget/widget_gesture.h \
+    widget/widget_dial.h \
+    widget/widget_palm.h \
+    widget/widget_cursor.h \
+    widget/widget_status.h \
     logger.h \
     test/test.h \
     process.h
 
-FORMS   += widget_status.ui \
-    widget_cursor.ui \
-    widget_gesture.ui \
-    widget_dial.ui \
-    widget_palm.ui
+FORMS   += widget/widget_status.ui \
+    widget/widget_cursor.ui \
+    widget/widget_gesture.ui \
+    widget/widget_dial.ui \
+    widget/widget_palm.ui
 
 win32{
     INCLUDEPATH += $$PWD/win/
