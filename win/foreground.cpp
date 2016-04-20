@@ -71,7 +71,7 @@ std::string Foreground::getForegroundProcessName(){
     wcscpy(szProcessName, GetProcessNameById(process_ID));
 
 
-    std::wstring w_string(text);
+    std::wstring w_string(szProcessName);
 
     // convert wchar* to String
     std::string process_name(w_string.begin(), w_string.end());
