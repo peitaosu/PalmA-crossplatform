@@ -21,11 +21,11 @@ int Operation::swipeWindow(int count){
     if(count < 1){
         return INPUT_ERROR;
     }
-    event.keyboardPress("ALT");
+    event->keyboardPress("ALT");
     while(count > 0){
-        event.keyboardType("TAB");
+        event->keyboardType("TAB");
     }
-    event.keyboardRelease("ALT");
+    event->keyboardRelease("ALT");
     return 0;
 }
 
@@ -36,16 +36,16 @@ int Operation::swipeWindow(int count){
 int Operation::moveWindow(int side){
     switch(side){
         case SIDE_UP:
-            event.keyboardMType("LWIN+UP");
+            event->keyboardMType("LWIN+UP");
             break;
         case SIDE_DOWN:
-            event.keyboardMType("LWIN+DOWN");
+            event->keyboardMType("LWIN+DOWN");
             break;
         case SIDE_LEFT:
-            event.keyboardMType("LWIN+LEFT");
+            event->keyboardMType("LWIN+LEFT");
             break;
         case SIDE_RIGHT:
-            event.keyboardMType("LWIN+RIGHT");
+            event->keyboardMType("LWIN+RIGHT");
             break;
         default:
             return INPUT_ERROR;
@@ -58,7 +58,7 @@ int Operation::moveWindow(int side){
  * Operation: Show Desktop
  */
 int Operation::showDesktop(){
-    event.keyboardMType("LWIN+D");
+    event->keyboardMType("LWIN+D");
     return 0;
 }
 
@@ -67,7 +67,7 @@ int Operation::showDesktop(){
  * Operation: Open FileManager
  */
 int Operation::openFileManager(){
-    event.keyboardMType("LWIN+E");
+    event->keyboardMType("LWIN+E");
     return 0;
 }
 
@@ -86,12 +86,12 @@ int Operation::openBrowser(QString url){
  * Operation: Goto
  */
 int Operation::goTo(){
-    event.keyboardType("ENTER");
+    event->keyboardType("ENTER");
     return 0;
 }
 
 int Operation::goBack(){
-    event.keyboardType("BACKSPACE");
+    event->keyboardType("BACKSPACE");
     return 0;
 }
 
@@ -99,7 +99,7 @@ int Operation::goBack(){
  * Operation: Refresh the Page
  */
 int Operation::goRefresh(){
-    event.keyboardType("F5");
+    event->keyboardType("F5");
     return 0;
 }
 
@@ -111,7 +111,7 @@ int Operation::swipeBrowserTab(int count){
     if(count < 1){
         return INPUT_ERROR;
     }
-    event.keyboardMType("CTRL+TAB");
+    event->keyboardMType("CTRL+TAB");
     return 0;
 }
 
@@ -120,7 +120,7 @@ int Operation::swipeBrowserTab(int count){
  * Operation: Lock Screen
  */
 int Operation::lockscreen(){
-    event.keyboardMType("LWIN+L");
+    event->keyboardMType("LWIN+L");
     return 0;
 }
 
@@ -128,26 +128,31 @@ int Operation::lockscreen(){
  * Operation: Shutdown
  */
 bool Operation::shutdown(){
-    return event.exitSystem("shutdown");
+    return event->exitSystem("shutdown");
 }
 
 /*
  * Operation: Shutdown Force
  */
 bool Operation::shutdownforce(){
-    return event.exitSystem("shutdown_force");
+    return event->exitSystem("shutdown_force");
 }
 
 /*
  * Operation: Reboot
  */
 bool Operation::reboot(){
-    return event.exitSystem("reboot");
+    return event->exitSystem("reboot");
 }
 
 /*
  * Operation: Log Off
  */
 bool Operation::logoff(){
-    return event.exitSystem("logoff");
+    return event->exitSystem("logoff");
+}
+
+Event *Operation::events()
+{
+    return event;
 }

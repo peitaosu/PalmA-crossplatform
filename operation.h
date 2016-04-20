@@ -35,8 +35,10 @@ class Operation
         bool reboot();
         bool logoff();
 
+        Event *events();
+
     private:
-        Event event;
+        Event *event;
 
 };
 
