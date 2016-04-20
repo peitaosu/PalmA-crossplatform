@@ -1,6 +1,7 @@
 #include "process.h"
 #include "motion_code.h"
 #include <QJsonDocument>
+#include <QDate>
 Process::Process(QObject *parent) : QObject(parent)
 {
     loop_timer = new QTimer(this);
@@ -59,8 +60,19 @@ void Process::init(int argc, char* argv[])
     }else if(config["handedness"] == "right"){
         motion.setHandedness(false);
     }
-        
-
+       
+    QDate date;
+    QString current_date = date.currentDate().toString();
+    QString log_file_name = current_date + ".log";
+ 
+    if(config["log"].isUndefined() || config["log"].isNull()){
+        logger.setLogDir("\\log");
+        logger.setLogFile(log_file_name);
+    }else{
+        logger.setLogDir(config["log"]);
+        logger.setLogFile(log_file_name);
+    }
+    
     //for test
     display.showStatus();
     display.showGesture();
