@@ -57,5 +57,23 @@
             "grab_2hands": "false",
             "pinch_2hands": "false"
         }
+    },
+    "operation": {
+        "desktop": {
+            "dial": {
+                "up": "opensomething",
+                "down": "setting",
+                "left": "browser",
+                "right": "explorer"
+            }
+        },
+        "explorer": {
+            "dial": {
+                "up": "gonext",
+                "down": "goback",
+                "left": "fresh",
+                "right": "desktop"
+            }
+        }
     }
 }
