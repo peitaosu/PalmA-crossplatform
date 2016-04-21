@@ -2,15 +2,22 @@
 #define OPERATION_H
 #include "event.h"
 
+#include <QObject>
 namespace System {
     class Operation;
 }
 
-class Operation
+class Operation : public QObject
 {
+        Q_OBJECT
     public:
-        Operation();
-
+        explicit Operation(QObject *parent = 0);
+    
+    public slots:
+        //mouse
+        void mouseSelect(double x, double y, bool press);
+        void mouseSelect(double x, double y);
+        
         //Window
         int swipeWindow(int count = 1);
         int moveWindow(int side);

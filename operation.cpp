@@ -8,8 +8,21 @@
 #define SIDE_LEFT 3
 #define SIDE_RIGHT 4
 
-Operation::Operation(){
+Operation::Operation(QObject *parent) : QObject(parent){
     //
+}
+
+void Operation::mouseSelect(double x, double y, bool press){
+    event->mouseMove(x, y);
+    if(press == true){
+        event->mousePress(1);
+    }else{
+        event->mouseRelease(1);
+    }
+}
+
+void Operation::mouseSelect(double x, double y){
+    event->mouseMove(x, y);
 }
 
 //Window
