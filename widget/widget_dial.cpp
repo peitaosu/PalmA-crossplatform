@@ -123,21 +123,28 @@ void DialWidget::setAvailable(bool _available)
        this->show();
     }else if(available == false){
        this->hide();
-       QString choose = getChoose();
-       if(choose == "up"){
-           emit choose_up();
-           emit choose_up(position_x, position_y);
-       }else if(choose == "down"){
-           emit choose_down();
-           emit choose_down(position_x, position_y);
-       }else if(choose == "left"){
-           emit choose_left();
-           emit choose_left(position_x, position_y);
-       }else if(choose == "right"){
-           emit choose_right();
-           emit choose_right(position_x, position_y);
-       }
     }
+}
+
+void DialWidget::doneDial()
+{
+    QString choose = getChoose();
+    std::cout<<getChoose().toStdString()<<std::endl;
+    if(choose == "up"){
+        emit choose_up();
+        emit choose_up(position_x, position_y);
+    }else if(choose == "down"){
+        emit choose_down();
+        emit choose_down(position_x, position_y);
+    }else if(choose == "left"){
+        emit choose_left();
+        std::cout<<"fresh"<<std::endl;
+        emit choose_left(position_x, position_y);
+    }else if(choose == "right"){
+        emit choose_right();
+        emit choose_right(position_x, position_y);
+    }
+
 }
 
 QString DialWidget::getChoose(){

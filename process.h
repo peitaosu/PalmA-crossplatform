@@ -19,18 +19,20 @@ class Process : public QObject
         void changedToDesktop();
         void changedToExplorer();
         void changedToBrowser();
-        void changedToOther()
+        void changedToOther();
+        void disconnectAll();
 
     private:
         QTimer *loop_timer;
         Display display;
         Motion motion;
-        Operation *operation;
+        Operation * operation;
         Logger logger;
         QVariantMap config;
         QVariantMap config_display;
         QVariantMap config_gesture;
         QVariantMap config_operation;
+        QString foreground_prev;
         //QVariantMap config_config;
     signals:
         void grab(int status);
@@ -50,7 +52,7 @@ class Process : public QObject
         void showDial(bool);
         void showDial(double x, double y);
         void updateDial(double x, double y);
-        
+        void doneDial();
         void choose_up(QString);
         void choose_down(QString);
         void choose_left(QString);

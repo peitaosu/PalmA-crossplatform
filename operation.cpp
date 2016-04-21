@@ -36,7 +36,7 @@ void Operation::openSomething(double x, double y){
     event->mouseDClick(1);
 }
 
-void execProgram(QString program_path){
+void Operation::execProgram(QString program_path){
     QProcess::startDetached(program_path ,QStringList());
 }
 //Window
