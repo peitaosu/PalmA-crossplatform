@@ -3,7 +3,7 @@
         "controller": "LEAPMOTION",
         "handedness": "right",
         "debug": "false",
-        "log": "true"
+        "log": "log"
     },
     "display": {
         "cursor": "true",

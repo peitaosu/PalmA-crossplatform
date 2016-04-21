@@ -3,6 +3,7 @@
 #include "foreground.h"
 #include <QJsonDocument>
 #include <QDate>
+#include <QCoreApplication>
 Process::Process(QObject *parent) : QObject(parent)
 {
     loop_timer = new QTimer(this);
@@ -64,23 +65,19 @@ void Process::init(int argc, char* argv[])
     }
        
     QDate date;
-    QString current_date = date.currentDate().toString();
+    QString current_date = date.currentDate().toString("yyyy-MM-dd");
     QString log_file_name = current_date + ".log";
- 
     if(config["log"].isNull()){
-        logger.setLogDir("\\log");
-        logger.setLogFile(log_file_name);
+        logger.setLogDir(QCoreApplication::applicationDirPath()+"\\log");
+        logger.setLogFile(QCoreApplication::applicationDirPath()+"\\log\\"+log_file_name);
     }else{
-        logger.setLogDir(config["log"].toString());
-        logger.setLogFile(log_file_name);
+        logger.setLogDir(QCoreApplication::applicationDirPath()+"\\"+config["log"].toString());
+        logger.setLogFile(QCoreApplication::applicationDirPath()+"\\"+config["log"].toString()+"\\"+log_file_name);
     }
     
-    /*for test
-    display.showStatus();
-    display.showGesture();
-    display.showPalm();
-    */
     //load gesture:operation mapping
+
+    logger.log("INFO", "Process initialized.");
 
 }
 
