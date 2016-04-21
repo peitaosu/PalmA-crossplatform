@@ -123,7 +123,51 @@ void DialWidget::setAvailable(bool _available)
        this->show();
     }else if(available == false){
        this->hide();
+       QString choose = getChoose();
+       if(choose == "up"){
+           emit choose_up();
+           emit choose_up(position_x, position_y);
+       }else if(choose == "down"){
+           emit choose_down();
+           emit choose_down(position_x, position_y);
+       }else if(choose == "left"){
+           emit choose_left();
+           emit choose_left(position_x, position_y);
+       }else if(choose == "right"){
+           emit choose_right();
+           emit choose_right(position_x, position_y);
+       }
     }
 }
 
+QString DialWidget::getChoose(){
+    double slope;
+    if(target_x != position_x){
+        slope = (target_y - position_y)/(target_x - position_x);
+    }
+    int horizontal, vertical = 0;
+    if(target_x - position_x >= 0){
+        horizontal = 1;
+    }else{
+        horizontal = -1;
+    }
+    if(target_y - position_y >= 0){
+        vertical = -1;
+    }else{
+        vertical = 1;
+    }
+    if(slope >= 1 || slope <= -1){
+        if(vertical == 1){
+            return "up";
+        }else if(vertical == -1){
+            return "down";
+        }
+    }else{
+        if(horizontal == 1){
+            return "right";
+        }else if(horizontal == -1){
+            return "left";
+        }
+    }
+}
 

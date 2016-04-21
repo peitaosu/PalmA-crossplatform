@@ -16,7 +16,8 @@ class DialWidget : public QWidget
         ~DialWidget();
 
         void paintEvent(QPaintEvent *event);
-
+        QString getChoose();
+        
     public slots:
         void setPosition(double x, double y);
         void setTargetPosition(double x, double y);
@@ -25,6 +26,16 @@ class DialWidget : public QWidget
 
         void setAvailable(bool _available = true);
 
+    signals:
+        void choose_up();
+        void choose_down();
+        void choose_left();
+        void choose_right();
+        void choose_up(double, double);
+        void choose_down(double, double);
+        void choose_left(double, double);
+        void choose_right(double, double);
+        
     private:
         Ui::DialWidget *ui;
         QPixmap pixmap;
@@ -35,6 +46,7 @@ class DialWidget : public QWidget
         double target_y;
 
         bool available;
+        
 
 };
 
