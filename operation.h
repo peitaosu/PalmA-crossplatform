@@ -17,6 +17,7 @@ class Operation : public QObject
         //mouse
         void mouseSelect(double x, double y, bool press);
         void mouseSelect(double x, double y);
+        void openSomething(double x, double y);
         
         //Window
         int swipeWindow(int count = 1);

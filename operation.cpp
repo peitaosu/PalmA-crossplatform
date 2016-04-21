@@ -25,6 +25,10 @@ void Operation::mouseSelect(double x, double y){
     event->mouseMove(x, y);
 }
 
+void Operation::openSomething(double x, double y){
+    event->mouseMove(x, y);
+    event->mouseDClick(1);
+}
 //Window
 /*
  * Operation: Swipe Window
