@@ -35,10 +35,10 @@ class Process : public QObject
     signals:
         void grab(int status);
         void grab(double x, double y);
-        void grab(double x, double y, int status);
+        void grab(double x, double y, bool status);
         void pinch(int status);
         void pinch(double x, double y);
-        void pinch(double x, double y, int status);
+        void pinch(double x, double y, bool status);
         void circle(int status);
         void circle_anti(int status);
         void swipe(int status);

@@ -17,6 +17,7 @@ class Operation : public QObject
         //mouse
         void mouseSelect(double x, double y, bool press);
         void mouseSelect(double x, double y);
+        void mouseRoll(int distance = 5);
         void openSomething(double x, double y);
         
         //exec program

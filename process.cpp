@@ -189,7 +189,7 @@ void Process::run()
                         emit pinch(NONE);
                         break;
                     case START:
-                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), 1);
                         emit setGesture("pinch");
                         break;
                     case KEEP:
@@ -197,7 +197,7 @@ void Process::run()
                         emit setGesture("pinch");
                         break;
                     case STOP:
-                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), 0);
                         emit setGesture("pinche");
                         break;
                     default:
@@ -213,7 +213,7 @@ void Process::run()
                         emit grab(NONE);
                         break;
                     case START:
-                        emit grab(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 1);
                         emit setGesture("grab");
                         break;
                     case KEEP:
@@ -221,7 +221,7 @@ void Process::run()
                         emit setGesture("grab");
                         break;
                     case STOP:
-                        emit grab(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
+                        emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 0);
                         emit setGesture("hand");
                         break;
                     default:
@@ -236,7 +236,7 @@ void Process::run()
                         emit pinch(NONE);
                         break;
                     case START:
-                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), 1);
                         emit setGesture("pinch");
                         emit showDial(true);
                         emit showDial(motion.getNormalizedX(), motion.getNormalizedY());
@@ -247,7 +247,7 @@ void Process::run()
                         emit updateDial(motion.getNormalizedX(), motion.getNormalizedY());
                         break;
                     case STOP:
-                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), STOP);
+                        emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), 0);
                         //emit setGesture("pinche");
                         emit setGesture("hand");
                         emit showDial(false);
@@ -264,15 +264,15 @@ void Process::run()
                         emit circle(NONE);
                         break;
                     case START:
-                        emit circle(START);
+                        emit circle(5);
                         emit setGesture("circle");
                         break;
                     case KEEP:
-                        emit circle(KEEP);
+                        emit circle(1);
                         emit setGesture("circle");
                         break;
                     case STOP:
-                        emit circle(STOP);
+                        emit circle(0);
                         emit setGesture("hand");
                         break;
                     default:
@@ -287,15 +287,15 @@ void Process::run()
                         emit circle_anti(NONE);
                         break;
                     case START:
-                        emit circle_anti(START);
+                        emit circle_anti(-5);
                         emit setGesture("circle_anti");
                         break;
                     case KEEP:
-                        emit circle_anti(KEEP);
+                        emit circle_anti(-1);
                         emit setGesture("circle_anti");
                         break;
                     case STOP:
-                        emit circle_anti(STOP);
+                        emit circle_anti(0);
                         emit setGesture("hand");
                         break;
                     default:
@@ -412,21 +412,7 @@ void Process::changedToDesktop()
     }else{
         connect(display.widgetDial(), SIGNAL(choose_right(QString)), operation, SLOT(execProgram(QString)));
     }
-    /*
-    connect(this, SIGNAL(swipe(int)), operation, SLOT());
-    connect(this, SIGNAL(circle(int)), operation, SLOT());
-    connect(this, SIGNAL(circle_anti(int)), operation(), SLOT());
-    connect(this, SIGNAL(screen_tap(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(screen_tap(int)), operation(), SLOT());
-    connect(this, SIGNAL(key_tap(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(key_tap(int)), operation(), SLOT());
-    connect(this, SIGNAL(grab(int)), operation(), SLOT());
-    connect(this, SIGNAL(grab(double,double)), operation(), SLOT());
-    connect(this, SIGNAL(grab(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(int)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(double,double)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(double,double,int)), operation(), SLOT());
-    */
+    connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
 }
 
 void Process::changedToExplorer()
@@ -454,80 +440,40 @@ void Process::changedToExplorer()
     }else{
         connect(display.widgetDial(), SIGNAL(choose_right(QString)), operation, SLOT(execProgram(QString)));
     }
-    /*
-    connect(this, SIGNAL(swipe(int)), operation(), SLOT());
-    connect(this, SIGNAL(circle(int)), operation(), SLOT());
-    connect(this, SIGNAL(circle_anti(int)), operation(), SLOT());
-    connect(this, SIGNAL(screen_tap(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(screen_tap(int)), operation(), SLOT());
-    connect(this, SIGNAL(key_tap(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(key_tap(int)), operation(), SLOT());
-    connect(this, SIGNAL(grab(int)), operation(), SLOT());
-    connect(this, SIGNAL(grab(double,double)), operation(), SLOT());
-    connect(this, SIGNAL(grab(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(int)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(double,double)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(double,double,int)), operation(), SLOT());
-    */
+    connect(this, SIGNAL(circle(int)), operation, SLOT(mouseRoll(int)));
+    connect(this, SIGNAL(circle_anti(int)), operation, SLOT(mouseRoll(int)));
+    connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
 }
 
 void Process::changedToBrowser()
 {
     disconnectAll();
-    /*
-    connect(this, SIGNAL(swipe(int)), operation(), SLOT());
-    connect(this, SIGNAL(circle(int)), operation(), SLOT());
-    connect(this, SIGNAL(circle_anti(int)), operation(), SLOT());
-    connect(this, SIGNAL(screen_tap(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(screen_tap(int)), operation(), SLOT());
-    connect(this, SIGNAL(key_tap(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(key_tap(int)), operation(), SLOT());
-    connect(this, SIGNAL(grab(int)), operation(), SLOT());
-    connect(this, SIGNAL(grab(double,double)), operation(), SLOT());
-    connect(this, SIGNAL(grab(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(int)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(double,double)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(double,double,int)), operation(), SLOT());
-    */
+    connect(this, SIGNAL(circle(int)), operation, SLOT(mouseRoll(int)));
+    connect(this, SIGNAL(circle_anti(int)), operation, SLOT(mouseRoll(int)));
+    connect(this, SIGNAL(grab(int)), operation, SLOT(swipeBrowserTab(int)));
+    connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
 }
 
 void Process::changedToOther()
 {
     disconnectAll();
-    /*
-    connect(this, SIGNAL(swipe(int)), operation(), SLOT());
-    connect(this, SIGNAL(circle(int)), operation(), SLOT());
-    connect(this, SIGNAL(circle_anti(int)), operation(), SLOT());
-    connect(this, SIGNAL(screen_tap(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(screen_tap(int)), operation(), SLOT());
-    connect(this, SIGNAL(key_tap(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(key_tap(int)), operation(), SLOT());
-    connect(this, SIGNAL(grab(int)), operation(), SLOT());
-    connect(this, SIGNAL(grab(double,double)), operation(), SLOT());
-    connect(this, SIGNAL(grab(double,double,int)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(int)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(double,double)), operation(), SLOT());
-    connect(this, SIGNAL(pinch(double,double,int)), operation(), SLOT());
-    */
+    connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
 }
 
 void Process::disconnectAll()
 {
-    /*
-    disconnect(this, SIGNAL(swipe(int)), operation(), 0);
-    disconnect(this, SIGNAL(circle(int)), operation(), 0);
-    disconnect(this, SIGNAL(circle_anti(int)), operation(), 0);
-    disconnect(this, SIGNAL(screen_tap(double,double,int)), operation(), 0);
-    disconnect(this, SIGNAL(screen_tap(int)), operation(), 0);
-    disconnect(this, SIGNAL(key_tap(double,double,int)), operation(), 0);
-    disconnect(this, SIGNAL(key_tap(int)), operation(), 0);
-    disconnect(this, SIGNAL(grab(int)), operation(), 0);
-    disconnect(this, SIGNAL(grab(double,double)), operation(), 0);
-    disconnect(this, SIGNAL(grab(double,double,int)), operation(), 0);
-    disconnect(this, SIGNAL(pinch(int)), operation(), 0);
-    disconnect(this, SIGNAL(pinch(double,double)), operation(), 0);
-    disconnect(this, SIGNAL(pinch(double,double,int)), operation(), 0);
-    */
+    disconnect(this, SIGNAL(pinch(double, double, bool)), operation, 0);
+    disconnect(this, SIGNAL(grab(int)), operation, 0);
+    disconnect(this, SIGNAL(circle(int)), operation, 0);
+    disconnect(this, SIGNAL(circle_anti(int)), operation, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_up(double, double)), operation, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_up(QString)), operation, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_down(double, double)), operation, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_down(QString)), operation, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_left(double, double)), operation, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_left(QString)), operation, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_right(double, double)), operation, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_right(QString)), operation, 0);
 }
 
 QString Process::getForegroundWindow(){

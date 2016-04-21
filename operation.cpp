@@ -26,6 +26,11 @@ void Operation::mouseSelect(double x, double y){
     event->mouseMove(x, y);
 }
 
+void Operation::mouseRoll(int distance){
+    event->mouseRoll(distance);
+}
+
+
 void Operation::openSomething(double x, double y){
     event->mouseMove(x, y);
     event->mouseDClick(1);

@@ -19,10 +19,10 @@
             "circle_anti": "false",
             "screen_tap": "false",
             "key_tap": "false",
-            "grab": "true",
+            "grab": "false",
             "pinch": "true",
-            "grab_2hands": "true",
-            "pinch_2hands": "true"
+            "grab_2hands": "false",
+            "pinch_2hands": "false"
         },
         "explorer": {
             "swipe": "false",
