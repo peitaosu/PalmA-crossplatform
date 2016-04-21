@@ -22,17 +22,7 @@ Process::Process(QObject *parent) : QObject(parent)
     config = config["config"].toMap();
     
 
-    connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)));
-    connect(this, SIGNAL(showDial(bool)), display.widgetDial(), SLOT(setAvailable(bool)));
-    connect(this, SIGNAL(showDial(double, double)), display.widgetDial(), SLOT(setPosition(double, double)));
-    connect(this, SIGNAL(updateDial(double, double)), display.widgetDial(), SLOT(setTargetPosition(double, double)));
-    connect(this, SIGNAL(doneDial()), display.widgetDial(), SLOT(doneDial()));
-    connect(display.widgetDial(), SIGNAL(choose_up()), this, SLOT(dial_up()));
-    connect(display.widgetDial(), SIGNAL(choose_down()), this, SLOT(dial_down()));
-    connect(display.widgetDial(), SIGNAL(choose_left()), this, SLOT(dial_left()));
-    connect(display.widgetDial(), SIGNAL(choose_right()), this, SLOT(dial_right()));
-    
-
+    connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)));    
 }
 
 void Process::init(int argc, char* argv[])
@@ -408,6 +398,11 @@ void Process::changedToDesktop()
     disconnectAll();
     QVariantMap config_operation_desktop = config_operation["desktop"].toMap();
     QVariantMap config_operation_desktop_dial = config_operation_desktop["dial"].toMap();
+    connect(this, SIGNAL(showDial(bool)), display.widgetDial(), SLOT(setAvailable(bool)));
+    connect(this, SIGNAL(showDial(double, double)), display.widgetDial(), SLOT(setPosition(double, double)));
+    connect(this, SIGNAL(updateDial(double, double)), display.widgetDial(), SLOT(setTargetPosition(double, double)));
+    connect(this, SIGNAL(doneDial()), display.widgetDial(), SLOT(doneDial()));
+
     if(config_operation_desktop_dial["up"].toString() == "opensometing"){
         connect(display.widgetDial(), SIGNAL(choose_up(double, double)), operation, SLOT(openSomething(double, double)));
     }else{
@@ -436,6 +431,13 @@ void Process::changedToExplorer()
     disconnectAll();
     QVariantMap config_operation_explorer = config_operation["explorer"].toMap();
     QVariantMap config_operation_explorer_dial = config_operation_explorer["dial"].toMap();
+
+    connect(this, SIGNAL(showDial(bool)), display.widgetDial(), SLOT(setAvailable(bool)));
+    connect(this, SIGNAL(showDial(double, double)), display.widgetDial(), SLOT(setPosition(double, double)));
+    connect(this, SIGNAL(updateDial(double, double)), display.widgetDial(), SLOT(setTargetPosition(double, double)));
+    connect(this, SIGNAL(doneDial()), display.widgetDial(), SLOT(doneDial()));
+
+
     if(config_operation_explorer_dial["up"].toString() == "gonext"){
         connect(display.widgetDial(), SIGNAL(choose_up(double, double)), operation, SLOT(openSomething(double, double)));
     }else{
@@ -476,12 +478,36 @@ void Process::changedToOther()
     connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
 }
 
+void Process::connectToDial()
+{
+    connect(this, SIGNAL(showDial(bool)), display.widgetDial(), SLOT(setAvailable(bool)));
+    connect(this, SIGNAL(showDial(double, double)), display.widgetDial(), SLOT(setPosition(double, double)));
+    connect(this, SIGNAL(updateDial(double, double)), display.widgetDial(), SLOT(setTargetPosition(double, double)));
+    connect(this, SIGNAL(doneDial()), display.widgetDial(), SLOT(doneDial()));
+    connect(display.widgetDial(), SIGNAL(choose_up()), this, SLOT(dial_up()));
+    connect(display.widgetDial(), SIGNAL(choose_down()), this, SLOT(dial_down()));
+    connect(display.widgetDial(), SIGNAL(choose_left()), this, SLOT(dial_left()));
+    connect(display.widgetDial(), SIGNAL(choose_right()), this, SLOT(dial_right()));
+}
+
+void Process::disconnectToDial()
+{
+    disconnect(this, SIGNAL(showDial(bool)), 0, 0);
+    disconnect(this, SIGNAL(showDial(double, double)), 0, 0);
+    disconnect(this, SIGNAL(updateDial(double, double)), 0, 0);
+    disconnect(this, SIGNAL(doneDial()), 0, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_up()), 0, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_down()), 0, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_left()), 0, 0);
+    disconnect(display.widgetDial(), SIGNAL(choose_right()), 0, 0);
+}
+
 void Process::disconnectAll()
 {
-    disconnect(this, SIGNAL(pinch(double, double, bool)), operation, 0);
-    disconnect(this, SIGNAL(grab(int)), operation, 0);
-    disconnect(this, SIGNAL(circle(int)), operation, 0);
-    disconnect(this, SIGNAL(circle_anti(int)), operation, 0);
+    disconnect(this, SIGNAL(pinch(double, double, bool)), 0, 0);
+    disconnect(this, SIGNAL(grab(int)), 0, 0);
+    disconnect(this, SIGNAL(circle(int)), 0, 0);
+    disconnect(this, SIGNAL(circle_anti(int)), 0, 0);
     disconnect(display.widgetDial(), SIGNAL(choose_up(double, double)), operation, 0);
     disconnect(this, SIGNAL(choose_up(QString)), operation, 0);
     disconnect(display.widgetDial(), SIGNAL(choose_down(double, double)), operation, 0);
@@ -490,6 +516,8 @@ void Process::disconnectAll()
     disconnect(this, SIGNAL(choose_left(QString)), operation, 0);
     disconnect(display.widgetDial(), SIGNAL(choose_right(double, double)), operation, 0);
     disconnect(this, SIGNAL(choose_right(QString)), operation, 0);
+
+    disconnectToDial();
 }
 
 QString Process::getForegroundWindow(){

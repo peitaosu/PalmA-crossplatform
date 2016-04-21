@@ -123,7 +123,6 @@ void PalmWidget::paintEvent(QPaintEvent *event){
                 tip[finger][0] = 88*(x - screen_x)/(sqrt(pow(x - screen_x, 2)+pow(y - screen_y, 2))) + screen_x;
                 tip[finger][1] = 88*(y - screen_y)/(sqrt(pow(x - screen_x, 2)+pow(y - screen_y, 2))) + screen_y;
             }
-            //std::cout<<tip[0][0]<<std::endl;
         }
 
         //new painter

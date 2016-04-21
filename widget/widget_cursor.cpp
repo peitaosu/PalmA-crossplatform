@@ -104,7 +104,6 @@ void CursorWidget::paintEvent(QPaintEvent *event){
         //convert the hand position to the screen
         //i_box = controller.frame().interactionBox();
         //cursor_x = i_box.normalizePoint(controller.frame().hands().rightmost().stabilizedPalmPosition()).x;
-        //std::cout<<cursor_x<<std::endl;
         //cursor_y = 1 - i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
         int screen_x = QApplication::desktop()->width() * cursor_x;
         int screen_y = QApplication::desktop()->height() * cursor_y;
@@ -120,6 +119,5 @@ void CursorWidget::paintEvent(QPaintEvent *event){
 
         //draw Ellipse, size is 30*30, position is (screen_x - 15, screen_y - 15)
         painter.drawEllipse(screen_x-15 ,screen_y-15,30,30);
-        //std::cout<<i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).x<<std::endl;
     }
 }

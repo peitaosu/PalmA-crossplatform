@@ -107,7 +107,6 @@ void DialWidget::setDial(QString dial_type)
     //qDebug()<<image.save(dial_resource, "PNG");
     QPixmap _pixmap;
     _pixmap.load(dial_resource);
-    //std::cout<<dial_resource.toStdString()<<std::endl;
     this->setPixmap(_pixmap);
 }
 
@@ -129,7 +128,6 @@ void DialWidget::setAvailable(bool _available)
 void DialWidget::doneDial()
 {
     QString choose = getChoose();
-    std::cout<<getChoose().toStdString()<<std::endl;
     if(choose == "up"){
         emit choose_up();
         emit choose_up(position_x, position_y);
@@ -138,7 +136,6 @@ void DialWidget::doneDial()
         emit choose_down(position_x, position_y);
     }else if(choose == "left"){
         emit choose_left();
-        std::cout<<"fresh"<<std::endl;
         emit choose_left(position_x, position_y);
     }else if(choose == "right"){
         emit choose_right();

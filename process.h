@@ -20,6 +20,8 @@ class Process : public QObject
         void changedToExplorer();
         void changedToBrowser();
         void changedToOther();
+        void connectToDial();
+        void disconnectToDial();
         void disconnectAll();
 
     private:
@@ -57,6 +59,7 @@ class Process : public QObject
         void choose_down(QString);
         void choose_left(QString);
         void choose_right(QString);
+        void proxy();
 
     public slots:
         //void init();

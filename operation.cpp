@@ -11,6 +11,7 @@
 
 Operation::Operation(QObject *parent) : QObject(parent){
     //
+    event = new Event();
 }
 
 void Operation::mouseSelect(double x, double y, bool press){
