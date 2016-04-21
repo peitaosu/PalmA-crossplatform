@@ -20,11 +20,12 @@ class Process : public QObject
         QTimer *loop_timer;
         Display display;
         Motion motion;
-        Operation operation;
+        Operation *operation;
         Logger logger;
         QVariantMap config;
         QVariantMap config_display;
         QVariantMap config_gesture;
+        QVariantMap config_operation;
         //QVariantMap config_config;
     signals:
         void grab(int status);
@@ -50,9 +51,6 @@ class Process : public QObject
         void run();
         void stop();
         void restart();
-
-        void mouse(double x, double y);
-        void mouse(double x, double y, int event);
 
         void showGesture(QString gesture_type);
 };

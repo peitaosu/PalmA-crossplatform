@@ -31,6 +31,10 @@ class DialWidget : public QWidget
         void choose_down();
         void choose_left();
         void choose_right();
+        void choose_up(QString);
+        void choose_down(QString);
+        void choose_left(QString);
+        void choose_right(QString);
         void choose_up(double, double);
         void choose_down(double, double);
         void choose_left(double, double);
