@@ -25,6 +25,10 @@ Process::Process(QObject *parent) : QObject(parent)
     connect(this, SIGNAL(showDial(bool)), display.widgetDial(), SLOT(setAvailable(bool)));
     connect(this, SIGNAL(showDial(double, double)), display.widgetDial(), SLOT(setPosition(double, double)));
     connect(this, SIGNAL(updateDial(double, double)), display.widgetDial(), SLOT(setTargetPosition(double, double)));
+    connect(display.widgetDial(), SIGNAL(choose_up()), this, SLOT(dial_up()));
+    connect(display.widgetDial(), SIGNAL(choose_down()), this, SLOT(dial_down()));
+    connect(display.widgetDial(), SIGNAL(choose_left()), this, SLOT(dial_left()));
+    connect(display.widgetDial(), SIGNAL(choose_right()), this, SLOT(dial_right()));
     
 
 }
@@ -549,3 +553,25 @@ QString Process::getForegroundWindow(){
     
 }
 
+void Process::dial_up(){
+    QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
+    QVariantMap config_operation_dial = config_operation_desktop["dial"].toMap();
+    emit choose_up(config_operation_dial["up"].toString)
+}
+
+void Process::dial_down(){
+    QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
+    QVariantMap config_operation_dial = config_operation_desktop["dial"].toMap();
+    emit choose_down(config_operation_dial["down"].toString)
+}
+
+void Process::dial_left(){
+    QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
+    QVariantMap config_operation_dial = config_operation_desktop["dial"].toMap();
+    emit choose_left(config_operation_dial["left"].toString)
+}
+void Process::dial_right(){
+    QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
+    QVariantMap config_operation_dial = config_operation_desktop["dial"].toMap();
+    emit choose_right(config_operation_dial["right"].toString)
+}

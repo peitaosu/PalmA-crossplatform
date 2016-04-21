@@ -15,6 +15,11 @@ class Process : public QObject
         explicit Process(QObject *parent = 0);
         void init(int argc, char* argv[]);
         QString getForegroundWindow();
+        
+        void changedToDesktop();
+        void changedToExplorer();
+        void changedToBrowser();
+        void changedToOther()
 
     private:
         QTimer *loop_timer;
@@ -45,12 +50,23 @@ class Process : public QObject
         void showDial(bool);
         void showDial(double x, double y);
         void updateDial(double x, double y);
+        
+        void choose_up(QString);
+        void choose_down(QString);
+        void choose_left(QString);
+        void choose_right(QString);
+
     public slots:
         //void init();
         void start();
         void run();
         void stop();
         void restart();
+
+        void dial_up();
+        void dial_down();
+        void dial_left();
+        void dial_right();
 
         void showGesture(QString gesture_type);
 };
