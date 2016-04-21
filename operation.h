@@ -19,6 +19,9 @@ class Operation : public QObject
         void mouseSelect(double x, double y);
         void openSomething(double x, double y);
         
+        //exec program
+        void execProgram(QString program_path);
+        
         //Window
         int swipeWindow(int count = 1);
         int moveWindow(int side);

@@ -2,6 +2,7 @@
 #include "error_code.h"
 #include <QUrl>
 #include <QDesktopServices>
+#include <QProcess>
 
 #define SIDE_UP 1
 #define SIDE_DOWN 2
@@ -28,6 +29,10 @@ void Operation::mouseSelect(double x, double y){
 void Operation::openSomething(double x, double y){
     event->mouseMove(x, y);
     event->mouseDClick(1);
+}
+
+void execProgram(QString program_path){
+    QProcess::startDetached(program_path ,QStringList());
 }
 //Window
 /*
