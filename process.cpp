@@ -555,23 +555,23 @@ QString Process::getForegroundWindow(){
 
 void Process::dial_up(){
     QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
-    QVariantMap config_operation_dial = config_operation_desktop["dial"].toMap();
+    QVariantMap config_operation_dial = config_operation["dial"].toMap();
     emit choose_up(config_operation_dial["up"].toString)
 }
 
 void Process::dial_down(){
     QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
-    QVariantMap config_operation_dial = config_operation_desktop["dial"].toMap();
+    QVariantMap config_operation_dial = config_operation["dial"].toMap();
     emit choose_down(config_operation_dial["down"].toString)
 }
 
 void Process::dial_left(){
     QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
-    QVariantMap config_operation_dial = config_operation_desktop["dial"].toMap();
+    QVariantMap config_operation_dial = config_operation["dial"].toMap();
     emit choose_left(config_operation_dial["left"].toString)
 }
 void Process::dial_right(){
     QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
-    QVariantMap config_operation_dial = config_operation_desktop["dial"].toMap();
+    QVariantMap config_operation_dial = config_operation["dial"].toMap();
     emit choose_right(config_operation_dial["right"].toString)
 }
