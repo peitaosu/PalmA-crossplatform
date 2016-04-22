@@ -13,12 +13,22 @@ Logger::Logger(QObject *parent) : QObject(parent){
     setLogFile("log\\" + log_file_name);
 }
 
+/*
+ * Logger: Set Log Dir
+ * Input: QString dir path for file save
+ * Return: NONE
+ */
 void Logger::setLogDir(QString dir){
     //create a dir for log save, default under applicationDirPath/log
     QString app_dir_path = QCoreApplication::applicationDirPath();
     log_dir.mkdir(app_dir_path + "\\" + dir);
 }
 
+/*
+ * Logger: Set Log File
+ * Input: QString file name for log
+ * Return: NONE
+ */
 void Logger::setLogFile(QString file){
     //setup log file location
     QString app_dir_path = QCoreApplication::applicationDirPath();
@@ -31,6 +41,11 @@ void Logger::setLogFile(QString file){
     }
 }
 
+/*
+ * Logger: Log Information
+ * Input: QString log type: [INFO],[ERROR],[DEBUG],etc. QString log message
+ * Return: NONE
+ */
 void Logger::log(QString log_type, QString log_msg){
     //set the file open as R/W, text and append
     log_file.open(QIODevice::ReadWrite | QIODevice::Text | QIODevice::Append);
