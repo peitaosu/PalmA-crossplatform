@@ -4,6 +4,11 @@
 #include "tlhelp32.h"
 #include <string>
 
+/*
+ * Function: Get Process Name By Id
+ * Input: DWORD ProcessID
+ * Output: String Process Name
+ */
 LPWSTR Foreground::GetProcessNameById(DWORD ProcessID)
 {
     HANDLE hProcessSnap;
@@ -48,7 +53,11 @@ Foreground::Foreground()
     setlocale(LC_ALL, "");
 }
 
-
+/*
+ * Function: Get Foreground Process Name
+ * Input: NONE
+ * Output: String Process Name
+ */
 std::string Foreground::getForegroundProcessName(){
 
     //new variable process_ID
@@ -79,6 +88,11 @@ std::string Foreground::getForegroundProcessName(){
     return process_name;
 }
 
+/*
+ * Function: Get Foreground Window Name
+ * Input: NONE
+ * Output: String Window Name
+ */
 std::string Foreground::getForegroundWindowName(){
 
     //set buffer
