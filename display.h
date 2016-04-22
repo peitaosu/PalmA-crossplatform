@@ -13,6 +13,8 @@ class Display : public QObject
         Q_OBJECT
     public:
         explicit Display(QObject *parent = 0);
+
+        //show and hide widgets
         void showStatus();
         void hideStatus();
         void showGesture();
@@ -24,6 +26,8 @@ class Display : public QObject
         void updateDial(double x, double y);
         void updateCursor(double x, double y);
         void updateStatus(int status_code);
+
+        //gesture display
         void setGestureDisplay(QString gesture_type);
         
         StatusWidget *widgetStatus();

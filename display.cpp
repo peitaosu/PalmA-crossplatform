@@ -1,103 +1,164 @@
 #include "display.h"
 
-Display::Display(QObject *parent) : QObject(parent)
-{
+Display::Display(QObject *parent) : QObject(parent){
     status_widget = new StatusWidget();
-    status_widget->setAvailable(false);
     cursor_widget = new CursorWidget();
-    cursor_widget->setAvailable(true);
     gesture_widget = new GestureWidget();
-    //gesture_widget->setAvailable(true);
     palm_widget = new PalmWidget();
-    palm_widget->setAvailable(false);
     dial_widget = new DialWidget();
-    //cursor_widget->show();
-    //cursor_widget->setAvailable(false);
-    //gesture_widget->show();
-    //dial_widget->setVisible(false);
-    //dial_widget->setDial("desktop");
-    //dial_widget->setPosition(0.5, 0.5);
-    //dial_widget->setTargetPosition(0.6, 0.6);
-
-
 }
 
-void Display::showStatus()
-{
+/*
+ * Display: Show Status Widget
+ * Input: NONE
+ * Return: NODE
+ */
+void Display::showStatus(){
     status_widget->setAvailable(true);
 }
 
-void Display::hideStatus()
-{
+/*
+ * Display: Hide Status Widget
+ * Input: NONE
+ * Return: NODE
+ */
+void Display::hideStatus(){
     status_widget->setAvailable(false);
 }
 
-void Display::showGesture()
-{
+/*
+ * Display: Show Gesture Widget
+ * Input: NONE
+ * Return: NODE
+ */
+void Display::showGesture(){
     gesture_widget->setAvailable(true);
 }
 
-void Display::hideGesture()
-{
+/*
+ * Display: Hide Gesture Widget
+ * Input: NONE
+ * Return: NODE
+ */
+void Display::hideGesture(){
     gesture_widget->setAvailable(false);
 }
 
-void Display::showPalm()
-{
+/*
+ * Display: Show Palm Widget
+ * Input: NONE
+ * Return: NODE
+ */
+void Display::showPalm(){
     palm_widget->setAvailable(true);
 }
 
-void Display::hidePalm()
-{
+/*
+ * Display: Hide Palm Widget
+ * Input: NONE
+ * Return: NODE
+ */
+void Display::hidePalm(){
     palm_widget->setAvailable(false);
 }
 
+/*
+ * Display: Show Dial Widget
+ * Input: QString dial type, double x and double y
+ * Return: NODE
+ */
 void Display::showDial(QString dial_type, double x, double y){
     dial_widget->setDial(dial_type);
     dial_widget->setPosition(x, y);
     dial_widget->setAvailable(true);
 }
 
+/*
+ * Display: Hide Dial Widget
+ * Input: NONE
+ * Return: NODE
+ */
 void Display::hideDial(){
     dial_widget->setAvailable(false);
 }
 
+/*
+ * Display: Update Dial Widget
+ * Input: double x, double y
+ * Return: NODE
+ */
 void Display::updateDial(double x, double y){
     dial_widget->setTargetPosition(x, y);
 }
 
-void Display::updateCursor(double x, double y)
-{
+/*
+ * Display: Update Cursor Widget
+ * Input: double x, double y
+ * Return: NODE
+ */
+void Display::updateCursor(double x, double y){
     cursor_widget->updateCursor(x, y);
-
 }
 
-void Display::updateStatus(int status_code)
-{
+/*
+ * Display: Update Status Widget
+ * Input: int status code, use 3 index array to save status
+ * Return: NODE
+ */
+void Display::updateStatus(int status_code){
     status_widget->setStatusDisplay(status_code);
 }
 
-void Display::setGestureDisplay(QString gesture_type)
-{
+/*
+ * Display: Set Gesture Display
+ * Input: QString gesture type, which same as file name in resource
+ * Return: NODE
+ */
+void Display::setGestureDisplay(QString gesture_type){
     gesture_widget->setGestureDisplay(gesture_type);
 }
 
+/*
+ * Display: Return Status Widget Pointer
+ * Input: NODE
+ * Return: Status Widget pointer
+ */
 StatusWidget * Display::widgetStatus(){
     return status_widget;
 }
 
+/*
+ * Display: Return Cursor Widget Pointer
+ * Input: NODE
+ * Return: Cursor Widget pointer
+ */
 CursorWidget * Display::widgetCursor(){
     return cursor_widget;
 }
 
+/*
+ * Display: Return Gesture Widget Pointer
+ * Input: NODE
+ * Return: Gesture Widget pointer
+ */
 GestureWidget * Display::widgetGesture(){
     return gesture_widget;
 }
 
+/*
+ * Display: Return Dial Widget Pointer
+ * Input: NODE
+ * Return: Dial Widget pointer
+ */
 DialWidget * Display::widgetDial(){
     return dial_widget;
 }
 
+/*
+ * Display: Return Palm Widget Pointer
+ * Input: NODE
+ * Return: Palm Widget pointer
+ */
 PalmWidget * Display::widgetPalm(){
     return palm_widget;
 }
