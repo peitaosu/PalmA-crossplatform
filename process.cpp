@@ -99,7 +99,7 @@ void Process::init(int argc, char* argv[])
 
 void Process::start()
 {
-    connect(loop_timer,SIGNAL(timeout()),this,SLOT(run())))
+    connect(loop_timer,SIGNAL(timeout()),this,SLOT(run()));
     loop_timer->start(20);
     logger.log("INFO", "Set run() frequency to one time per 20ms.");
 }
@@ -284,7 +284,7 @@ void Process::run()
                         emit showDial(true);
                         emit showDial(motion.getNormalizedX(), motion.getNormalizedY());
                         logger.log("INFO", "Gesture Pinch start.");
-                        logger.log("INFO", "Start Position: " + motion.getNormalizedX() + ", " + motion.getNormalizedY());
+                        logger.log("INFO", "Start Position: " + QString::number(motion.getNormalizedX()) + ", " + QString::number(motion.getNormalizedY()));
                         logKeyInfo();
                         break;
                     case KEEP:
@@ -298,7 +298,7 @@ void Process::run()
                         emit showDial(false);
                         emit doneDial();
                         logger.log("INFO", "Gesture Pinch stop.");
-                        logger.log("INFO", "Stop Position: " + motion.getNormalizedX() + ", " + motion.getNormalizedY());
+                        logger.log("INFO", "Stop Position: " + QString::number(motion.getNormalizedX()) + ", " + QString::number(motion.getNormalizedY()));
                         logKeyInfo();
                         break;
                     default:
@@ -642,7 +642,7 @@ void Process::dial_right(){
 void Process::logKeyInfo(){
     logger.log("INFO", "===================== KEY INFORMATION =====================");
     logger.log("INFO", "Controller Status: " + QString::number(motion.getControllerStatus()) + ", Service Status: " + QString::number(motion.getServiceStatus()) + ", Process Status: " + QString::number(motion.getProcessStatus()));
-    logger.log("INFO", "Position: x: " + motion.getNormalizedX() + ", y: " + motion.getNormalizedY());
+    logger.log("INFO", "Position: x: " + QString::number(motion.getNormalizedX()) + ", y: " + QString::number(motion.getNormalizedY()));
     logger.log("INFO", "Hands Cout: " + motion.getHandCount());
-    logger.log("INFO", "===================== KEY INFORMATION =====================");
+    logger.log("INFO", "===========================================================");
 }
