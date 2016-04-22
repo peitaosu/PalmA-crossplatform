@@ -7,12 +7,16 @@ class MotionLeap
     public:
         MotionLeap();
 
-        int getControllerType();
-        
+        //normal point
         double getNormalizedX();
         double getNormalizedY();
         double getNormalizedZ();
         
+        //hand
+        int getHandCount();
+        void setHandedness(bool is_left = true);
+
+        //gesture
         int getGestureSwipe();
         int getGestureCircle(bool clockwise = true);
         int getGestureScreenTap();
@@ -20,9 +24,11 @@ class MotionLeap
         int getGestureGrab(int hand_count = 1);
         int getGesturePinch(int hand_count = 1);
         int getGestureStatus(int gesture_type, int count = 1);
-        int getHandCount();
-        void setHandedness(bool is_left = true);
+        
+        //controller
+        int getControllerType();
 
+        //status
         bool getControllerStatus();
         bool getServiceStatus();
         bool getProcessStatus();
