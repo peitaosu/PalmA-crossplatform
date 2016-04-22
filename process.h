@@ -14,16 +14,20 @@ class Process : public QObject
     public:
         explicit Process(QObject *parent = 0);
         void init(int argc, char* argv[]);
+
+        //foreground
         QString getForegroundWindow();
-        
         void changedToDesktop();
         void changedToExplorer();
         void changedToBrowser();
         void changedToOther();
+
+        //signals/slots
         void connectToDial();
         void disconnectToDial();
         void disconnectAll();
-        
+
+        //log
         void logKeyInfo();
 
     private:
@@ -37,8 +41,10 @@ class Process : public QObject
         QVariantMap config_gesture;
         QVariantMap config_operation;
         QString foreground_prev;
-        //QVariantMap config_config;
+
     signals:
+
+        //gesture
         void grab(int status);
         void grab(double x, double y);
         void grab(double x, double y, bool status);
@@ -53,6 +59,8 @@ class Process : public QObject
         void key_tap(double x, double y, int status);
         void key_tap(int status);
         void setGesture(QString gesture_type);
+
+        //dial
         void showDial(bool);
         void showDial(double x, double y);
         void updateDial(double x, double y);
@@ -61,20 +69,22 @@ class Process : public QObject
         void choose_down(QString);
         void choose_left(QString);
         void choose_right(QString);
-        void proxy();
 
     public slots:
-        //void init();
+
+        //main functions
         void start();
         void run();
         void stop();
         void restart();
 
+        //dial
         void dial_up();
         void dial_down();
         void dial_left();
         void dial_right();
 
+        //gesture
         void showGesture(QString gesture_type);
 };
 

@@ -18,10 +18,4 @@ void Test::testAllClasses(){
     controller.addListener(listener);
     Foreground foreground;
     Logger logger;
-    //std::cout<<foreground.getForegroundProcessName()<<std::endl;
-
-    //Operation operation;
-    //operation.logoff();
-    //Event event;
-    //event.keyboardMType("LWIN+L");
 }
