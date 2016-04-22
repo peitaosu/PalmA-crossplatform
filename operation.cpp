@@ -10,10 +10,14 @@
 #define SIDE_RIGHT 4
 
 Operation::Operation(QObject *parent) : QObject(parent){
-    //
     event = new Event();
 }
 
+/*
+ * Operation: Mouse Select
+ * Input: double x, double y, bool press
+ * Return: NONE
+ */
 void Operation::mouseSelect(double x, double y, bool press){
     event->mouseMove(x, y);
     if(press == true){
@@ -23,27 +27,48 @@ void Operation::mouseSelect(double x, double y, bool press){
     }
 }
 
+/*
+ * Operation: Mouse Select (update)
+ * Input: double x, double y
+ * Return: NONE
+ */
 void Operation::mouseSelect(double x, double y){
     event->mouseMove(x, y);
 }
 
+/*
+ * Operation: Mouse Roll
+ * Input: int distance
+ * Return: NONE
+ */
 void Operation::mouseRoll(int distance){
     event->mouseRoll(distance);
 }
 
-
+/*
+ * Operation: Open Something, double click application/folder
+ * Input: double x, double y
+ * Return: NONE
+ */
 void Operation::openSomething(double x, double y){
     event->mouseMove(x, y);
     event->mouseDClick(1);
 }
 
+/*
+ * Operation: Execute Program
+ * Input: QString Program Path
+ * Return: NONE
+ */
 void Operation::execProgram(QString program_path){
     QProcess::startDetached(program_path ,QStringList());
 }
+
 //Window
 /*
  * Operation: Swipe Window
  * Input: int count, count > 0
+ * Return: if input less than 1, return INPUT_ERROR, defined in error_code.h
  */
 int Operation::swipeWindow(int count){
     if(count < 1){
@@ -60,6 +85,7 @@ int Operation::swipeWindow(int count){
 /*
  * Operation: Move Window Side
  * Input: int side, SIDE_UP, SIDE_DOWN, SIDE_LEFT, SIDE_RIGHT defined in the file head
+ * Return: if input not in the list, return INPUT_ERROR, defined in error_code.h
  */
 int Operation::moveWindow(int side){
     switch(side){
@@ -81,59 +107,65 @@ int Operation::moveWindow(int side){
     return 0;
 }
 
-//Desktop
 /*
  * Operation: Show Desktop
+ * Input: NONE
+ * Return: NONE
  */
-int Operation::showDesktop(){
+void Operation::showDesktop(){
     event->keyboardMType("LWIN+D");
-    return 0;
 }
 
-//FileManager
 /*
- * Operation: Open FileManager
+ * Operation: Open Explorer
+ * Input: NONE
+ * Return: NONE
  */
-int Operation::openFileManager(){
+void Operation::openExplorer(){
     event->keyboardMType("LWIN+E");
-    return 0;
 }
 
-//Browser
 /*
- * Operation: Open Browser, Goto Homepage Default
+ * Operation: Open Browser
  * Input: QString url
+ * Return: NONE
  */
-int Operation::openBrowser(QString url){
+void Operation::openBrowser(QString url){
     QUrl url_go(url);
     QDesktopServices::openUrl(url_go);
-    return 0;
 }
 
 /*
  * Operation: Goto
+ * Input: NONE
+ * Return: NONE
  */
-int Operation::goTo(){
+void Operation::goTo(){
     event->keyboardType("ENTER");
-    return 0;
 }
 
-int Operation::goBack(){
+/*
+ * Operation: Go Back
+ * Input: NONE
+ * Return: NONE
+ */
+void Operation::goBack(){
     event->keyboardType("BACKSPACE");
-    return 0;
 }
 
 /*
  * Operation: Refresh the Page
+ * Input: NONE
+ * Return: NONE
  */
-int Operation::goRefresh(){
+void Operation::goRefresh(){
     event->keyboardType("F5");
-    return 0;
 }
 
 /*
  * Operation: Swipe Browser Tab
  * Input: int count, count > 0
+ * Return: if count<1, return INPUT_ERROR, defined in error_code.h
  */
 int Operation::swipeBrowserTab(int count){
     if(count < 1){
@@ -143,17 +175,19 @@ int Operation::swipeBrowserTab(int count){
     return 0;
 }
 
-//System
 /*
  * Operation: Lock Screen
+ * Input: NONE
+ * Return: NONE
  */
-int Operation::lockscreen(){
+void Operation::lockscreen(){
     event->keyboardMType("LWIN+L");
-    return 0;
 }
 
 /*
  * Operation: Shutdown
+ * Input: NONE
+ * Return: bool, shutdown or not
  */
 bool Operation::shutdown(){
     return event->exitSystem("shutdown");
@@ -161,6 +195,8 @@ bool Operation::shutdown(){
 
 /*
  * Operation: Shutdown Force
+ * Input: NONE
+ * Return: bool, shutdown force or not
  */
 bool Operation::shutdownforce(){
     return event->exitSystem("shutdown_force");
@@ -168,6 +204,8 @@ bool Operation::shutdownforce(){
 
 /*
  * Operation: Reboot
+ * Input: NONE
+ * Return: bool, reboot or not
  */
 bool Operation::reboot(){
     return event->exitSystem("reboot");
@@ -175,11 +213,18 @@ bool Operation::reboot(){
 
 /*
  * Operation: Log Off
+ * Input: NONE
+ * Return: bool, log off or not
  */
 bool Operation::logoff(){
     return event->exitSystem("logoff");
 }
 
+/*
+ * Operation: Return Event Pointer
+ * Input: NONE
+ * Return: Event Pointer
+ */
 Event *Operation::events()
 {
     return event;

@@ -28,20 +28,20 @@ class Operation : public QObject
         int moveWindow(int side);
         
         //Desktop
-        int showDesktop();
+        void showDesktop();
 
-        //FileManager
-        int openFileManager();
+        //Explorer
+        void openExplorer();
         
         //Browser
-        int openBrowser(QString url = "about:home");
-        int goTo();
-        int goBack();
-        int goRefresh();
+        void openBrowser(QString url = "about:home");
+        void goTo();
+        void goBack();
+        void goRefresh();
         int swipeBrowserTab(int count = 1);        
 
         //System
-        int lockscreen();
+        void lockscreen();
         bool shutdown();
         bool shutdownforce();
         bool reboot();
