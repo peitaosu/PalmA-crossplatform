@@ -18,7 +18,6 @@ class Logger : public QObject
         QFile log_file;
         QDir log_dir;
 
-
 };
 
 #endif // LOGGER_H

@@ -23,6 +23,8 @@ class Process : public QObject
         void connectToDial();
         void disconnectToDial();
         void disconnectAll();
+        
+        void logKeyInfo();
 
     private:
         QTimer *loop_timer;

@@ -8,6 +8,15 @@ Process::Process(QObject *parent) : QObject(parent)
 {
     loop_timer = new QTimer(this);
     operation = new Operation(this);
+    
+    if(!config["log"].isNull()){
+        QDate date;
+        QString current_date = date.currentDate().toString("yyyy-MM-dd");
+        QString log_file_name = current_date + ".log";
+        logger.setLogDir(config["log"].toString());
+        logger.setLogFile(config["log"].toString() + "\\" + log_file_name);
+    }
+    
 
     QString config_sring;
     QFile config_file;
@@ -22,8 +31,13 @@ Process::Process(QObject *parent) : QObject(parent)
     config_operation = config["operation"].toMap();
     config = config["config"].toMap();
     
+    logger.log("INFO", "Load the config file: " + config_file.fileName());
 
-    connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)));    
+    if(connect(this, SIGNAL(setGesture(QString)), this, SLOT(showGesture(QString)))){
+        logger.log("INFO", "Connected gesture show signal/slot.");
+    }else{
+        logger.log("ERROR", "Failed to connect gesture show signal/slot.");
+    }
 }
 
 void Process::init(int argc, char* argv[])
@@ -31,67 +45,69 @@ void Process::init(int argc, char* argv[])
     
     if(config_display["palm"].toString() == "true"){
         display.showPalm();
+        logger.log("INFO", "Set the Palm Display Widget visible.");
     }else if(config_display["palm"].toString() == "false"){
         display.hidePalm();
+        logger.log("INFO", "Set the Palm Display Widget unvisible.");
     }
     if(config_display["gesture"].toString() == "true"){
         display.showGesture();
+        logger.log("INFO", "Set the Gesture Display Widget visible.");
     }else if(config_display["gesture"].toString() == "false"){
         display.hideGesture();
+        logger.log("INFO", "Set the Gesture Display Widget unvisible.");
     }
     if(config_display["status"].toString() == "true"){
         display.showStatus();
+        logger.log("INFO", "Set the Status Display Widget visible.");
     }else if(config_display["status"].toString() == "false"){
         display.hideStatus();
+        logger.log("INFO", "Set the Status Display Widget visible.");
     }
     for(int arg = 1; arg < argc; arg ++){
         if(argv[arg] == "-d"){
             display.showStatus();
+            logger.log("INFO", "The application execute with \"-d\", set the Status Display Widget visible.");
         }else if(argv[arg] == "-s"){
             display.hideGesture();
+            logger.log("INFO", "The application execute with \"-s\", set the Gesture Display Widget unvisible.");
         }else if(argv[arg] == "-h"){
             display.showPalm();
+            logger.log("INFO", "The application execute with \"-h\", set the Palm Display Widget visible.");
+        }else{
+            logger.log("ERROR", "The application execute with wrong parameter.");
         }
     }
     
     if(config["controller"].toString() == "LEAPMOTION"){
         motion.setController(LEAP_MOTION);
+            logger.log("INFO", "The controller is set to LEAP MOTION.");
     }
     
     if(config["handedness"].toString() == "left"){
         motion.setHandedness(true);
+        logger.log("INFO", "Handedness is set to left.");
     }else if(config["handedness"].toString() == "right"){
         motion.setHandedness(false);
-    }
-       
-    QDate date;
-    QString current_date = date.currentDate().toString("yyyy-MM-dd");
-    QString log_file_name = current_date + ".log";
-    if(config["log"].isNull()){
-        logger.setLogDir(QCoreApplication::applicationDirPath()+"\\log");
-        logger.setLogFile(QCoreApplication::applicationDirPath()+"\\log\\"+log_file_name);
-    }else{
-        logger.setLogDir(QCoreApplication::applicationDirPath()+"\\"+config["log"].toString());
-        logger.setLogFile(QCoreApplication::applicationDirPath()+"\\"+config["log"].toString()+"\\"+log_file_name);
+        logger.log("INFO", "Handedness is set to right.");
     }
     
-    //load gesture:operation mapping
-
     logger.log("INFO", "Process initialized.");
+
 
 }
 
 void Process::start()
 {
-    connect(loop_timer,SIGNAL(timeout()),this,SLOT(run()));
+    connect(loop_timer,SIGNAL(timeout()),this,SLOT(run())))
     loop_timer->start(20);
+    logger.log("INFO", "Set run() frequency to one time per 20ms.");
 }
 
 void Process::run()
 {
-    
     motion.update();
-    //motion.setHandedness();
+       
     if(motion.getHandCount() == 0){
         emit setGesture("off");
     }else{
@@ -100,16 +116,20 @@ void Process::run()
         if(foreground_prev != getForegroundWindow()){
             if(getForegroundWindow() == "desktop"){
                 emit changedToDesktop();
+                logger.log("INFO", "Foreground changed to Desktop.");
             }
             if(getForegroundWindow() == "explorer"){
                 emit changedToExplorer();
+                logger.log("INFO", "Foreground changed to Explorer.");
             }
             if(getForegroundWindow() == "browser"){
                 emit changedToBrowser();
+                logger.log("INFO", "Foreground changed to Browser.");
             }
             if(getForegroundWindow() == "other"){
                 emit changedToOther();
-            }
+                 logger.log("INFO", "Foreground changed to Other.");
+           }
             foreground_prev = getForegroundWindow();
         }
         QVariantMap config_runtime = config_gesture[getForegroundWindow()].toMap();
@@ -125,6 +145,8 @@ void Process::run()
                     case START:
                         emit grab(START);
                         emit setGesture("grab");
+                        logger.log("INFO", "Gesture Grab with 2/2 hands start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit grab(KEEP);
@@ -133,6 +155,8 @@ void Process::run()
                     case STOP:
                         emit grab(STOP);
                         emit setGesture("hand");
+                        logger.log("INFO", "Gesture Grab with 2/2 hands stop.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -148,6 +172,8 @@ void Process::run()
                     case START:
                         emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 1);
                         emit setGesture("grab");
+                        logger.log("INFO", "Gesture Grab with 1/2 hands start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit grab(motion.getNormalizedX(), motion.getNormalizedY());
@@ -156,7 +182,9 @@ void Process::run()
                     case STOP:
                         emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 0);
                         emit setGesture("hand");
-                        break;
+                         logger.log("INFO", "Gesture Grab with 1/2 hands start.");
+                         logKeyInfo();
+                       break;
                     default:
                         break;
                 }
@@ -171,6 +199,8 @@ void Process::run()
                     case START:
                         emit pinch(START);
                         emit setGesture("pinch");
+                        logger.log("INFO", "Gesture Pinch with 2/2 hands start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit pinch(KEEP);
@@ -179,6 +209,8 @@ void Process::run()
                     case STOP:
                         emit pinch(STOP);
                         emit setGesture("pinche");
+                        logger.log("INFO", "Gesture Pinch with 2/2 hands start.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -194,6 +226,8 @@ void Process::run()
                     case START:
                         emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), 1);
                         emit setGesture("pinch");
+                        logger.log("INFO", "Gesture Pinch with 1/2 hands start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit pinch(motion.getNormalizedX(), motion.getNormalizedY());
@@ -202,6 +236,8 @@ void Process::run()
                     case STOP:
                         emit pinch(motion.getNormalizedX(), motion.getNormalizedY(), 0);
                         emit setGesture("pinche");
+                        logger.log("INFO", "Gesture Pinch with 1/2 hands start.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -218,6 +254,8 @@ void Process::run()
                     case START:
                         emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 1);
                         emit setGesture("grab");
+                        logger.log("INFO", "Gesture Grab start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit grab(motion.getNormalizedX(), motion.getNormalizedY());
@@ -226,6 +264,8 @@ void Process::run()
                     case STOP:
                         emit grab(motion.getNormalizedX(), motion.getNormalizedY(), 0);
                         emit setGesture("hand");
+                        logger.log("INFO", "Gesture Grab start.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -243,6 +283,9 @@ void Process::run()
                         emit setGesture("pinch");
                         emit showDial(true);
                         emit showDial(motion.getNormalizedX(), motion.getNormalizedY());
+                        logger.log("INFO", "Gesture Pinch start.");
+                        logger.log("INFO", "Start Position: " + motion.getNormalizedX() + ", " + motion.getNormalizedY());
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit pinch(motion.getNormalizedX(), motion.getNormalizedY());
@@ -254,6 +297,9 @@ void Process::run()
                         emit setGesture("hand");
                         emit showDial(false);
                         emit doneDial();
+                        logger.log("INFO", "Gesture Pinch stop.");
+                        logger.log("INFO", "Stop Position: " + motion.getNormalizedX() + ", " + motion.getNormalizedY());
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -269,6 +315,8 @@ void Process::run()
                     case START:
                         emit circle(5);
                         emit setGesture("circle");
+                        logger.log("INFO", "Gesture Circle start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit circle(5);
@@ -277,6 +325,8 @@ void Process::run()
                     case STOP:
                         emit circle(0);
                         emit setGesture("hand");
+                        logger.log("INFO", "Gesture Circle stop.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -292,6 +342,8 @@ void Process::run()
                     case START:
                         emit circle_anti(-5);
                         emit setGesture("circle_anti");
+                        logger.log("INFO", "Gesture Circle Anti start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit circle_anti(-5);
@@ -300,6 +352,8 @@ void Process::run()
                     case STOP:
                         emit circle_anti(0);
                         emit setGesture("hand");
+                        logger.log("INFO", "Gesture Circle Anti stop.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -315,6 +369,8 @@ void Process::run()
                     case START:
                         emit swipe(START);
                         emit setGesture("swipe");
+                        logger.log("INFO", "Gesture Swipe start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit swipe(KEEP);
@@ -323,6 +379,8 @@ void Process::run()
                     case STOP:
                         emit swipe(STOP);
                         emit setGesture("hand");
+                        logger.log("INFO", "Gesture Swipe stop.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -337,12 +395,16 @@ void Process::run()
                         break;
                     case START:
                         emit screen_tap(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        logger.log("INFO", "Gesture Screen Tap start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit screen_tap(KEEP);
                         break;
                     case STOP:
                         emit screen_tap(STOP);
+                        logger.log("INFO", "Gesture Screen Tap stop.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
@@ -357,31 +419,36 @@ void Process::run()
                         break;
                     case START:
                         emit key_tap(motion.getNormalizedX(), motion.getNormalizedY(), START);
+                        logger.log("INFO", "Gesture Key Tap start.");
+                        logKeyInfo();
                         break;
                     case KEEP:
                         emit key_tap(KEEP);
                         break;
                     case STOP:
                         emit key_tap(STOP);
+                        logger.log("INFO", "Gesture Key Tap stop.");
+                        logKeyInfo();
                         break;
                     default:
                         break;
                 }
             }
-            //isHold?
-            //emit hold();
         }
     }
 }
 void Process::stop()
 {
     disconnect(loop_timer,SIGNAL(timeout()),this,SLOT(run()));
+    logger.log("INFO", "Process stoped.");
 }
 
 void Process::restart()
 {
     stop();
+    logger.log("INFO", "Process stoped.");
     start();
+    logger.log("INFO", "Process started.");
 }
 
 void Process::showGesture(QString gesture_type)
@@ -421,6 +488,7 @@ void Process::changedToDesktop()
         connect(this, SIGNAL(choose_right(QString)), operation, SLOT(execProgram(QString)));
     }
     connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
+    logger.log("INFO", "Re-connected signals/slots in foreground Desktop.");
 }
 
 void Process::changedToExplorer()
@@ -458,6 +526,7 @@ void Process::changedToExplorer()
     connect(this, SIGNAL(circle(int)), operation, SLOT(mouseRoll(int)));
     connect(this, SIGNAL(circle_anti(int)), operation, SLOT(mouseRoll(int)));
     connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
+    logger.log("INFO", "Re-connected signals/slots in foreground Explorer.");
 }
 
 void Process::changedToBrowser()
@@ -467,12 +536,14 @@ void Process::changedToBrowser()
     connect(this, SIGNAL(circle_anti(int)), operation, SLOT(mouseRoll(int)));
     connect(this, SIGNAL(grab(int)), operation, SLOT(swipeBrowserTab(int)));
     connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
+    logger.log("INFO", "Re-connected signals/slots in foreground Browser.");
 }
 
 void Process::changedToOther()
 {
     disconnectAll();
     connect(this, SIGNAL(pinch(double, double, bool)), operation, SLOT(mouseSelect(double, double, bool)));
+    logger.log("INFO", "Re-connected signals/slots in foreground Other.");
 }
 
 void Process::connectToDial()
@@ -513,8 +584,8 @@ void Process::disconnectAll()
     disconnect(this, SIGNAL(choose_left(QString)), operation, 0);
     disconnect(display.widgetDial(), SIGNAL(choose_right(double, double)), operation, 0);
     disconnect(this, SIGNAL(choose_right(QString)), operation, 0);
-
     disconnectToDial();
+    logger.log("INFO", "Disconnected All signals and slots between gesture/userevent an operation.");
 }
 
 QString Process::getForegroundWindow(){
@@ -544,12 +615,14 @@ void Process::dial_up(){
     QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
     QVariantMap config_operation_dial = config_operation["dial"].toMap();
     emit choose_up(config_operation_dial["up"].toString());
+    logger.log("INFO", "Dial choose to UP.");
 }
 
 void Process::dial_down(){
     QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
     QVariantMap config_operation_dial = config_operation["dial"].toMap();
     emit choose_down(config_operation_dial["down"].toString());
+    logger.log("INFO", "Dial choose to DOWN.");
 }
 
 void Process::dial_left(){
@@ -557,9 +630,19 @@ void Process::dial_left(){
     QVariantMap config_operation_dial = config_operation["dial"].toMap();
     emit choose_left(config_operation_dial["left"].toString());
 
+    logger.log("INFO", "Dial choose to LEFT.");
 }
 void Process::dial_right(){
     QVariantMap config_operation = config_operation[getForegroundWindow()].toMap();
     QVariantMap config_operation_dial = config_operation["dial"].toMap();
     emit choose_right(config_operation_dial["right"].toString());
+    logger.log("INFO", "Dial choose to RIGHT.");
+}
+
+void Process::logKeyInfo(){
+    logger.log("INFO", "===================== KEY INFORMATION =====================");
+    logger.log("INFO", "Controller Status: " + QString::number(motion.getControllerStatus()) + ", Service Status: " + QString::number(motion.getServiceStatus()) + ", Process Status: " + QString::number(motion.getProcessStatus()));
+    logger.log("INFO", "Position: x: " + motion.getNormalizedX() + ", y: " + motion.getNormalizedY());
+    logger.log("INFO", "Hands Cout: " + motion.getHandCount());
+    logger.log("INFO", "===================== KEY INFORMATION =====================");
 }
