@@ -13,11 +13,14 @@ Event::Event(){
     //load virtual key code json file as QVariantMap
     QString vk_code_string;
     QFile vk_code_file;
+    //file for Windows location is under win/
     vk_code_file.setFileName(":/win/event_keyboard.json");
     vk_code_file.open(QIODevice::ReadOnly | QIODevice::Text);
     vk_code_string = vk_code_file.readAll();
     vk_code_file.close();
+    //convert from QFile to QJsonDocument
     QJsonDocument vk_code_doc = QJsonDocument::fromJson(vk_code_string.toUtf8());
+    //convert yo VariantMap
     virtual_key_code = vk_code_doc.toVariant().toMap();
 
 }
@@ -47,9 +50,11 @@ int Event::mouseMove(double x, double y){
 int Event::mousePress(int left_or_right)
 {
     if(left_or_right == 1){
+        //left button down
         mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
         return 0;
     }else if(left_or_right == 2){
+        //right button down
         mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
         return 0;
     }else {
@@ -65,9 +70,11 @@ int Event::mousePress(int left_or_right)
 int Event::mouseRelease(int left_or_right)
 {
     if(left_or_right == 1){
+        //left button up
         mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
         return 0;
     }else if(left_or_right == 2){
+        //right button up
         mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
         return 0;
     }else {
@@ -83,9 +90,11 @@ int Event::mouseRelease(int left_or_right)
 int Event::mouseClick(int left_or_right)
 {
     if(left_or_right == 1){
+        //left button click
         mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
         return 0;
     }else if(left_or_right == 2){
+        //right button click
         mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
         return 0;
     }else {
@@ -101,10 +110,12 @@ int Event::mouseClick(int left_or_right)
 int Event::mouseDClick(int left_or_right)
 {
     if(left_or_right == 1){
+        //left button click twice
         mouseClick(1);
         mouseClick(1);
         return 0;
     }else if(left_or_right == 2){
+        //rigth button click twice
         mouseClick(2);
         mouseClick(2);
         return 0;
@@ -119,8 +130,8 @@ int Event::mouseDClick(int left_or_right)
  */
 void Event::mouseRoll(int distance)
 {
+    //mouse roll, negative will roll reverse direction
     mouse_event(MOUSEEVENTF_WHEEL, 0, 0, distance, 0);
-
 }
 
 /*
@@ -130,10 +141,10 @@ void Event::mouseRoll(int distance)
 int Event::keyboardPress(QString key)
 {
     if(virtual_key_code[key].isValid()){
+        //convert virtual_key_code to integer, as input of keybd_event, 0 means keydown
         keybd_event(virtual_key_code[key].toInt(), 0, 0, 0);
         return 0;
     }else{
-        //TODO: LOG ERROR
         return INPUT_ERROR;
     }
 }
@@ -145,10 +156,10 @@ int Event::keyboardPress(QString key)
 int Event::keyboardRelease(QString key)
 {
     if(virtual_key_code[key].isValid()){
+        //convert virtual_key_code to integer, as input of keybd_event, KEYEVENTF_KEYUP means keyup
         keybd_event(virtual_key_code[key].toInt(), 0, KEYEVENTF_KEYUP, 0);
         return 0;
     }else{
-        //TODO: LOG ERROR
         return INPUT_ERROR;
     }
 }
@@ -160,11 +171,11 @@ int Event::keyboardRelease(QString key)
 int Event::keyboardType(QString key)
 {
     if(virtual_key_code[key].isValid()){
+        //key type
         keybd_event(virtual_key_code[key].toInt(), 0, 0, 0);
         keybd_event(virtual_key_code[key].toInt(), 0, KEYEVENTF_KEYUP, 0);
         return 0;
     }else{
-        //TODO: LOG ERROR
         return INPUT_ERROR;
     }
 }
@@ -175,17 +186,19 @@ int Event::keyboardType(QString key)
  */
 int Event::keyboardMType(QString multi_key)
 {
+    //split the multi_key with "+"
     QStringList multi_key_list;
     multi_key_list = multi_key.split('+');
     for(int i = 0; i < multi_key_list.size(); i++){
         if(!virtual_key_code[multi_key_list[i]].isValid()){
-            //TODO: LOG ERROR
             return INPUT_ERROR;
         }
     }
+    //keys in list press
     for(int i = 0; i < multi_key_list.size(); i++){
         keyboardPress(multi_key_list[i]);
     }
+    //keys in list release
     for(int i = 0; i < multi_key_list.size(); i++){
         keyboardRelease(multi_key_list[i]);
     }
@@ -197,6 +210,7 @@ int Event::keyboardMType(QString multi_key)
  * Input: QString exit_event
  */
 bool Event::exitSystem(QString exit_event){
+    //get ready for system shutdown/reoot/logoff
     HANDLE hToken;
     TOKEN_PRIVILEGES tkp;
 
@@ -216,6 +230,7 @@ bool Event::exitSystem(QString exit_event){
     if (GetLastError() != ERROR_SUCCESS)
       return FALSE;
 
+    //shutdown, will run the shutdown process
     if(exit_event == "shutdown"){
         if (!ExitWindowsEx(EWX_SHUTDOWN | EWX_POWEROFF,
         SHTDN_REASON_MAJOR_OPERATINGSYSTEM | 
@@ -224,6 +239,7 @@ bool Event::exitSystem(QString exit_event){
             return FALSE;
     }
     
+    //shutdown force, don`t run the shutdown process, file unsaved will lot
     if(exit_event == "shutdown_force"){
         if (!ExitWindowsEx(EWX_SHUTDOWN | EWX_FORCE, 
         SHTDN_REASON_MAJOR_OPERATINGSYSTEM | 
@@ -232,6 +248,7 @@ bool Event::exitSystem(QString exit_event){
             return FALSE;
     }
     
+    //reboot
     if(exit_event == "reboot"){
         if (!ExitWindowsEx(EWX_REBOOT, 
         SHTDN_REASON_MAJOR_OPERATINGSYSTEM | 
@@ -240,6 +257,7 @@ bool Event::exitSystem(QString exit_event){
             return FALSE;
     }
     
+    //logoff
     if(exit_event == "logoff"){
         if (!ExitWindowsEx(EWX_LOGOFF, 
         SHTDN_REASON_MAJOR_OPERATINGSYSTEM | 

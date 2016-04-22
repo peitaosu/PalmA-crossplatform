@@ -30,6 +30,7 @@ class Event
         bool exitSystem(QString exit_event);
 
     private:
+        //map for key : virtual key code
         QVariantMap virtual_key_code;
 
 };

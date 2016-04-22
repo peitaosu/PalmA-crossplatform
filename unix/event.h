@@ -36,9 +36,13 @@ class Event
         bool exitSystem(QString exit_event);
 
     private:
+        //map for key : virtual key code
         QVariantMap virtual_key_code;
+        //process for command execution
         QProcess process;
+        //x11 display
         Display *display;
+        //XTest event
         XEvent event;
 
 };
