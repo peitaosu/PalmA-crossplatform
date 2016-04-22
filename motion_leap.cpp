@@ -12,7 +12,7 @@ MotionLeap::MotionLeap(){
 }
 
 /*
- * Function: Get Controller Type
+ * Motion: Get Controller Type
  * Input: NONE
  * Return: int LEAP_MOTION, defined in motion_code.h
  */
@@ -21,7 +21,7 @@ int MotionLeap::getControllerType(){
 }
 
 /*
- * Function: Get Normalized X
+ * Motion: Get Normalized X
  * Input: NONE
  * Return: Normalized position x: [0,1]
  */
@@ -38,9 +38,9 @@ double MotionLeap::getNormalizedX(){
 }
 
 /*
- * Function: Get Normalized X
+ * Motion: Get Normalized Y
  * Input: NONE
- * Return: Normalized position x: [0,1]
+ * Return: Normalized position y: [0,1]
  */
 double MotionLeap::getNormalizedY(){
     i_box = controller.frame().interactionBox();
@@ -55,9 +55,9 @@ double MotionLeap::getNormalizedY(){
 }
 
 /*
- * Function: Get Normalized Y
+ * Motion: Get Normalized Z
  * Input: NONE
- * Return: Normalized position y: [0,1]
+ * Return: Normalized position z: [0,1]
  */
 double MotionLeap::getNormalizedZ(){
     i_box = controller.frame().interactionBox();
@@ -72,7 +72,7 @@ double MotionLeap::getNormalizedZ(){
 }
 
 /*
- * Function: Get Gesture Swipe Status
+ * Motion: Get Gesture Swipe Status
  * Input: NONE
  * Return: 1 or 0, means yes or no
  */
@@ -88,7 +88,7 @@ int MotionLeap::getGestureSwipe(){
 }
 
 /*
- * Function: Get Gesture Circle Status
+ * Motion: Get Gesture Circle Status
  * Input: NONE
  * Return: 1 or 0, means yes or no
  */
@@ -127,7 +127,7 @@ int MotionLeap::getGestureCircle(bool clockwise){
 }
 
 /*
- * Function: Get Gesture Screen Tap Status
+ * Motion: Get Gesture Screen Tap Status
  * Input: NONE
  * Return: 1 or 0, means yes or no
  */
@@ -143,7 +143,7 @@ int MotionLeap::getGestureScreenTap(){
 }
 
 /*
- * Function: Get Gesture Key Tap Status
+ * Motion: Get Gesture Key Tap Status
  * Return: 1 or 0, means yes or no
  */
 int MotionLeap::getGestureKeyTap(){
@@ -158,7 +158,7 @@ int MotionLeap::getGestureKeyTap(){
 }
 
 /*
- * Function: Get Gesture Grab Status
+ * Motion: Get Gesture Grab Status
  * Input: int Hands Count
  * Return: 1 or 0, means yes or no
  */
@@ -192,7 +192,7 @@ int MotionLeap::getGestureGrab(int hand_count){
 }
 
 /*
- * Function: Get Gesture Pinch Status
+ * Motion: Get Gesture Pinch Status
  * Input: int Hands Count
  * Return: 1 or 0, means yes or no
  */
@@ -225,7 +225,7 @@ int MotionLeap::getGesturePinch(int hand_count){
 }
 
 /*
- * Function: Get Gestures Status
+ * Motion: Get Gestures Status
  * Input: int Gesture Type, int Hands Count, defined in motion_code.h
  * Return: 1 or 0, means yes or no
  */
@@ -274,7 +274,7 @@ int MotionLeap::getGestureStatus(int gesture_type, int count){
 }
 
 /*
- * Function: Get Hands Count
+ * Motion: Get Hands Count
  * Input: NONE
  * Return: int Hands Count
  */
@@ -284,7 +284,7 @@ int MotionLeap::getHandCount(){
 }
 
 /*
- * Function: Get Handedness
+ * Motion: Get Handedness
  * Input: bool, isleft or not
  * Return: NONE
  */
@@ -300,7 +300,7 @@ void MotionLeap::setHandedness(bool is_left){
 }
 
 /*
- * Function: Get Controller Status
+ * Motion: Get Controller Status
  * Input: NONE
  * Return: bool Connected or not
  */
@@ -310,7 +310,7 @@ bool MotionLeap::getControllerStatus(){
 }
 
 /*
- * Function: Get Service Status
+ * Motion: Get Service Status
  * Input: NONE
  * Return: bool Connected or not
  */
@@ -320,7 +320,7 @@ bool MotionLeap::getServiceStatus(){
 }
 
 /*
- * Function: Get Process Status
+ * Motion: Get Process Status
  * Input: NONE
  * Return: bool Connected or not
  */
