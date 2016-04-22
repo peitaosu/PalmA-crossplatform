@@ -14,7 +14,7 @@ MotionLeap::MotionLeap(){
 /*
  * Function: Get Controller Type
  * Input: NONE
- * Output: int LEAP_MOTION, defined in motion_code.h
+ * Return: int LEAP_MOTION, defined in motion_code.h
  */
 int MotionLeap::getControllerType(){
     return LEAP_MOTION;
@@ -23,7 +23,7 @@ int MotionLeap::getControllerType(){
 /*
  * Function: Get Normalized X
  * Input: NONE
- * Output: Normalized position x: [0,1]
+ * Return: Normalized position x: [0,1]
  */
 double MotionLeap::getNormalizedX(){
     i_box = controller.frame().interactionBox();
@@ -40,7 +40,7 @@ double MotionLeap::getNormalizedX(){
 /*
  * Function: Get Normalized X
  * Input: NONE
- * Output: Normalized position x: [0,1]
+ * Return: Normalized position x: [0,1]
  */
 double MotionLeap::getNormalizedY(){
     i_box = controller.frame().interactionBox();
@@ -57,7 +57,7 @@ double MotionLeap::getNormalizedY(){
 /*
  * Function: Get Normalized Y
  * Input: NONE
- * Output: Normalized position y: [0,1]
+ * Return: Normalized position y: [0,1]
  */
 double MotionLeap::getNormalizedZ(){
     i_box = controller.frame().interactionBox();
@@ -74,7 +74,7 @@ double MotionLeap::getNormalizedZ(){
 /*
  * Function: Get Gesture Swipe Status
  * Input: NONE
- * Output: 1 or 0, means yes or no
+ * Return: 1 or 0, means yes or no
  */
 int MotionLeap::getGestureSwipe(){
     //get current gesture
@@ -90,7 +90,7 @@ int MotionLeap::getGestureSwipe(){
 /*
  * Function: Get Gesture Circle Status
  * Input: NONE
- * Output: 1 or 0, means yes or no
+ * Return: 1 or 0, means yes or no
  */
 int MotionLeap::getGestureCircle(bool clockwise){
     //if clockwise
@@ -129,7 +129,7 @@ int MotionLeap::getGestureCircle(bool clockwise){
 /*
  * Function: Get Gesture Screen Tap Status
  * Input: NONE
- * Output: 1 or 0, means yes or no
+ * Return: 1 or 0, means yes or no
  */
 int MotionLeap::getGestureScreenTap(){
     //get current gesture
@@ -144,7 +144,7 @@ int MotionLeap::getGestureScreenTap(){
 
 /*
  * Function: Get Gesture Key Tap Status
- * Output: 1 or 0, means yes or no
+ * Return: 1 or 0, means yes or no
  */
 int MotionLeap::getGestureKeyTap(){
     //get current gesture
@@ -160,7 +160,7 @@ int MotionLeap::getGestureKeyTap(){
 /*
  * Function: Get Gesture Grab Status
  * Input: int Hands Count
- * Output: 1 or 0, means yes or no
+ * Return: 1 or 0, means yes or no
  */
 int MotionLeap::getGestureGrab(int hand_count){
     //threshold for grab strength
@@ -194,7 +194,7 @@ int MotionLeap::getGestureGrab(int hand_count){
 /*
  * Function: Get Gesture Pinch Status
  * Input: int Hands Count
- * Output: 1 or 0, means yes or no
+ * Return: 1 or 0, means yes or no
  */
 int MotionLeap::getGesturePinch(int hand_count){
     //threshold for pinch strength
@@ -227,7 +227,7 @@ int MotionLeap::getGesturePinch(int hand_count){
 /*
  * Function: Get Gestures Status
  * Input: int Gesture Type, int Hands Count, defined in motion_code.h
- * Output: 1 or 0, means yes or no
+ * Return: 1 or 0, means yes or no
  */
 int MotionLeap::getGestureStatus(int gesture_type, int count){
     //return gesture status according to gesture type
@@ -276,7 +276,7 @@ int MotionLeap::getGestureStatus(int gesture_type, int count){
 /*
  * Function: Get Hands Count
  * Input: NONE
- * Output: int Hands Count
+ * Return: int Hands Count
  */
 int MotionLeap::getHandCount(){
     //hands count
@@ -286,7 +286,7 @@ int MotionLeap::getHandCount(){
 /*
  * Function: Get Handedness
  * Input: bool, isleft or not
- * Output: NONE
+ * Return: NONE
  */
 void MotionLeap::setHandedness(bool is_left){
     left_handedness = is_left;
@@ -302,7 +302,7 @@ void MotionLeap::setHandedness(bool is_left){
 /*
  * Function: Get Controller Status
  * Input: NONE
- * Output: bool Connected or not
+ * Return: bool Connected or not
  */
 bool MotionLeap::getControllerStatus(){
     //controller status
@@ -312,7 +312,7 @@ bool MotionLeap::getControllerStatus(){
 /*
  * Function: Get Service Status
  * Input: NONE
- * Output: bool Connected or not
+ * Return: bool Connected or not
  */
 bool MotionLeap::getServiceStatus(){
     //service status
@@ -322,7 +322,7 @@ bool MotionLeap::getServiceStatus(){
 /*
  * Function: Get Process Status
  * Input: NONE
- * Output: bool Connected or not
+ * Return: bool Connected or not
  */
 bool MotionLeap::getProcessStatus(){
     //frame status

@@ -6,7 +6,6 @@ int main(int argc, char *argv[])
 {
 
     QApplication palm_crossplatform(argc, argv);
-    //Display display;
     Process process;
     process.init(argc, argv);
     process.start();

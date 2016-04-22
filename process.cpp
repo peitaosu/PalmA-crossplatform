@@ -483,7 +483,7 @@ void Process::changedToDesktop()
         connect(this, SIGNAL(choose_left(QString)), operation, SLOT(execProgram(QString)));
     }
     if(config_operation_desktop_dial["right"].toString() == "explorer"){
-        connect(display.widgetDial(), SIGNAL(choose_right()), operation, SLOT(openFileManager()));
+        connect(display.widgetDial(), SIGNAL(choose_right()), operation, SLOT(openExplorer()));
     }else{
         connect(this, SIGNAL(choose_right(QString)), operation, SLOT(execProgram(QString)));
     }
