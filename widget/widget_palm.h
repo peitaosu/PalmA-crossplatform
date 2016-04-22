@@ -18,7 +18,7 @@ class PalmWidget : public QWidget
         ~PalmWidget();
         bool setPalmColor(int r, int g, int b);
         bool isAvailable();
-        void setAvailable(bool _available = true);
+        void setAvailable(bool available = true);
 
     public slots:
         void paintEvent(QPaintEvent *event);

@@ -51,26 +51,39 @@ GestureWidget::~GestureWidget()
     delete ui;
 }
 
-void GestureWidget::setGestureDisplay(QString gesture_type)
-{
-
+/*
+ * Gesture: Set Gesture Display
+ * Input: QString gesture type, name same as file name
+ * Return: NONE
+ */
+void GestureWidget::setGestureDisplay(QString gesture_type){
+    //the resource path
     QString picture_path = "\":/resource/gesture/";
     QString picture_name = gesture_type;
+    //set up the style sheet
     QString gesture_label_css = "#gesture_show_label{border-image: url(" + picture_path + picture_name + ".png\");}";
     this->setStyleSheet(gesture_label_css);
 }
 
-bool GestureWidget::isAvailable()
-{
+/*
+ * Gesture: Get the Gesture Available
+ * Input: NONE
+ * Return: bool available or not
+ */
+bool GestureWidget::isAvailable(){
     return available;
 }
 
-void GestureWidget::setAvailable(bool _available)
-{
-    available = _available;
-    if(available == true){
+/*
+ * Gesture: Set the Gesture Available
+ * Input: bool available or not
+ * Return: NONE
+ */
+void GestureWidget::setAvailable(bool available){
+    this->available = available;
+    if(this->available == true){
        this->show();
-    }else if(available == false){
+    }else if(this->available == false){
        this->hide();
     }
 }

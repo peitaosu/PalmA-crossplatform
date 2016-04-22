@@ -51,23 +51,37 @@ StatusWidget::~StatusWidget()
     delete ui;
 }
 
-bool StatusWidget::isAvailable()
-{
+/*
+ * Status: Get the Status Available
+ * Input: NONE
+ * Return: bool available or not
+ */
+bool StatusWidget::isAvailable(){
     return available;
 }
 
-void StatusWidget::setAvailable(bool _available)
-{
-    available = _available;
-    if(available == true){
+/*
+ * Status: Set the Status Available
+ * Input: bool available or not
+ * Return: NONE
+ */
+void StatusWidget::setAvailable(bool available){
+    this->available = available;
+    if(this->available == true){
        this->show();
     }else{
         this->hide();
     }
 }
 
-void StatusWidget::setStatusDisplay(int status_code)
-{
+/*
+ * Status: Set Status Display
+ * Input: int status code
+ * Return: NONE
+ */
+void StatusWidget::setStatusDisplay(int status_code){
+
+    //set the style sheet
     switch(status_code){
         case 0:
             this->setStyleSheet("#controller_status{background-color: rgb(0, 0, 0);}#service_status{background-color: rgb(0, 0, 0);}#process_status{background-color: rgb(0, 0, 0);}");

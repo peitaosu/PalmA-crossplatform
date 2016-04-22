@@ -17,25 +17,29 @@ class DialWidget : public QWidget
 
         void paintEvent(QPaintEvent *event);
         QString getChoose();
-        
+        bool isAvailable();
+
     public slots:
+        //position
         void setPosition(double x, double y);
         void setTargetPosition(double x, double y);
-        void setDial(QString dial_type);
-        void setPixmap(QPixmap pixmap_type);
 
-        void setAvailable(bool _available = true);
+        //dial
+        void setDial(QString dial_type);
         void doneDial();
 
+        //pixmap
+        void setPixmap(QPixmap pixmap_type);
+
+        //available
+        void setAvailable(bool available = true);
+
     signals:
+        //choose
         void choose_up();
         void choose_down();
         void choose_left();
         void choose_right();
-        //void choose_up(QString);
-        //void choose_down(QString);
-        //void choose_left(QString);
-        //void choose_right(QString);
         void choose_up(double, double);
         void choose_down(double, double);
         void choose_left(double, double);

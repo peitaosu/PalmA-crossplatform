@@ -17,9 +17,9 @@ class CursorWidget : public QWidget
         explicit CursorWidget(QWidget *parent = 0);
         ~CursorWidget();
         bool setCursorColor(int r, int g, int b);
-        bool isAvailable();
-        void setAvailable(bool _available = true);
         void updateCursor(double x, double y);
+        bool isAvailable();
+        void setAvailable(bool available = true);
 
     public slots:
         void paintEvent(QPaintEvent *event);

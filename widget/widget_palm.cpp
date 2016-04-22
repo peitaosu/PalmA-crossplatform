@@ -72,8 +72,12 @@ PalmWidget::~PalmWidget()
     delete ui;
 }
 
-bool PalmWidget::setPalmColor(int r, int g, int b)
-{
+/*
+ * Palm: Set Palm Color
+ * Input: int RGB
+ * Return: input is in RGB range, return true
+ */
+bool PalmWidget::setPalmColor(int r, int g, int b){
     if(r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0){
         return false;
     }
@@ -81,8 +85,12 @@ bool PalmWidget::setPalmColor(int r, int g, int b)
     return true;
 }
 
-bool PalmWidget::isAvailable()
-{
+/*
+ * Palm: Get Palm Widget Available
+ * Input: NONE
+ * Return: bool available or not
+ */
+bool PalmWidget::isAvailable(){
     if(available){
         return true;
     }else{
@@ -90,11 +98,21 @@ bool PalmWidget::isAvailable()
     }
 }
 
-void PalmWidget::setAvailable(bool _available)
-{
-    available = _available;
+
+/*
+ * Palm: Set Palm Widget Available
+ * Input: bool available or not
+ * Return: NONE
+ */
+void PalmWidget::setAvailable(bool available){
+    this->available = available;
 }
 
+/*
+ * Palm: Paint the Palm
+ * Input: QPaintEvent
+ * Return: NONE
+ */
 void PalmWidget::paintEvent(QPaintEvent *event){
     if(available){
 

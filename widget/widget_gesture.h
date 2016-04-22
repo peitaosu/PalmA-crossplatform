@@ -15,7 +15,7 @@ class GestureWidget : public QWidget
         explicit GestureWidget(QWidget *parent = 0);
         ~GestureWidget();
         bool isAvailable();
-        void setAvailable(bool _available = true);
+        void setAvailable(bool available = true);
 
     public slots:
         void setGestureDisplay(QString gesture_type);

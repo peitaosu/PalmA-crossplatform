@@ -64,91 +64,143 @@ DialWidget::~DialWidget()
     delete ui;
 }
 
+/*
+ * Dial: Paint the Dial
+ * Input: QPaintEvent
+ * Return: NONE
+ */
 void DialWidget::paintEvent(QPaintEvent *event)
 {
     if(available == true){
         QPainter painter(this);
         QPen pen;
+        //set up the dial line to solid line, width is 30, color is 160,255,200(BLUE)
         pen.setStyle(Qt::SolidLine);
         pen.setWidth (30);
         pen.setCapStyle(Qt::PenCapStyle(Qt::RoundCap));
         pen.setColor(QColor(00,160,255,200));
         painter.setPen(pen);
         painter.setBrush(QBrush(QColor(00,160,255,200)));
+
+        //convert the positions to screen positions
         int user_desktop_width = QApplication::desktop()->width();
         int user_desktop_height = QApplication::desktop()->height();
         int begin_x = position_x * user_desktop_width;
         int begin_y = position_y * user_desktop_height;
         int end_x = target_x * user_desktop_width;
         int end_y = target_y * user_desktop_height;
+
+        //paint the dial, size is 320*320, position in the center, pixmap load from resource
         painter.setRenderHint(QPainter::Antialiasing, true);
         painter.drawPixmap(begin_x - 160,begin_y - 160,320,320, pixmap);
+
+        //paint the line
         painter.drawLine( begin_x, begin_y, end_x, end_y);
-        //this->setWindowFlags(Qt::WindowStaysOnTopHint);
     }
 }
 
-void DialWidget::setPosition(double x, double y)
-{
+/*
+ * Dial: Set the Position
+ * Input: double x, double y to position_x and position_y
+ * Return: NONE
+ */
+void DialWidget::setPosition(double x, double y){
     position_x = x;
     position_y = y;
 }
 
-void DialWidget::setTargetPosition(double x, double y)
-{
+/*
+ * Dial: Set the Target Position
+ * Input: double x, double y to target_x and target_y
+ * Return: NONE
+ */
+void DialWidget::setTargetPosition(double x, double y){
     target_x = x;
     target_y = y;
 }
 
-void DialWidget::setDial(QString dial_type)
-{
+/*
+ * Dial: Set the Dial Pixmap File
+ * Input: QString dial type, type same as file name
+ * Return: NONE
+ */
+void DialWidget::setDial(QString dial_type){
+    //load the pixmap
     QString dial_resource = ":/resource/dial/dial_" + dial_type + ".png";
-    //QImage image(dial_resource);
-    //qDebug()<<image.save(dial_resource, "PNG");
-    QPixmap _pixmap;
-    _pixmap.load(dial_resource);
-    this->setPixmap(_pixmap);
+    QPixmap pixmap;
+    pixmap.load(dial_resource);
+    this->setPixmap(pixmap);
 }
 
-void DialWidget::setPixmap(QPixmap pixmap_type)
-{
+/*
+ * Dial: Set the Dial Pixmap
+ * Input: QString dial type, type same as file name
+ * Return: NONE
+ */
+void DialWidget::setPixmap(QPixmap pixmap_type){
     pixmap = pixmap_type;
 }
 
-void DialWidget::setAvailable(bool _available)
-{
-    available = _available;
-    if(available == true){
+/*
+ * Dial: Set the Dial Available
+ * Input: bool available or not
+ * Return: NONE
+ */
+void DialWidget::setAvailable(bool available){
+    this->available = available;
+    if(this->available == true){
        this->show();
-    }else if(available == false){
+    }else if(this->available == false){
        this->hide();
     }
 }
 
-void DialWidget::doneDial()
-{
+
+/*
+ * Dial: Release the Dial
+ * Input: NONE
+ * Return: NONE
+ */
+void DialWidget::doneDial(){
+    //get dial choose
     QString choose = getChoose();
+
+    //up
     if(choose == "up"){
         emit choose_up();
         emit choose_up(position_x, position_y);
+
+    //down
     }else if(choose == "down"){
         emit choose_down();
         emit choose_down(position_x, position_y);
+
+    //left
     }else if(choose == "left"){
         emit choose_left();
         emit choose_left(position_x, position_y);
+
+    //right
     }else if(choose == "right"){
         emit choose_right();
         emit choose_right(position_x, position_y);
     }
-
 }
 
+/*
+ * Dial: Get the Dial Choose
+ * Input: NONE
+ * Return: QString choose, computed with position and target position
+ */
 QString DialWidget::getChoose(){
+
+    //get slope, (target_y - position_y)/(target_x - position_x)
     double slope;
     if(target_x != position_x){
         slope = (target_y - position_y)/(target_x - position_x);
     }
+
+    //get direction in horizontal and vertical
     int horizontal, vertical = 0;
     if(target_x - position_x >= 0){
         horizontal = 1;
@@ -160,6 +212,8 @@ QString DialWidget::getChoose(){
     }else{
         vertical = 1;
     }
+
+    //get direction of choose
     if(slope >= 1 || slope <= -1){
         if(vertical == 1){
             return "up";
@@ -173,5 +227,15 @@ QString DialWidget::getChoose(){
             return "left";
         }
     }
+    return "none";
+}
+
+/*
+ * Dial: Get the Dial Available
+ * Input: NONE
+ * Return: bool available or not
+ */
+bool DialWidget::isAvailable(){
+    return available;
 }
 

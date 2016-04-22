@@ -14,7 +14,7 @@ class StatusWidget : public QWidget
         explicit StatusWidget(QWidget *parent = 0);
         ~StatusWidget();
         bool isAvailable();
-        void setAvailable(bool _available = true);
+        void setAvailable(bool available = true);
 
     public slots:
         void setStatusDisplay(int status_code);

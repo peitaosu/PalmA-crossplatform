@@ -58,18 +58,20 @@ CursorWidget::CursorWidget(QWidget *parent) :
     //set cursor available
     available = true;
 
-    controller.setPolicy(Leap::Controller::POLICY_BACKGROUND_FRAMES);
-
+    //show auto
     this->show();
 }
 
-CursorWidget::~CursorWidget()
-{
+CursorWidget::~CursorWidget(){
     delete ui;
 }
 
-bool CursorWidget::setCursorColor(int r, int g, int b)
-{
+/*
+ * Cursor: Set Cursor Color
+ * Input: int RGB
+ * Return: input is in RGB range, return true
+ */
+bool CursorWidget::setCursorColor(int r, int g, int b){
     if(r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0){
         return false;
     }
@@ -77,8 +79,12 @@ bool CursorWidget::setCursorColor(int r, int g, int b)
     return true;
 }
 
-bool CursorWidget::isAvailable()
-{
+/*
+ * Cursor: Get Cursor Widget Available
+ * Input: NONE
+ * Return: cursor widget available or not
+ */
+bool CursorWidget::isAvailable(){
     if(available){
         return true;
     }else{
@@ -86,27 +92,38 @@ bool CursorWidget::isAvailable()
     }
 }
 
-void CursorWidget::setAvailable(bool _available)
-{
-    available = _available;
+/*
+ * Cursor: Set Cursor Widget Available
+ * Input: bool available or not
+ * Return: NONE
+ */
+void CursorWidget::setAvailable(bool available){
+    this->available = available;
 }
 
-void CursorWidget::updateCursor(double x, double y)
-{
+/*
+ * Cursor: Update Cursor Widget
+ * Input: double x and y
+ * Return: NONE
+ */
+void CursorWidget::updateCursor(double x, double y){
     cursor_x = x;
     cursor_y = y;
 
 }
 
+/*
+ * Cursor: Paint the Cursor
+ * Input: QPaintEvent
+ * Return: NONE
+ */
 void CursorWidget::paintEvent(QPaintEvent *event){
     if(available){
 
         //convert the hand position to the screen
-        //i_box = controller.frame().interactionBox();
-        //cursor_x = i_box.normalizePoint(controller.frame().hands().rightmost().stabilizedPalmPosition()).x;
-        //cursor_y = 1 - i_box.normalizePoint(controller.frame().hands()[0].stabilizedPalmPosition()).y;
         int screen_x = QApplication::desktop()->width() * cursor_x;
         int screen_y = QApplication::desktop()->height() * cursor_y;
+
         //new painter
         QPainter painter(this);
 
