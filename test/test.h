@@ -6,6 +6,7 @@ class Test
     public:
         Test();
         void testAllClasses();
+        void testGoThrough();
 };
 
 #endif // TEST_H

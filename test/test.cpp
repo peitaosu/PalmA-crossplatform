@@ -23,7 +23,7 @@ void Test::testAllClasses(){
 void Test::testGoThrough()
 {
     Process process;
-    process.init();
+    //process.init();
     process.start();
     Motion motion;
     motion.getControllerCurrent();
