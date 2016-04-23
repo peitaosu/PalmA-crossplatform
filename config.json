@@ -7,7 +7,7 @@
     },
     "display": {
         "cursor": "true",
-        "palm": "false",
+        "palm": "true",
         "gesture": "true",
         "dial": "true",
         "status": "false"

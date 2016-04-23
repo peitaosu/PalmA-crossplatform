@@ -158,7 +158,11 @@ void PalmWidget::paintEvent(QPaintEvent *event){
 
         //draw fingers ellipse, size is 32*32, circle the palm
         for(int finger = 0; finger < 5; finger++){
+            if(controller.frame().hands()[0].fingers()[finger].touchDistance()<0){
+                painter.setBrush(QBrush(QColor(00, 250, 90, 170)));
+            }
             painter.drawEllipse(tip[finger][0] - 16, tip[finger][1] - 16, 32, 32);
+            painter.setBrush(QBrush(palm_color));
         }
 
     }
