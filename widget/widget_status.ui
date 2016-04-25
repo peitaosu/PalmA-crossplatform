@@ -22,6 +22,12 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Consolas</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>Ctrl</string>
    </property>
@@ -44,6 +50,12 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Consolas</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>Serv</string>
    </property>
@@ -60,8 +72,14 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Consolas</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>App</string>
+    <string>Proc</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
