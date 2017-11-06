@@ -1,5 +1,9 @@
 # PalmA-crossplatform
 
+[![GitHub license](https://img.shields.io/github/license/peitaosu/PalmA-crossplatform.svg)](https://github.com/peitaosu/PalmA-crossplatform/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/peitaosu/PalmA-crossplatform.svg)](https://github.com/peitaosu/PalmA-crossplatform/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/peitaosu/PalmA-crossplatform.svg)](https://github.com/peitaosu/PalmA-crossplatform/issues)
+
 **PalmA** is a crossplatform somatosensory application to assist computer user interface control.
 
 The **1st** version was contributed by Peitao Su, Aiwei Yu, Erbo Yu and Xiaoli Sheng from 2014 to 2015 in Shanghai Ocean University.
