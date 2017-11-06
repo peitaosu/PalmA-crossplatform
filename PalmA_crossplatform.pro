@@ -58,13 +58,13 @@ win32{
     win/foreground.h
 }
 
-unix{
+unix:!macx{
     QT += x11extras
-    INCLUDEPATH += $$PWD/unix/
-    SOURCES += unix\event.cpp \
-    unix\foreground.cpp
-    HEADERS += unix\event.h \ \
-    unix\foreground.h
+    INCLUDEPATH += $$PWD/linux/
+    SOURCES += linux\event.cpp \
+    linux\foreground.cpp
+    HEADERS += linux\event.h \ \
+    linux\foreground.h
     LIBS += -lX11 -lXtst -lXext
 }
 

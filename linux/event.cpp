@@ -9,8 +9,8 @@ Event::Event(){
     //load virtual key code json file as QVariantMap
     QString vk_code_string;
     QFile vk_code_file;
-    //file for unix/x11 location is under unix/
-    vk_code_file.setFileName(":/unix/event_keyboard.json");
+    //file for linux/x11 location is under linux/
+    vk_code_file.setFileName(":/linux/event_keyboard.json");
     vk_code_file.open(QIODevice::ReadOnly | QIODevice::Text);
     vk_code_string = vk_code_file.readAll();
     vk_code_file.close();
