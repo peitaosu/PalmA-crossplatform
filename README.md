@@ -2,11 +2,11 @@
 
 **PalmA** is a crossplatform somatosensory application to assist computer user interface control.
 
-The **1st** version was code by Peitao Su, Aiwei Yu, Erbo Yu and Xiaoli Sheng from 2014-2015 in Shanghai Ocean University.
+The **1st** version was contributed by Peitao Su, Aiwei Yu, Erbo Yu and Xiaoli Sheng from 2014 to 2015 in Shanghai Ocean University.
 
-**PalmA for Crossform&Desktop** version recode by Peitao Su in April 2016.
+**PalmA for Crossplatform** version was re-written by Peitao Su in April 2016.
 
-**PalmA for IoT&Server** version recode by Aiwei Yu in April 2016.
+**PalmA for IoT** version was written by Aiwei Yu in April 2016.
 
 License
 =======
@@ -14,13 +14,20 @@ Apache License Version 2.0
 
 HOW-TOs
 =======
-1. Get the source code:
 
-    > git clone https://github.com/peitaosu/PalmA-crossplatform
+1. Get the source code:
+```
+> git clone https://github.com/peitaosu/PalmA-crossplatform
+```
 
 2. Setup your development environment:
 
-    Download and Install **Qt Opensource**, **Visual Studio**(for Windows), **g++**(for Linux), **XCode**(for OS X), make sure the Qt was compiled with the same version. In my environment, it should be qt-opensource-windows-x86-msvc2015_64-5.6.0 and Visual Studio Community(2015).
+    Download and Install:
+    * **Qt Opensource**
+    * **Visual Studio**(for Windows)
+    * **g++**(for Linux)
+    
+    Make sure the Qt was compiled with the same version. For example, in my environment, it should be `qt-opensource-windows-x86-msvc2015_64-5.6.0` and `Visual Studio Community(2015)`.
 
 3. Setup devices environment:
 
@@ -31,11 +38,11 @@ Quick Start
 ===========
 1. Import Project:
 
-    Open Qt-Creater, import PalmA_crossplatform.pro, setup your build environment(Compiler, Debugger and Output folder).
+    Open Qt-Creater, import PalmA_crossplatform.pro, setup your build configurations (Compiler, Debugger and Output folder).
 
 2. Copy header and libraries:
 
-    For Leap Motion version build, copy /include and /lib folders in Leap Motion SDK to project folder.
+    From Leap Motion build, copy /include and /lib folders in Leap Motion SDK to project folder.
 
 3. Make & Build
 
@@ -43,7 +50,7 @@ Quick Start
 
 4. Run
 
-    Plug-in device, run the application.
+    Plug-in device, launch the application.
 
 Known Issue
 ===========
