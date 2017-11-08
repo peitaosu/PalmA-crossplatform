@@ -68,7 +68,10 @@ unix:!macx{
     LIBS += -lX11 -lXtst -lXext
 }
 
-
+macx{
+    INCLUDEPATH += $$PWD/mac/
+    HEADERS += mac\event.h
+}
 
 LIBS += -L$$PWD/lib/x64/ -lLeap \
     -L$$PWD/lib/x86/ -lLeap
