@@ -1,3 +1,6 @@
+#include <stdint.h>
+#include <stdio.h>
+#include <ApplicationServices/ApplicationServices.h>
 #include <QFile>
 #include <QJsonDocument>
 #include "event.h"
@@ -23,3 +26,16 @@ Event::~Event(){
     
 }
 
+int Event::mouseMove(double x, double y){
+    if(x < 0 || x > 1 || y < 0 || y > 1){
+        return INPUT_ERROR;;
+    }
+    //the cursor mouse position is following the display resolution
+    int point_x = x * QApplication::desktop()->width();
+    int point_y = y * QApplication::desktop()->height();
+
+    CGEventRef move;
+    move = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, (point_x, point_y), 0);
+    CGEventPost(kCGHIDEventTap, move);
+    return 0;
+}
