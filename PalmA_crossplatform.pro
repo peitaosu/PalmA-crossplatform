@@ -60,7 +60,8 @@ win32{
 
 unix:!macx{
     QT += x11extras
-    INCLUDEPATH += $$PWD/linux/
+    INCLUDEPATH += $$PWD/linux/ \
+                    $$PWD/widget/
     SOURCES += linux\event.cpp \
     linux\foreground.cpp
     HEADERS += linux\event.h \ \
@@ -69,7 +70,8 @@ unix:!macx{
 }
 
 macx{
-    INCLUDEPATH += $$PWD/mac/
+    INCLUDEPATH += $$PWD/mac/ \
+                    $$PWD/widget/
     SOURCES += mac\foreground.cpp
     HEADERS += mac\event.h \
     mac\foreground.h

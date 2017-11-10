@@ -7,7 +7,7 @@ class Foreground
 {
     public:
         Foreground();
-        std::string Foreground::exec(char* cmd);
+        std::string exec(char* cmd);
         std::string getForegroundProcessName();
         std::string getForegroundWindowName();
 };

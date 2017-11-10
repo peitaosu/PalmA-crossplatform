@@ -2,6 +2,7 @@
 #define EVENT_H
 
 #include <QVariantMap>
+#include <QProcess>
 
 namespace System {
     class Event;
