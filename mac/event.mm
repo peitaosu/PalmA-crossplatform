@@ -120,3 +120,62 @@ void Event::mouseRoll(int distance)
     CGEventRef scroll = CGEventCreateScrollWheelEvent(NULL, kCGScrollEventUnitPixel, 1, distance);
     CGEventPost(kCGHIDEventTap, scroll);
 }
+
+int Event::keyboardPress(QString key)
+{
+    if(virtual_key_code[key].isValid()){
+        //convert virtual_key_code to integer, as input of keybd_event, True means keydown
+        CGEventRef press = CGEventCreateKeyboardEvent(NULL, virtual_key_code[key].toInt(), true);
+        CGEventPost(kCGHIDEventTap, press);
+        return 0;
+    }else{
+        return INPUT_ERROR;
+    }
+}
+
+int Event::keyboardRelease(QString key)
+{
+    if(virtual_key_code[key].isValid()){
+        //convert virtual_key_code to integer, as input of keybd_event, False means keyup
+        CGEventRef release = CGEventCreateKeyboardEvent(NULL, virtual_key_code[key].toInt(), false);
+        CGEventPost(kCGHIDEventTap, release);
+        return 0;
+    }else{
+        return INPUT_ERROR;
+    }
+}
+
+int Event::keyboardType(QString key)
+{
+    if(virtual_key_code[key].isValid()){
+        //key type
+        CGEventRef press = CGEventCreateKeyboardEvent(NULL, virtual_key_code[key].toInt(), true);
+        CGEventPost(kCGHIDEventTap, press);
+        CGEventRef release = CGEventCreateKeyboardEvent(NULL, virtual_key_code[key].toInt(), false);
+        CGEventPost(kCGHIDEventTap, release);
+        return 0;
+    }else{
+        return INPUT_ERROR;
+    }
+}
+
+int Event::keyboardMType(QString multi_key)
+{
+    //split the multi_key with "+"
+    QStringList multi_key_list;
+    multi_key_list = multi_key.split('+');
+    for(int i = 0; i < multi_key_list.size(); i++){
+        if(!virtual_key_code[multi_key_list[i]].isValid()){
+            return INPUT_ERROR;
+        }
+    }
+    //keys in list press
+    for(int i = 0; i < multi_key_list.size(); i++){
+        keyboardPress(multi_key_list[i]);
+    }
+    //keys in list release
+    for(int i = 0; i < multi_key_list.size(); i++){
+        keyboardRelease(multi_key_list[i]);
+    }
+    return 0;
+}
