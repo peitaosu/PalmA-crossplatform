@@ -3,5 +3,6 @@
         <file>linux/event_keyboard.json</file>
         <file>win/event_keyboard.json</file>
         <file>config.json</file>
+        <file>mac/event_keyboard.json</file>
     </qresource>
 </RCC>
