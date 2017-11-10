@@ -33,7 +33,8 @@ class Event
     private:
         //map for key : virtual key code
         QVariantMap virtual_key_code;
-
+        //process for command execution
+        QProcess process;
 };
 
 #endif // EVENT_H

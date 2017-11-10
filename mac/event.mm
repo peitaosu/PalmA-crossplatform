@@ -179,3 +179,37 @@ int Event::keyboardMType(QString multi_key)
     }
     return 0;
 }
+
+bool Event::exitSystem(QString exit_event){
+
+    //will execute system command, need root permission
+    
+    //shutdown
+    if(exit_event == "shutdown"){
+        if(!process.startDetached("shutdown -h now")){
+            return FALSE;
+        }
+    }
+
+    //shutdown force, in fact same as shutdown 
+    if(exit_event == "shutdown_force"){
+        if(!process.startDetached("shutdown -h now")){
+            return FALSE;
+        }
+    }
+
+    //reboot
+    if(exit_event == "reboot"){
+        if(!process.startDetached("shutdown -r now")){
+            return FALSE;
+        }
+    }
+
+    //logoff
+    if(exit_event == "logoff"){
+        if(!process.startDetached("exit")){
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
