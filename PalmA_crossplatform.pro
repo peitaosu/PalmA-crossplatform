@@ -71,6 +71,8 @@ unix:!macx{
 macx{
     INCLUDEPATH += $$PWD/mac/
     HEADERS += mac\event.h
+    OBJECTIVE_SOURCES += mac\event.mm
+    LIBS += -framework ApplicationServices
 }
 
 LIBS += -L$$PWD/lib/x64/ -lLeap \

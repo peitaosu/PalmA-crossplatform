@@ -31,11 +31,12 @@ int Event::mouseMove(double x, double y){
         return INPUT_ERROR;;
     }
     //the cursor mouse position is following the display resolution
-    int point_x = x * QApplication::desktop()->width();
-    int point_y = y * QApplication::desktop()->height();
+    CGPoint point;
+    point.x = x * QApplication::desktop()->width();
+    point.y = y * QApplication::desktop()->height();
 
     CGEventRef move;
-    move = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, (point_x, point_y), 0);
+    move = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, point, kCGMouseButtonLeft);
     CGEventPost(kCGHIDEventTap, move);
     return 0;
 }
