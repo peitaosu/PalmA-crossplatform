@@ -3,6 +3,7 @@
 #include <ApplicationServices/ApplicationServices.h>
 #include <QFile>
 #include <QJsonDocument>
+#include <QCursor>
 #include "event.h"
 #include "error_code.h"
 
@@ -39,4 +40,83 @@ int Event::mouseMove(double x, double y){
     move = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, point, kCGMouseButtonLeft);
     CGEventPost(kCGHIDEventTap, move);
     return 0;
+}
+
+int Event::mousePress(int left_or_right)
+{
+    if(left_or_right == 1){
+        //left button down
+        CGEventRef press = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDown, QCursor::pos().toCGPoint(), kCGMouseButtonLeft);
+        CGEventPost(kCGHIDEventTap, press);
+        return 0;
+    }else if(left_or_right == 2){
+        //right button down
+        CGEventRef press = CGEventCreateMouseEvent(NULL, kCGEventRightMouseDown, QCursor::pos().toCGPoint(), kCGMouseButtonRight);
+        CGEventPost(kCGHIDEventTap, press);
+        return 0;
+    }else {
+        return INPUT_ERROR;
+    }
+}
+
+int Event::mouseRelease(int left_or_right)
+{
+    if(left_or_right == 1){
+        //left button up
+        CGEventRef release = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseUp, QCursor::pos().toCGPoint(), kCGMouseButtonLeft);
+        CGEventPost(kCGHIDEventTap, release);
+        return 0;
+    }else if(left_or_right == 2){
+        //right button up
+        CGEventRef release = CGEventCreateMouseEvent(NULL, kCGEventRightMouseUp, QCursor::pos().toCGPoint(), kCGMouseButtonRight);
+        CGEventPost(kCGHIDEventTap, release);
+        return 0;
+    }else {
+        return INPUT_ERROR;
+    }
+}
+
+int Event::mouseClick(int left_or_right)
+{
+    if(left_or_right == 1){
+        //left button click
+        CGEventRef press = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDown, QCursor::pos().toCGPoint(), kCGMouseButtonLeft);
+        CGEventPost(kCGHIDEventTap, press);
+        CGEventRef release = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseUp, QCursor::pos().toCGPoint(), kCGMouseButtonLeft);
+        CGEventPost(kCGHIDEventTap, release);
+        return 0;
+    }else if(left_or_right == 2){
+        //right button click
+        CGEventRef press = CGEventCreateMouseEvent(NULL, kCGEventRightMouseDown, QCursor::pos().toCGPoint(), kCGMouseButtonRight);
+        CGEventPost(kCGHIDEventTap, press);
+        CGEventRef release = CGEventCreateMouseEvent(NULL, kCGEventRightMouseUp, QCursor::pos().toCGPoint(), kCGMouseButtonRight);
+        CGEventPost(kCGHIDEventTap, release);
+        return 0;
+    }else {
+        return INPUT_ERROR;
+    }
+}
+
+int Event::mouseDClick(int left_or_right)
+{
+    if(left_or_right == 1){
+        //left button click twice
+        mouseClick(1);
+        mouseClick(1);
+        return 0;
+    }else if(left_or_right == 2){
+        //rigth button click twice
+        mouseClick(2);
+        mouseClick(2);
+        return 0;
+    }else {
+        return INPUT_ERROR;
+    }
+}
+
+void Event::mouseRoll(int distance)
+{
+    //mouse roll, negative will roll reverse direction
+    CGEventRef scroll = CGEventCreateScrollWheelEvent(NULL, kCGScrollEventUnitPixel, 1, distance);
+    CGEventPost(kCGHIDEventTap, scroll);
 }
