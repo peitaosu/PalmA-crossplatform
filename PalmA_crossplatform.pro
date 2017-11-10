@@ -70,7 +70,9 @@ unix:!macx{
 
 macx{
     INCLUDEPATH += $$PWD/mac/
-    HEADERS += mac\event.h
+    SOURCES += mac\foreground.cpp
+    HEADERS += mac\event.h \
+    mac\foreground.h
     OBJECTIVE_SOURCES += mac\event.mm
     LIBS += -framework ApplicationServices
 }
