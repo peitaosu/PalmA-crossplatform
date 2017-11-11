@@ -56,10 +56,3 @@ Quick Start
 
     Plug-in device, launch the application.
 
-Known Issue
-===========
-1. The widget header include path will cause a build error. (Ubuntu 14.04, with Qt 5.6.0, g++ 4.8.4)
-
-2. QTextStream will cause a build error. (Ubuntu 14.04, with Qt 5.6.0, g++ 4.8.4)
-
-3. Display will case a previous declaration error. (Ubuntu 14.04, with Qt 5.6.0, g++ 4.8.4)
