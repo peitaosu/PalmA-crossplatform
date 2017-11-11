@@ -52,40 +52,65 @@ FORMS   += widget/widget_status.ui \
 win32{
     INCLUDEPATH += $$PWD/win/ \
                     $$PWD/widget/
+
     SOURCES += win/event.cpp \
     win/foreground.cpp
+
     HEADERS += win/event.h \
     win/foreground.h
+
+    LIBS += -L$$PWD/lib/x64/ -lLeap \
+    -L$$PWD/lib/x86/ -lLeap
+
+    INCLUDEPATH += $$PWD/lib/x64 \
+        $$PWD/lib/x86
+    DEPENDPATH += $$PWD/lib/x64 \
+        $$PWD/lib/x86
 }
 
 unix:!macx{
     QT += x11extras
+
     INCLUDEPATH += $$PWD/linux/ \
                     $$PWD/widget/
+
     SOURCES += linux\event.cpp \
     linux\foreground.cpp
+
     HEADERS += linux\event.h \ \
     linux\foreground.h
+
     LIBS += -lX11 -lXtst -lXext
+
+    LIBS += -L$$PWD/lib/x64/ -lLeap \
+    -L$$PWD/lib/x86/ -lLeap
+
+    INCLUDEPATH += $$PWD/lib/x64 \
+        $$PWD/lib/x86
+    DEPENDPATH += $$PWD/lib/x64 \
+        $$PWD/lib/x86
+
 }
 
 macx{
     INCLUDEPATH += $$PWD/mac/ \
                     $$PWD/widget/
+
     SOURCES += mac\foreground.cpp
+
     HEADERS += mac\event.h \
     mac\foreground.h
+
     OBJECTIVE_SOURCES += mac\event.mm
+
     LIBS += -framework ApplicationServices
+
+    LIBS += -L$$PWD/lib/x64/ -lLeap
+
+    INCLUDEPATH += $$PWD/lib/x64
+
+    DEPENDPATH += $$PWD/lib/x64
 }
-
-LIBS += -L$$PWD/lib/x64/ -lLeap \
-    -L$$PWD/lib/x86/ -lLeap
-
-INCLUDEPATH += $$PWD/lib/x64 \
-    $$PWD/lib/x86
-DEPENDPATH += $$PWD/lib/x64 \
-    $$PWD/lib/x86
 
 DISTFILES += \
     include/Leap.i
