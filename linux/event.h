@@ -1,5 +1,5 @@
-#ifndef EVENT_H
-#define EVENT_H
+#ifndef PALMA_EVENT_H
+#define PALMA_EVENT_H
 
 #include <QVariantMap>
 #include <QProcess>
@@ -47,4 +47,4 @@ class Event
 
 };
 
-#endif // EVENT_H
+#endif // PALMA_EVENT_H

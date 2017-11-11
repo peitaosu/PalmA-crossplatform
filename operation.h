@@ -1,5 +1,5 @@
-#ifndef OPERATION_H
-#define OPERATION_H
+#ifndef PALMA_OPERATION_H
+#define PALMA_OPERATION_H
 #include "event.h"
 
 #include <QObject>
@@ -54,4 +54,4 @@ class Operation : public QObject
 
 };
 
-#endif // OPERATION_H
+#endif // PALMA_OPERATION_H

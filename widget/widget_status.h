@@ -1,5 +1,5 @@
-#ifndef WIDGET_STATUS_H
-#define WIDGET_STATUS_H
+#ifndef PALMA_WIDGET_STATUS_H
+#define PALMA_WIDGET_STATUS_H
 
 #include <QWidget>
 namespace Ui {
@@ -25,4 +25,4 @@ class StatusWidget : public QWidget
         bool available;
 };
 
-#endif // WIDGET_STATUS_H
+#endif // PALMA_WIDGET_STATUS_H

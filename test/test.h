@@ -1,5 +1,5 @@
-#ifndef TEST_H
-#define TEST_H
+#ifndef PALMA_TEST_H
+#define PALMA_TEST_H
 
 class Test
 {
@@ -9,4 +9,4 @@ class Test
         void testGoThrough();
 };
 
-#endif // TEST_H
+#endif // PALMA_TEST_H

@@ -1,5 +1,5 @@
-#ifndef FOREGROUND_H
-#define FOREGROUND_H
+#ifndef PALMA_FOREGROUND_H
+#define PALMA_FOREGROUND_H
 
 #include <string>
 
@@ -12,4 +12,4 @@ class Foreground
         std::string getForegroundWindowName();
 };
 
-#endif // FOREGROUND_H
+#endif // PALMA_FOREGROUND_H

@@ -1,5 +1,5 @@
-#ifndef DISPLAY_H
-#define DISPLAY_H
+#ifndef PALMA_DISPLAY_H
+#define PALMA_DISPLAY_H
 
 #include <QObject>
 #include "widget_status.h"
@@ -50,4 +50,4 @@ class Display : public QObject
         PalmWidget  *palm_widget;
 };
 
-#endif // DISPLAY_H
+#endif // PALMA_DISPLAY_H

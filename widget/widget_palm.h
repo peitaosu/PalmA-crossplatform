@@ -1,5 +1,5 @@
-#ifndef WIDGET_PALM_H
-#define WIDGET_PALM_H
+#ifndef PALMA_WIDGET_PALM_H
+#define PALMA_WIDGET_PALM_H
 
 #include <QWidget>
 #include <QColor>
@@ -34,4 +34,4 @@ class PalmWidget : public QWidget
         bool available;
 };
 
-#endif // WIDGET_PALM_H
+#endif // PALMA_WIDGET_PALM_H

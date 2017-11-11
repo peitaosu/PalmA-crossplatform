@@ -1,5 +1,5 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef PALMA_LOGGER_H
+#define PALMA_LOGGER_H
 
 #include <QObject>
 #include <QFile>
@@ -20,4 +20,4 @@ class Logger : public QObject
 
 };
 
-#endif // LOGGER_H
+#endif // PALMA_LOGGER_H

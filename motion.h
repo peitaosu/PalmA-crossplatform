@@ -1,5 +1,5 @@
-#ifndef MOTION_H
-#define MOTION_H
+#ifndef PALMA_MOTION_H
+#define PALMA_MOTION_H
 #include "motion_leap.h"
 
 class Motion
@@ -49,4 +49,4 @@ class Motion
         MotionLeap motion_leap;
 };
 
-#endif // MOTION_H
+#endif // PALMA_MOTION_H

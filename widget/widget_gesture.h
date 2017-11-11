@@ -1,5 +1,5 @@
-#ifndef WIDGET_GESTURE_H
-#define WIDGET_GESTURE_H
+#ifndef PALMA_WIDGET_GESTURE_H
+#define PALMA_WIDGET_GESTURE_H
 
 #include <QWidget>
 
@@ -26,4 +26,4 @@ class GestureWidget : public QWidget
         bool available;
 };
 
-#endif // WIDGET_GESTURE_H
+#endif // PALMA_WIDGET_GESTURE_H

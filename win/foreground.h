@@ -1,5 +1,5 @@
-#ifndef FOREGROUND_H
-#define FOREGROUND_H
+#ifndef PALMA_FOREGROUND_H
+#define PALMA_FOREGROUND_H
 #include <string>
 #include <Windows.h>
 #include "tlhelp32.h"
@@ -13,4 +13,4 @@ class Foreground
         LPWSTR GetProcessNameById(DWORD ProcessID);
 };
 
-#endif // FOREGROUND_H
+#endif // PALMA_FOREGROUND_H

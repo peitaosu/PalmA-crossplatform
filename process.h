@@ -1,5 +1,5 @@
-#ifndef PROCESS_H
-#define PROCESS_H
+#ifndef PALMA_PROCESS_H
+#define PALMA_PROCESS_H
 
 #include <QObject>
 #include <QTimer>
@@ -88,4 +88,4 @@ class Process : public QObject
         void showGesture(QString gesture_type);
 };
 
-#endif // PROCESS_H
+#endif // PALMA_PROCESS_H

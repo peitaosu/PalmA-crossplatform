@@ -1,5 +1,5 @@
-#ifndef ERROR_CODE_H
-#define ERROR_CODE_H
+#ifndef PALMA_ERROR_CODE_H
+#define PALMA_ERROR_CODE_H
 
 #define EXEC_ERROR -1
 #define UNKNOW_INTERRUPT -2
@@ -7,4 +7,4 @@
 
 
 
-#endif // ERROR_CODE_H
+#endif // PALMA_ERROR_CODE_H

@@ -1,5 +1,5 @@
-#ifndef MOTION_CODE_H
-#define MOTION_CODE_H
+#ifndef PALMA_MOTION_CODE_H
+#define PALMA_MOTION_CODE_H
 
 //status
 #define NONE 0
@@ -22,4 +22,4 @@
 #define LEAP_MOTION 1
 #define KINECT 2
 
-#endif // MOTION_CODE_H
+#endif // PALMA_MOTION_CODE_H

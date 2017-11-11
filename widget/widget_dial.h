@@ -1,5 +1,5 @@
-#ifndef WIDGET_DIAL_H
-#define WIDGET_DIAL_H
+#ifndef PALMA_WIDGET_DIAL_H
+#define PALMA_WIDGET_DIAL_H
 
 #include <QWidget>
 
@@ -59,4 +59,4 @@ class DialWidget : public QWidget
 
 };
 
-#endif // WIDGET_DIAL_H
+#endif // PALMA_WIDGET_DIAL_H
