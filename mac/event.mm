@@ -1,11 +1,13 @@
+#include "event.h"
+#include "error_code.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <ApplicationServices/ApplicationServices.h>
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QFile>
 #include <QJsonDocument>
 #include <QCursor>
-#include "event.h"
-#include "error_code.h"
 
 Event::Event(){
 
