@@ -29,6 +29,11 @@ Event::~Event(){
     
 }
 
+/*
+ * Event: Mouse Move
+ * Input: double x [0.0, 1.0], double y [0.0, 1.0]
+ * Input Error: return INPUT_ERROR;
+ */
 int Event::mouseMove(double x, double y){
     if(x < 0 || x > 1 || y < 0 || y > 1){
         return INPUT_ERROR;;
@@ -44,6 +49,11 @@ int Event::mouseMove(double x, double y){
     return 0;
 }
 
+/*
+ * Event: Mouse Press
+ * Input: int left = 1, right = 2
+ * Input Error: return INPUT_ERROR
+ */
 int Event::mousePress(int left_or_right)
 {
     if(left_or_right == 1){
@@ -61,6 +71,11 @@ int Event::mousePress(int left_or_right)
     }
 }
 
+/*
+ * Event: Mouse Release
+ * Input: int left = 1, right = 2
+ * Input Error: return INPUT_ERROR;
+ */
 int Event::mouseRelease(int left_or_right)
 {
     if(left_or_right == 1){
@@ -78,6 +93,11 @@ int Event::mouseRelease(int left_or_right)
     }
 }
 
+/*
+ * Event: Mouse Click
+ * Input: int left = 1, right = 2
+ * Input Error: return INPUT_ERROR
+ */
 int Event::mouseClick(int left_or_right)
 {
     if(left_or_right == 1){
@@ -99,6 +119,11 @@ int Event::mouseClick(int left_or_right)
     }
 }
 
+/*
+ * Event: Mouse Double Click
+ * Input: int left = 1, right = 2
+ * Input Error: return INPUT_ERROR
+ */
 int Event::mouseDClick(int left_or_right)
 {
     if(left_or_right == 1){
@@ -116,6 +141,10 @@ int Event::mouseDClick(int left_or_right)
     }
 }
 
+/*
+ * Event: Mouse Wheel
+ * Input: int distance, default 5
+ */
 void Event::mouseRoll(int distance)
 {
     //mouse roll, negative will roll reverse direction
@@ -123,6 +152,10 @@ void Event::mouseRoll(int distance)
     CGEventPost(kCGHIDEventTap, scroll);
 }
 
+/*
+ * Event: Key Press
+ * Input: QString key
+ */
 int Event::keyboardPress(QString key)
 {
     if(virtual_key_code[key].isValid()){
@@ -135,6 +168,10 @@ int Event::keyboardPress(QString key)
     }
 }
 
+/*
+ * Event: Key Release
+ * Input: QString key
+ */
 int Event::keyboardRelease(QString key)
 {
     if(virtual_key_code[key].isValid()){
@@ -147,6 +184,10 @@ int Event::keyboardRelease(QString key)
     }
 }
 
+/*
+ * Event: Key Type
+ * Input: QString key
+ */
 int Event::keyboardType(QString key)
 {
     if(virtual_key_code[key].isValid()){
@@ -161,6 +202,10 @@ int Event::keyboardType(QString key)
     }
 }
 
+/*
+ * Event: Key Multi Type
+ * Input: QString multi_key with "+"
+ */
 int Event::keyboardMType(QString multi_key)
 {
     //split the multi_key with "+"
@@ -182,6 +227,11 @@ int Event::keyboardMType(QString multi_key)
     return 0;
 }
 
+/*
+ * Event: Exit System
+ * Input: QString exit_event
+ * Linux not support logout via terminal.
+ */
 bool Event::exitSystem(QString exit_event){
 
     //will execute system command, need root permission
