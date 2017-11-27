@@ -1,3 +1,10 @@
+//---------------------------------------------------//
+//     Apache License Version 2.0, January 2004      //
+// Copyright @ 2016-2017 Tony Su All Rights Reserved //
+//  https://github.com/peitaosu/PalmA-crossplatform  //
+//---------------------------------------------------//
+
+
 #include "widget_dial.h"
 #include "ui_widget_dial.h"
 #include <QBitmap>
