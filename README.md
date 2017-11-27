@@ -56,3 +56,16 @@ Quick Start
 
     Plug-in device, launch the application.
 
+
+Supported Gestures
+==================
+SWIPE | CIRCLE | CIRCLE_ | SCREENTAP | KEYTAP | GRAB | GRAB_ | PINCH | PINCH_
+:----:|:------:|:-------:|:---------:|:------:|:----:|:-----:|:-----:|:-----:
+![](/resource/gesture/swipe.png) | ![](/resource/gesture/circle.png) | ![](/resource/gesture/circle_anti.png) | ![](/resource/gesture/screentap.png) | ![](/resource/gesture/keytap.png) | ![](/resource/gesture/grab.png) | ![](/resource/gesture/hand.png) | ![](/resource/gesture/pinch.png) | ![](/resource/gesture/pinche.png)
+
+Supported Features
+==================
+Desktop | Explorer
+:------:|:-------:
+Go - File - Setting - Browser | Go - Home - Back - Refresh
+![](/resource/dial/dial_desktop.png) | ![](/resource/dial/dial_explorer.png)
