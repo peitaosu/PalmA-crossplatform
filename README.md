@@ -69,3 +69,8 @@ Desktop | Explorer
 :------:|:-------:
 Go - File - Setting - Browser | Go - Home - Back - Refresh
 ![](/resource/dial/dial_desktop.png) | ![](/resource/dial/dial_explorer.png)
+
+
+Video Introduction
+==================
+[![PalmA - Open Source Leap Motion Application](https://img.youtube.com/vi/EmmUr-JdGwU/0.jpg)](https://www.youtube.com/watch?v=EmmUr-JdGwU)
