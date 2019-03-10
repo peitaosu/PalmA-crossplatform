@@ -3,6 +3,9 @@
 [![GitHub license](https://img.shields.io/github/license/peitaosu/PalmA-crossplatform.svg)](https://github.com/peitaosu/PalmA-crossplatform/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/peitaosu/PalmA-crossplatform.svg)](https://github.com/peitaosu/PalmA-crossplatform/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/peitaosu/PalmA-crossplatform.svg)](https://github.com/peitaosu/PalmA-crossplatform/issues)
+![Qt Version](https://img.shields.io/badge/Qt-5.9.7-green.svg)
+![MSVC Version](https://img.shields.io/badge/MSVC-2017-blue.svg)
+![LeapSDK Version](https://img.shields.io/badge/LeapSDK-2.3.1-green.svg)
 
 **PalmA** is a crossplatform somatosensory application to assist computer user interface control.
 
@@ -31,7 +34,7 @@ HOW-TOs
     * **Visual Studio**(for Windows)
     * **g++**(for Linux)
     
-    Make sure the Qt was compiled with the same version. For example, in my environment, it should be `qt-opensource-windows-x86-msvc2015_64-5.6.0` and `Visual Studio Community(2015)`.
+    Make sure the Qt was compiled with the same version. For example, in my environment, it should be `qt-opensource-windows-x86-5.9.7` and `Visual Studio Community (2017)`. If you are using VS2015, please use qt with msvc2015.
 
 3. Setup devices environment:
 
